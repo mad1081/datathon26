@@ -1,6 +1,6 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
-import { CATEGORIES, SESSIONS, BASELINE, STEPS, STRENGTH, RULES, typeOf, type CatKey } from "@/lib/baseline"
+import { CATEGORIES, SESSIONS, BASELINE, STEPS, STRENGTH, RULES, OUTSIDE_VERDICT, typeOf, type CatKey } from "@/lib/baseline"
 import type { Item } from "@/lib/data"
 import { RuleCiteChip } from "./Clause"
 
@@ -19,7 +19,7 @@ export function Taxonomy({ open, onOpen, items }: { open: boolean; onOpen: (o: b
           </SheetDescription>
           <div className="flex flex-wrap gap-1.5 pt-1">
             {(Object.keys(STRENGTH) as (keyof typeof STRENGTH)[]).map((k) => <span key={k} className={cn("rounded-full px-2 py-0.5 text-[10.5px]", STRENGTH[k].cls)}>{STRENGTH[k].label}</span>)}
-            <span className="rounded-full bg-muted px-2 py-0.5 text-[10.5px] text-muted-foreground ring-1 ring-border">вне вердикта</span>
+            <span className="rounded-full bg-warning-bg px-2 py-0.5 text-[10.5px] text-warning ring-1 ring-warning-border">{OUTSIDE_VERDICT}</span>
           </div>
         </SheetHeader>
         <div className="space-y-4 p-4">
@@ -44,7 +44,7 @@ export function Taxonomy({ open, onOpen, items }: { open: boolean; onOpen: (o: b
                           </div>
                           <div className="flex shrink-0 flex-wrap justify-end gap-1">
                             <span className={cn("rounded-full px-1.5 py-px text-[10px]", STRENGTH[r.strength].cls)}>{STRENGTH[r.strength].label}</span>
-                            {!r.count_in_verdict && <span className="rounded-full bg-muted px-1.5 py-px text-[10px] text-muted-foreground ring-1 ring-border" data-testid="excluded">вне вердикта</span>}
+                            {!r.count_in_verdict && <span className="rounded-full bg-warning-bg px-1.5 py-px text-[10px] text-warning ring-1 ring-warning-border" data-testid="excluded">{OUTSIDE_VERDICT}</span>}
                             {n > 0 && <span className="rounded-full bg-accent px-1.5 py-px text-[10px] font-semibold text-primary">в видео: {n}</span>}
                           </div>
                         </div>

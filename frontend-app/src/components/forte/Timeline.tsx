@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Card, CardAction, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { cn } from "@/lib/utils"
-import { TRACKS, CASH_STATES, ZONE_BY_KEY, fmt, IMG, nearestFrame, type Item, type Phase, type Scenario, type Seg } from "@/lib/data"
+import { TRACKS, CASH_STATES, ZONE_BY_KEY, fmt, IMG, nearestFrame, type Item, type Phase, type Scenario, phaseStatus, type Seg } from "@/lib/data"
 import { SESSION_BY_KEY } from "@/lib/baseline"
 
 type Props = {
@@ -100,7 +100,7 @@ export function Timeline({ S, items, sel, ph, onSelect, onSeek }: Props) {
             <div className="text-[12.5px] font-semibold">Эталон</div>
             <div className="text-[10px] leading-tight text-muted-foreground">{S.sessions.length ? S.sessions.map((x) => SESSION_BY_KEY[x.type].label).join(" → ") : "тип не определён"}</div>
           </div>
-          <PhaseRow S={S} W={W} onSelect={onSelect} onSeek={onSeek} />
+          <PhaseRow S={S} items={items} W={W} onSelect={onSelect} onSeek={onSeek} />
 
           {/* дорожка нарушений: чипы «тип · таймкод» */}
           <div className="text-[12.5px] font-semibold self-center">Нарушения</div>
@@ -154,12 +154,12 @@ export function Timeline({ S, items, sel, ph, onSelect, onSeek }: Props) {
 
         <div className="mt-3 flex flex-wrap items-center gap-1 text-[11.5px]" data-testid="phase-chain">
           <span className="mr-1 font-medium text-foreground/80">Ожидалось:</span>
-          {S.phases.map((p, i) => (
-            <span key={p.n} className="flex items-center gap-1">
+          {S.phases.map((p, i) => { const st = phaseStatus(S, p, items); return (
+            <span key={p.n} className="flex items-center gap-1" data-chain={p.n} data-st={st}>
               {i > 0 && <span className="text-muted-foreground">→</span>}
-              <span className={cn("rounded px-1.5 py-px", PH[p.st].chain)} title={p.note}>{PH[p.st].sym} {p.label}</span>
+              <span className={cn("rounded px-1.5 py-px", PH[st].chain)} title={p.note}>{PH[st].sym} {p.label}</span>
             </span>
-          ))}
+          ) })}
         </div>
         <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] text-muted-foreground">
           <span className="flex items-center gap-1.5"><i className="grid size-3.5 place-items-center rounded-full bg-primary text-[9px] not-italic font-bold text-white">!</i>правило из базы</span>
@@ -240,13 +240,14 @@ function Overlay({ S, ph }: { S: Scenario; ph: number }) {
 const PH: Record<Phase["st"], { sym: string; dot: string; chain: string }> = {
   ok: { sym: "✓", dot: "bg-success", chain: "bg-success-bg text-success" },
   dev: { sym: "✕", dot: "bg-destructive", chain: "bg-danger-bg font-medium text-destructive" },
+  manual: { sym: "!", dot: "bg-warning", chain: "bg-warning-bg font-medium text-warning ring-1 ring-warning-border" },
   na: { sym: "–", dot: "bg-muted-foreground/40", chain: "bg-muted text-muted-foreground" },
   nv: { sym: "◌", dot: "bg-muted-foreground/40", chain: "border border-dashed text-muted-foreground" },
 }
 
 /* дорожка «Эталон»: шаги на своих местах во времени; отклонения — красным, пропущенный шаг — пунктиром там, где ожидался */
-function PhaseRow({ S, W, onSelect, onSeek }: { S: Scenario; W: number; onSelect: (id: string) => void; onSeek: (t: number) => void }) {
-  const pos = S.phases.filter((p) => p.t !== undefined)
+function PhaseRow({ S, items, W, onSelect, onSeek }: { S: Scenario; items: Item[]; W: number; onSelect: (id: string) => void; onSeek: (t: number) => void }) {
+  const pos = S.phases.filter((p) => p.t !== undefined).map((p) => ({ ...p, st: phaseStatus(S, p, items) }))
   const lanes: number[] = []
   const placed = pos.map((p) => {
     const w = 26 + p.label.length * 5.6
@@ -263,7 +264,7 @@ function PhaseRow({ S, W, onSelect, onSeek }: { S: Scenario; W: number; onSelect
   return (
     <div className="relative rounded-md bg-track" style={{ height: n * 20 + 12 }} data-testid="phase-row">
       {pos.filter((p) => p.iv).map((p) => (
-        <div key={"iv" + p.n} className={cn("absolute bottom-0.5 h-1.5 rounded-full", p.st === "dev" ? "border border-dashed border-destructive bg-destructive/25" : "bg-success/50")}
+        <div key={"iv" + p.n} className={cn("absolute bottom-0.5 h-1.5 rounded-full", p.st === "dev" ? "border border-dashed border-destructive bg-destructive/25" : p.st === "manual" ? "border border-dashed border-warning bg-warning/25" : "bg-success/50")}
           style={{ left: pct(p.iv![0]), width: pct(p.iv![1] - p.iv![0]) }} title={`${p.label}: ${p.note}`} />
       ))}
       {placed.map(({ p, lane, flip }) => (
@@ -271,9 +272,9 @@ function PhaseRow({ S, W, onSelect, onSeek }: { S: Scenario; W: number; onSelect
           onClick={(e) => { e.stopPropagation(); if (p.link) onSelect(p.link); else onSeek(p.t!) }}
           className={cn("absolute flex h-[17px] items-center gap-1 whitespace-nowrap rounded px-1 text-[10.5px] leading-none transition hover:z-10 hover:shadow",
             flip && "flex-row-reverse",
-            p.st === "dev" ? "border border-dashed border-destructive bg-danger-bg font-medium text-destructive" : "bg-card text-foreground/80 ring-1 ring-border")}
+            p.st === "dev" ? "border border-dashed border-destructive bg-danger-bg font-medium text-destructive" : p.st === "manual" ? "border border-dashed border-warning-border bg-warning-bg font-medium text-warning" : "bg-card text-foreground/80 ring-1 ring-border")}
           style={{ top: 3 + lane * 20, ...(flip ? { right: `calc(100% - ${pct(p.t!)})` } : { left: pct(p.t!) }) }}>
-          <span className={cn("grid size-3 place-items-center rounded-full text-[8px] font-bold text-white", PH[p.st].dot)}>{p.st === "dev" ? "✕" : p.n}</span>
+          <span className={cn("grid size-3 place-items-center rounded-full text-[8px] font-bold text-white", PH[p.st].dot)}>{p.st === "dev" ? "✕" : p.st === "manual" ? "!" : p.n}</span>
           {p.label}
         </button>
       ))}

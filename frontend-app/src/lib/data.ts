@@ -46,7 +46,8 @@ export type Item = {
 export type ProcStatus = "done" | "missed" | "na" | "manual" | "not_visible" | "off"
 export type StepResult = { status: ProcStatus; tc?: number; links?: string[]; note: string }
 export type SessionHit = { type: SessionKey; a: number; b: number; conf: number }
-export type Phase = { n: number; label: string; st: "ok" | "dev" | "na" | "nv"; t?: number; iv?: [number, number]; note: string; link?: string; step?: string }
+export type PhaseSt = "ok" | "dev" | "manual" | "na" | "nv"
+export type Phase = { n: number; label: string; st: PhaseSt; t?: number; iv?: [number, number]; note: string; link?: string; step?: string }
 export type ScenarioKey = "real" | "demo_viol" | "demo_clean"
 export type Scenario = {
   key: ScenarioKey
@@ -199,7 +200,7 @@ export const SCENARIOS: Record<ScenarioKey, Scenario> = {
       { n: 5, label: "в ящик", st: "dev", t: 7.5, iv: [4.6, 14.0], note: "деньги остались на столе", link: "d2", step: "ci.lock" },
       { n: 6, label: "кассир на месте", st: "dev", t: 12.0, iv: [11.8, 13.6], note: "уход при клиенте", link: "d3", step: "ci.stay" },
       { n: 7, label: "клиент ушёл", st: "ok", t: 14.2, note: "14,2 с" },
-      { n: 8, label: "пересчёт вдвоём", st: "dev", t: 15.0, iv: [14.6, 15.8], note: "пересчёт в одиночку (тип «Иное», вручную)", link: "d5", step: "nc.control" },
+      { n: 8, label: "пересчёт вдвоём", st: "dev", t: 15.0, iv: [14.6, 15.8], note: "пересчёт в одиночку — вне вердикта, вручную", link: "d5", step: "nc.control" },
     ],
     items: [
       mk({ id: "d1", tid: "cash_accepted_without_count", kind: "violation", source: "rule", omission: true, title: "Деньги приняты без пересчёта при клиенте", short: "Без пересчёта", tc: 4.0, iv: [3.2, 4.6], conf: 0.82, thr: 0.65, rule: "cash_accepted_without_count", status: "pending",
@@ -214,9 +215,9 @@ export const SCENARIOS: Record<ScenarioKey, Scenario> = {
       mk({ id: "d8", tid: "workstation_unlocked", kind: "observation", source: "rule", omission: false, title: "Экран ноутбука открыт, кассира нет", short: "ПК не заблокирован", tc: 12.8, iv: [11.8, 13.6], conf: 0.62, thr: 0.7, rule: "workstation_unlocked", status: "pending",
         desc: "Ноутбук на столе открыт с включённым экраном, пока кассир отошёл. Уверенность ниже порога (0,70); нормы в актах РК нет — правило ИБ банка. Проверить вручную.",
         visual: "Открытая крышка, светится экран; кассира нет", cannot: "Что экран не заблокирован (экран блокировки выглядит похоже)", frames: [f(11.0), f(12.0, "deskall"), f(13.0)] }),
-      mk({ id: "d5", tid: "other", kind: "observation", source: "rule", omission: false, title: "Пересчёт пачек без контролирующего", short: "Пересчёт в одиночку", tc: 14.6, iv: [14.6, 15.8], conf: 0.79, thr: 0.85, rule: "other", status: "pending", step: "nc.control",
-        desc: "Клиент ушёл в 14,2 с; пачки пересчитывает один кассир, второго сотрудника нет. Отклонение от шага эталона «Без клиента» (п. 42 Правил № 231), но в rules.json отдельного типа нет — тип «Иное», порог 0,85 не пройден. Проверить вручную.",
-        visual: "Один сотрудник, пачки в счётной машинке", cannot: "Что второй сотрудник не стоит вне кадра", frames: [f(14.0), f(14.6, "device"), f(15.5)] }),
+      mk({ id: "d5", tid: "counting_without_controller", kind: "observation", source: "rule", omission: false, title: "Кассир один пересчитывает пачки после ухода клиента", short: "Пересчёт в одиночку", tc: 14.6, iv: [14.6, 15.8], conf: 0.79, thr: 0.8, rule: "counting_without_controller", status: "pending", step: "nc.control",
+        desc: "Клиент ушёл в 14,2 с; пачки пересчитывает один кассир, второго сотрудника в кадре нет. Возможное отклонение от п. 42 Правил № 231, но по rules.json тип вне вердикта (в разметке X-43/X-45 такие эпизоды — «без нарушения»; контролёр может быть вне кадра). Только ручная проверка.",
+        visual: "Один сотрудник, пачки в счётной машинке, клиента нет", cannot: "Что контролирующий работник не стоит вне кадра; кто есть кто (лица не распознаются)", frames: [f(14.0), f(14.6, "device"), f(15.5)] }),
       mk({ id: "d6", tid: "phone_or_personal_items", kind: "observation", source: "vlm", omission: false, title: "Телефон над наличными", short: "Телефон", tc: 16.2, iv: [15.8, 16.8], conf: 0.58, thr: 0.6, rule: null, status: "pending",
         desc: "VLM видит смартфон в руке кассира над купюрами. Сигнал второго судьи, ниже порога — проверить вручную.", visual: "Тёмный прямоугольник над купюрами", cannot: "Что телефон с камерой (без камеры — разрешено, п. 12 ч. 2); что велась съёмка",
         frames: [f(15.5), f(16.2, "phone"), f(16.5)] }),
@@ -268,7 +269,8 @@ export function plural(n: number, a: string, b: string, c: string) {
   const m = n % 10, h = n % 100
   return m == 1 && h != 11 ? a : m >= 2 && m <= 4 && (h < 10 || h >= 20) ? b : c
 }
-export const isViolation = (it: Item) => it.status !== "rejected" && (it.status === "confirmed" || (it.kind === "violation" && typeOf(it.tid).count_in_verdict))
+/* в вердикт — только типы с count_in_verdict: true (rules.json); подтверждение оператора не переводит «вне вердикта» в нарушение */
+export const isViolation = (it: Item) => it.status !== "rejected" && typeOf(it.tid).count_in_verdict && (it.kind === "violation" || it.status === "confirmed")
 export const needsReview = (it: Item) => !isViolation(it) && it.status === "pending"
 export const OPS: Record<Status, string> = { pending: "pending", confirmed: "confirmed_by_operator", rejected: "rejected_by_operator" }
 
@@ -300,6 +302,17 @@ export function compliance(S: Scenario, sk: SessionKey, items: Item[]) {
   }
   return { total, ok, manual, off }
 }
+/* цвет шага на дорожке «Эталон»: красный — только если связанная находка идёт в вердикт */
+export function phaseStatus(S: Scenario, p: Phase, items: Item[]): PhaseSt {
+  if (p.st !== "dev") return p.st
+  if (p.step) {
+    const sk = S.sessions.find((x) => BASELINE[x.type].includes(p.step!))?.type
+    const r = sk ? stepResult(S, sk, p.step) : null
+    if (r) { const e = effStatus(r, items); return e === "missed" ? "dev" : e === "done" ? "ok" : "manual" }
+  }
+  const it = p.link ? items.find((x) => x.id === p.link) : undefined
+  return it && !isViolation(it) ? "manual" : "dev"
+}
 const PROC_JSON: Record<ProcStatus, string> = { done: "done", missed: "deviation", na: "n_a", manual: "manual_review", not_visible: "not_visible", off: "not_observable_on_video" }
 
 /* Поля, согласованные с бэкендом (остальные extras — предложение, нужен апрув) */
@@ -320,11 +333,11 @@ export function buildResult(S: Scenario, items: Item[]) {
       group: t.cat, baseline_step: it.step, title: it.title,
     }
     if (!t.citations.length) o.rule_status = "no_norm_in_rules_json"
-    if (!t.count_in_verdict) o.reason_not_counted = "count_in_verdict=false в rules.json"
+    if (!t.count_in_verdict) o.reason_not_counted = "count_in_verdict=false в rules.json — вне вердикта, на ручную проверку"
     if (it.zoneMissing) o.rule_status = "zone_not_detected_manual_review"
     o.source = it.source
     o.operator_status = OPS[it.status]
-    ;(isViolation(it) || (it.kind === "violation" && it.status === "rejected") ? viol : obs).push(o)
+    ;(isViolation(it) || (it.kind === "violation" && it.status === "rejected" && t.count_in_verdict) ? viol : obs).push(o)
   }
   const tracks: { label: TrackKey; start_sec: number; end_sec: number; state?: CashState }[] = []
   for (const tr of TRACKS) for (const s of S.tracks[tr.key]) tracks.push({ label: tr.key, start_sec: s.a, end_sec: +s.b.toFixed(2), ...(s.state ? { state: s.state } : {}) })

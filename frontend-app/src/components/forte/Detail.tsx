@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import { ZONE_BY_KEY, fmt, isViolation, type Gap, type Item, type Scenario } from "@/lib/data"
-import { BASELINE, CATEGORIES, SESSIONS, STEPS, STRENGTH, typeOf, type SessionKey } from "@/lib/baseline"
+import { BASELINE, CATEGORIES, SESSIONS, STEPS, STRENGTH, OUTSIDE_VERDICT, typeOf, type SessionKey } from "@/lib/baseline"
 import { RULE_ACTS, type RuleCite } from "@/lib/rules"
 import { TypeBadge } from "./Clause"
 
@@ -74,7 +74,7 @@ export function Detail({ S, item, gap, onGoto, onStatus, onStep }: Props) {
   )
   const it = item
   const T = typeOf(it.tid), cat = CATEGORIES[T.cat]
-  const kick = it.kind === "violation" ? "нарушение · " + (it.omission ? "по бездействию" : "по действию") : "проверить вручную · " + (it.source === "vlm" ? "второй судья (VLM)" : it.zoneMissing ? "зона не найдена" : !T.count_in_verdict ? "вне вердикта по rules.json" : it.thr !== null && it.conf < it.thr ? "ниже порога" : "нужен контекст")
+  const kick = it.kind === "violation" ? "нарушение · " + (it.omission ? "по бездействию" : "по действию") : "проверить вручную · " + (it.source === "vlm" ? "второй судья (VLM)" : it.zoneMissing ? "зона не найдена" : !T.count_in_verdict ? "вне вердикта (rules.json)" : it.thr !== null && it.conf < it.thr ? "ниже порога" : "нужен контекст")
   const step = it.step
   const sk = step ? ((S.sessions.map((x) => x.type).find((k) => BASELINE[k].includes(step)) ?? SESSIONS.find((x) => BASELINE[x.key].includes(step))!.key) as SessionKey) : null
   const stepN = sk && step ? BASELINE[sk].indexOf(step) + 1 : 0
@@ -91,7 +91,7 @@ export function Detail({ S, item, gap, onGoto, onStatus, onStep }: Props) {
           <TypeBadge tid={it.tid} compact />
           <span className="flex items-center gap-1 rounded-full border px-1.5 py-px text-[10.5px]" style={{ borderColor: cat.color + "66", color: cat.color }}><i className="size-1.5 rounded-full" style={{ background: cat.color }} />{cat.label}</span>
           <span className={cn("rounded-full px-1.5 py-px text-[10.5px]", STRENGTH[T.strength].cls)}>{STRENGTH[T.strength].label}</span>
-          {!T.count_in_verdict && <span className="rounded-full bg-muted px-1.5 py-px text-[10.5px] text-muted-foreground ring-1 ring-border">вне вердикта</span>}
+          {!T.count_in_verdict && <span className="rounded-full bg-warning-bg px-1.5 py-px text-[10.5px] text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT}</span>}
           <span className="font-mono text-[10.5px] text-muted-foreground">порог {T.threshold}</span>
         </div>
         {sk && step ? (

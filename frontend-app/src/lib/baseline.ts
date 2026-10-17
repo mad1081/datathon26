@@ -95,10 +95,12 @@ export const TYPE_META: Record<string, { cat: CatKey; steps: string[] }> = {
   suspicious_note_returned: { cat: "check", steps: [] },
   safe_key_left: { cat: "storage", steps: ["se.lock"] },
   workstation_unlocked: { cat: "workplace", steps: [] },
+  counting_without_controller: { cat: "check", steps: ["nc.control"] },
   other: { cat: "other", steps: [] },
 }
 export const typeOf = (id: string): Rule & { cat: CatKey; steps: string[] } => ({ ...RULE_BY_ID[id], ...(TYPE_META[id] ?? { cat: "other", steps: [] }) })
 export { RULES, RULE_BY_ID }
+export const OUTSIDE_VERDICT = "вне вердикта, на ручную проверку"
 export const STRENGTH: Record<Rule["strength"], { label: string; cls: string }> = {
   strong: { label: "сильное основание", cls: "bg-success-bg text-success ring-1 ring-success/30" },
   medium: { label: "среднее основание", cls: "bg-muted text-foreground/80 ring-1 ring-border" },

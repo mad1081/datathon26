@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import { CATEGORIES, STRENGTH, typeOf, type CatKey } from "@/lib/baseline"
+import { CATEGORIES, STRENGTH, OUTSIDE_VERDICT, typeOf, type CatKey } from "@/lib/baseline"
 import { IMG, fmt, type Gap, type Item, type Status } from "@/lib/data"
 
 export const STATUS: Record<Status, { label: string; cls: string }> = {
@@ -62,7 +62,7 @@ export function Findings({ items, gaps, sel, onSelect }: { items: Item[]; gaps: 
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className={cn("line-clamp-2 text-[13px] font-semibold leading-snug", it.status === "rejected" && "line-through opacity-60")} title={it.title}>{t.name_ru}</span>
-                    <span className="mt-0.5 block truncate text-[11px] leading-snug text-muted-foreground"><code className="font-mono text-[10px]" style={{ color: it.color }} data-type-id={it.tid}>{it.tid}</code> · {meta(it)}{(t.strength === "weak" || t.strength === "none") && <span className={cn("ml-1 rounded px-1 text-[9.5px]", STRENGTH[t.strength].cls)}>{STRENGTH[t.strength].label}</span>}</span>
+                    <span className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-muted-foreground"><code className="font-mono text-[10px]" style={{ color: it.color }} data-type-id={it.tid}>{it.tid}</code> · {meta(it)}{!t.count_in_verdict && <span className="ml-1 rounded bg-warning-bg px-1 text-[9.5px] text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT}</span>}{(t.strength === "weak" || t.strength === "none") && <span className={cn("ml-1 rounded px-1 text-[9.5px]", STRENGTH[t.strength].cls)}>{STRENGTH[t.strength].label}</span>}</span>
                   </span>
                   <Badge className={cn("shrink-0 rounded-full text-[10.5px]", STATUS[it.status].cls)}>{STATUS[it.status].label}</Badge>
                 </button>
