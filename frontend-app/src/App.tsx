@@ -1,0 +1,180 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { toast } from "sonner"
+import { Toaster } from "@/components/ui/sonner"
+import { Card, CardContent } from "@/components/ui/card"
+import { Header } from "@/components/forte/Header"
+import { VideoPlayer } from "@/components/forte/VideoPlayer"
+import { Timeline } from "@/components/forte/Timeline"
+import { Evidence, type Shot } from "@/components/forte/Evidence"
+import { Verdict } from "@/components/forte/Verdict"
+import { Findings } from "@/components/forte/Findings"
+import { Detail } from "@/components/forte/Detail"
+import { Baseline } from "@/components/forte/Baseline"
+import { Taxonomy } from "@/components/forte/Taxonomy"
+import type { SessionKey } from "@/lib/baseline"
+import { JsonPanel } from "@/components/forte/JsonPanel"
+import { UploadScreen } from "@/components/forte/Upload"
+import { SCENARIOS, OPS, buildResult, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
+
+const parseHash = () => {
+  const h = location.hash.slice(1).split("&")
+  return {
+    screen: h.includes("upload") ? ("upload" as const) : ("result" as const),
+    sc: (h.find((x) => x in SCENARIOS) as ScenarioKey) || "real",
+    dark: h.includes("dark"),
+  }
+}
+
+export default function App() {
+  const init = parseHash()
+  const [screen, setScreen] = useState<"result" | "upload">(init.screen)
+  const [scKey, setScKey] = useState<ScenarioKey>(init.sc)
+  const [dark, setDark] = useState(init.dark)
+  const S = SCENARIOS[scKey]
+  const [items, setItems] = useState<Item[]>(() => structuredClone(SCENARIOS[init.sc].items))
+  const [sel, setSel] = useState<string | null>(SCENARIOS[init.sc].sel)
+  const [ph, setPh] = useState(SCENARIOS[init.sc].start)
+  const [playing, setPlaying] = useState(false)
+  const [zones, setZones] = useState(true)
+  const [tab, setTab] = useState<SessionKey>(SCENARIOS[init.sc].sessions[0]?.type ?? "cash_in")
+  const [taxOpen, setTaxOpen] = useState(location.hash.includes("taxonomy"))
+  const [custom, setCustom] = useState<{ name: string; size: number; url: string } | null>(null)
+  const vref = useRef<HTMLVideoElement>(null)
+  const pending = useRef<number | null>(SCENARIOS[init.sc].start)
+  const fileInput = useRef<HTMLInputElement>(null)
+
+  useEffect(() => { document.documentElement.classList.toggle("dark", dark) }, [dark])
+
+  const seek = useCallback((t: number) => {
+    const v = vref.current
+    const tt = Math.max(0, Math.min(S.dur, t))
+    setPh(tt)
+    if (v && v.readyState >= 1) v.currentTime = tt
+    else pending.current = tt
+  }, [S.dur])
+
+  const loadScenario = useCallback((k: ScenarioKey) => {
+    const s = SCENARIOS[k]
+    setScKey(k); setItems(structuredClone(s.items)); setSel(s.sel); setPh(s.start); setTab(s.sessions[0]?.type ?? "cash_in")
+    const v = vref.current
+    if (v && v.readyState >= 1) v.currentTime = s.start
+    else pending.current = s.start
+  }, [])
+
+  // плавный плейхед во время воспроизведения
+  useEffect(() => {
+    if (!playing) return
+    let raf = 0
+    const tick = () => { if (vref.current) setPh(vref.current.currentTime); raf = requestAnimationFrame(tick) }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [playing])
+
+  const select = useCallback((id: string) => {
+    setSel(id)
+    if (id.startsWith("gap")) seek(S.gaps[+id.slice(3)].a)
+    else { const it = items.find((x) => x.id === id); if (it) seek(it.tc) }
+  }, [S, items, seek])
+
+  const setStatus = (id: string, s: "confirmed" | "rejected") => {
+    const it = items.find((x) => x.id === id)
+    if (!it) return
+    const next = it.status === s ? "pending" : s
+    setItems((cur) => cur.map((x) => (x.id === id ? { ...x, status: next } : x)))
+    if (next === "pending") toast("Возвращено на проверку", { description: it.title })
+    else if (next === "confirmed") toast.success("Подтверждено — JSON обновлён", { description: it.title })
+    else toast("Отклонено — осталось в JSON с rejected_by_operator", { description: it.title })
+  }
+
+  const v = items.filter(isViolation).length
+  const r = items.filter(needsReview).length
+  const g = S.gaps.length
+  const result = useMemo(() => buildResult(S, items), [S, items])
+  const labels = useMemo(() => items.filter((x) => x.status !== "pending").map((x) => ({
+    video: S.file, type: x.code, title: x.title, baseline_step: x.step, rule_id: x.rule, source: x.source, timecode_sec: x.tc, window_sec: x.iv, confidence: x.conf, operator_status: OPS[x.status],
+  })), [items, S.file])
+
+  const selItem = sel && !sel.startsWith("gap") ? items.find((x) => x.id === sel) ?? null : null
+  const selGap = sel && sel.startsWith("gap") ? S.gaps[+sel.slice(3)] : null
+  const ill = S.src !== "real"
+  const shots: Shot[] = selItem
+    ? selItem.frames.map((f, i) => ({ t: f.t, region: f.region, cap: (selItem.flab ?? ["до", "момент", "после"])[i], moment: i === (selItem.mi ?? 1) }))
+    : selGap
+      ? [{ t: 4.0, region: null, cap: "до", moment: false }, { t: 5.0, region: null, cap: "пропуск", moment: true, gap: "Кадры не проанализированы" }, { t: 7.5, region: null, cap: "после", moment: false }]
+      : (S.sample ?? []).map((t) => ({ t, region: null, cap: "выборка", moment: false }))
+
+  const gotoStep = (sk: SessionKey, step: string) => {
+    setTab(sk)
+    requestAnimationFrame(() => {
+      const el = document.querySelector(`[data-testid=baseline] [data-step="${step}"]`) as HTMLElement | null
+      el?.scrollIntoView({ behavior: "smooth", block: "center" })
+      el?.animate([{ background: "var(--accent)" }, { background: "transparent" }], { duration: 1400 })
+    })
+  }
+
+  const reviewFirst = () => {
+    const t = items.find(needsReview)?.id ?? (S.gaps.length ? "gap0" : null)
+    if (!t) return
+    select(t)
+    requestAnimationFrame(() => document.querySelector(`[data-id="${t}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" }))
+  }
+
+  const openFile = (f: File) => {
+    setCustom({ name: f.name, size: f.size, url: URL.createObjectURL(f) })
+    toast("Видео открыто в плеере", { description: "Таймлайн и находки — по-прежнему демо-данные." })
+  }
+
+  return (
+    <div className="min-h-screen">
+      <Header screen={screen} onScreen={setScreen} scenario={scKey} onScenario={(k) => { loadScenario(k); setScreen("result") }}
+        dark={dark} onDark={setDark} fileName={custom?.name ?? S.file} />
+
+      {screen === "upload" ? (
+        <UploadScreen onDone={(f) => {
+          if (f?.url) setCustom({ name: f.name, size: f.size, url: f.url })
+          loadScenario("real"); setScreen("result")
+          toast.success("Обработка завершена", { description: f?.url ? "Показан результат на демо-данных реального сценария" : "sample.mov · реальный сценарий" })
+        }} />
+      ) : (
+        <main className="grid grid-cols-[minmax(0,1fr)_400px] items-start gap-4 p-4 max-[1360px]:grid-cols-[minmax(0,1fr)_368px]">
+          <div className="flex min-w-0 flex-col gap-4">
+          <div className="grid grid-cols-[300px_minmax(0,1fr)] items-start gap-4 max-[1360px]:grid-cols-[256px_minmax(0,1fr)]">
+          <div className="flex min-w-0 flex-col gap-4">
+            <VideoPlayer ref={vref} ph={ph} playing={playing} customSrc={custom?.url ?? null}
+              fileInfo={custom ? { name: custom.name, line: `${(custom.size / 1048576).toFixed(1)} МБ · открыт локально` } : { name: "sample.mov", line: "H.264 · 464×848 (портрет) · 30 к/с · 17,07 с" }}
+              onToggle={() => { const el = vref.current; if (el) { if (el.paused) void el.play(); else el.pause() } }}
+              onPick={() => fileInput.current?.click()}
+              zones={zones} onZones={setZones} zonesFound={S.zonesFound}
+              onTime={(t) => { if (!playing) setPh(t) }} onPlaying={setPlaying}
+              onMeta={() => { const el = vref.current; if (el && pending.current != null) { el.currentTime = pending.current; pending.current = null } }} />
+            <input ref={fileInput} type="file" accept=".mp4,.mov,video/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) openFile(f); e.target.value = "" }} />
+          </div>
+
+          <div className="flex min-w-0 flex-col gap-4">
+            <Timeline S={S} items={items} sel={sel} ph={ph} onSelect={select} onSeek={seek} />
+            <Evidence shots={shots} ill={ill} onSeek={seek} zones={zones && !custom ? S.zonesFound : null} />
+          </div>
+
+          </div>
+          <div className="grid grid-cols-[460px_minmax(0,1fr)] items-start gap-4 max-[1360px]:grid-cols-[420px_minmax(0,1fr)]">
+              <Baseline S={S} items={items} tab={tab} onTab={setTab} onSeek={seek} onTaxonomy={() => setTaxOpen(true)}
+              onItem={(id) => { select(id); requestAnimationFrame(() => document.querySelector(`[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" })) }} />
+            <JsonPanel result={result} labels={labels} file={S.file} />
+          </div>
+          </div>
+          <div className="flex min-w-0 flex-col gap-4">
+            <Card><CardContent className="space-y-4">
+              <Verdict v={v} r={r} g={g} dur={S.dur} src={S.src} onReview={reviewFirst} />
+              <Findings items={items} gaps={S.gaps} sel={sel} onSelect={select} />
+            </CardContent></Card>
+            <Detail S={S} item={selItem} gap={selGap} onGoto={seek} onStatus={setStatus} onStep={gotoStep} />
+
+          </div>
+
+        </main>
+      )}
+      <Taxonomy open={taxOpen} onOpen={setTaxOpen} items={items} />
+      <Toaster position="bottom-center" theme={dark ? "dark" : "light"} />
+    </div>
+  )
+}
