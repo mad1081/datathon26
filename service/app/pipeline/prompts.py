@@ -35,8 +35,17 @@ NOT_VIOLATION_EXAMPLES = (
     "Примеры БЕЗ нарушения: клиент сидит напротив кассира и кладёт карту, деньги пересчитывают при нём (X-3); "
     "кассир открывает сейф при сидящем клиенте и сразу закрывает (X-19); перед уходом кассир закрывает ноутбук "
     "или включает экран блокировки и вынимает ключ (X-12, X-23, X-29); инкассатор отдаёт сумку, кассир осматривает "
-    "пломбу (X-16); кассир один считает деньги на машине и вручную на столе в поле зрения камеры (X-43, X-45)."
+    "пломбу (X-16); кассир один считает деньги на машине и вручную на столе в поле зрения камеры (X-43, X-45) — "
+    "в разметке это «без нарушения»; здесь допустимо только событие counting_without_controller, "
+    "и только если второго работника точно нет в кадре."
 )
+
+# Scene-state pattern for types without a labelled positive example (no faces, no identities).
+STATE_HINTS = {
+    "counting_without_controller": "типичное сочетание состояний: client_at_window=false, counting=true, "
+                                   "second_employee=false на протяжении всего пересчёта/сортировки/упаковки; "
+                                   "если идёт приём или выдача клиенту (client_at_window=true) — это НЕ этот тип.",
+}
 
 STATE_FLAGS = ("client_at_window", "cashier_at_desk", "cash_in_hands", "counting", "second_employee", "phone")
 STATES_RU = {
@@ -54,7 +63,8 @@ def taxonomy_block(rb: RuleBook) -> str:
     for r in rb.rules.values():
         lines.append(f'- "{r.id}": {r.name_ru}. Признаки: {r.visual_criteria} ({r.vlm_hint}). '
                      f'НЕ является нарушением/не утверждать: {r.negatives}'
-                     + (f' Пример из размеченных видео: {FEWSHOT[r.id]}' if r.id in FEWSHOT else ''))
+                     + (f' Пример из размеченных видео: {FEWSHOT[r.id]}' if r.id in FEWSHOT else '')
+                     + (f' Состояния сцены: {STATE_HINTS[r.id]}' if r.id in STATE_HINTS else ''))
     return "\n".join(lines)
 
 

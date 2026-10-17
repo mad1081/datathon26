@@ -77,6 +77,18 @@ def test_rule_ref_for_rule_without_clause():
     assert refs["rule_ref"]["doc"].startswith("Правила") and len(refs["rule_refs_extra"]) == 1
 
 
+def test_rules_include_counting_without_controller():
+    from app.pipeline.prompts import window_system
+    a = _analyzer()
+    r = a.rb.rules["counting_without_controller"]
+    assert r.strength == "medium" and r.has_solid_clause and abs(r.threshold - 0.8) < 1e-9
+    assert r.count_in_verdict is False  # X-43/X-45 (cashier alone counting) are labelled clean
+    c = r.citations[0]
+    assert c["clause"] == "п. 42" and c["url"].endswith("V1900019680#z163")
+    assert c["quote"].startswith("Кассовые операции по пересчету, сортировке и упаковке")
+    assert '"counting_without_controller"' in window_system(a.rb)
+    assert a.rb.ids()[-1] == "other"
+
 def test_api_optional_fields_and_errors():
     import time
     from fastapi.testclient import TestClient

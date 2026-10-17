@@ -145,8 +145,10 @@ class Analyzer:
             if c.score >= thr and rule.count_in_verdict:
                 violations.append(item)
             else:
-                item["reason_not_counted"] = ("ниже порога уверенности" if c.score < thr
-                                              else "тип без нормативного основания — не влияет на вердикт")
+                item["reason_not_counted"] = (
+                    "ниже порога уверенности" if c.score < thr
+                    else "тип без нормативного основания — не влияет на вердикт" if not rule.has_solid_clause
+                    else "тип вне вердикта (в открытой разметке сценарий не считается нарушением) — только ручная проверка")
                 observations.append(item)
         if len(violations) > self.s.max_violations:
             violations.sort(key=lambda v: -v["confidence"])
