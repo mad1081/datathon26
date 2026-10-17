@@ -6,3 +6,22 @@ var/
 .venv/
 __pycache__/
 *.pyc
+
+# Python-generated files
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# hackathon dataset and anything derived from it: use only within the hackathon, never commit
+open/
+open.zip
+cache/
+
+# OS / Office junk
+.DS_Store
+~$*
