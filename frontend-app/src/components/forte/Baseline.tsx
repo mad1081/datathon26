@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { BASELINE, SESSIONS, SESSION_BY_KEY, STEPS, type SessionKey } from "@/lib/baseline"
 import { compliance, effStatus, fmt, stepResult, type Item, type ProcStatus, type Scenario } from "@/lib/data"
-import { ClauseChip, CodeBadge, Unverified } from "./Clause"
+import { ClauseChip, TypeBadge, Unverified } from "./Clause"
 
 export const PST: Record<ProcStatus, { label: string; cls: string; Icon: typeof Check }> = {
   done: { label: "выполнен", cls: "bg-success text-white", Icon: Check },
@@ -106,7 +106,7 @@ export function Baseline({ S, items, tab, onTab, onItem, onSeek, onTaxonomy }: P
                       {st.internal && <><span className="rounded border px-1 font-mono text-[10px]">внутр.</span><Unverified text={st.internal} /></>}
                       {off ? <span className="rounded bg-muted px-1 text-[10px]">вне видео</span> : <span className="rounded px-1 text-[10px] ring-1 ring-border">видно на камере</span>}
                       {p && !off && <span className={cn(es === "missed" && "font-medium text-destructive", es === "manual" && "text-warning")}>{p.label}</span>}
-                      {linked.map((it) => <CodeBadge key={it.id} code={it.code} onClick={() => onItem(it.id)} className={it.status === "rejected" ? "line-through opacity-50" : ""} />)}
+                      {linked.map((it) => <TypeBadge key={it.id} tid={it.tid} compact onClick={() => onItem(it.id)} className={it.status === "rejected" ? "line-through opacity-50" : ""} />)}
                     </div>
                     {r && !off && r.note && <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{r.note}</div>}
                     {!r && st.how && <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{st.how}</div>}

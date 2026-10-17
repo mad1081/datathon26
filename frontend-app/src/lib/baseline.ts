@@ -62,37 +62,47 @@ export const BASELINE: Record<SessionKey, string[]> = {
   start_end: ["all.personal", "se.reinf", "se.lock", "se.vault", "se.empty"],
 }
 
-/* ---- таксономия нарушений ---- */
-export type CatKey = "presence" | "cash" | "recount" | "personal" | "access"
+/* ---- таксономия нарушений = research/rules.json ----
+   Группы — только для фильтра в UI (в rules.json категорий нет). Сила основания и «в вердикт» — из rules.json.
+   steps — привязка к шагу эталона; пусто → «вне эталона». */
+import { RULES, RULE_BY_ID, type Rule } from "./rules"
+export type CatKey = "cash" | "check" | "storage" | "workplace" | "access" | "other"
 export const CATEGORIES: Record<CatKey, { label: string; color: string }> = {
-  presence: { label: "Присутствие", color: "#7C3AED" },
   cash: { label: "Наличные", color: "#D97706" },
-  recount: { label: "Пересчёт", color: "#C2185B" },
-  personal: { label: "Личные вещи", color: "#0E8FA8" },
-  access: { label: "Доступ", color: "#475569" },
+  check: { label: "Пересчёт и проверка", color: "#C2185B" },
+  storage: { label: "Хранение", color: "#475569" },
+  workplace: { label: "Рабочее место", color: "#0E8FA8" },
+  access: { label: "Доступ", color: "#7C3AED" },
+  other: { label: "Прочее", color: "#8D93A0" },
 }
-export type VCode = "V-ABSENT" | "V-CASH-OPEN" | "V-NO-RECOUNT" | "V-CASH-OUT-ZONE" | "V-SOLO-COUNT" | "V-PHONE" | "V-VAULT-ACCESS"
-export type VType = { code: VCode; title: string; cat: CatKey; severity: "critical" | "medium"; steps: string[]; cites: string[]; detector: string; caveat?: string; derived?: boolean }
-export const TAXONOMY: VType[] = [
-  { code: "V-ABSENT", title: "Кассир покинул место при клиенте", cat: "presence", severity: "critical", steps: ["ci.stay", "co.stay"], cites: ["R231_22"],
-    detector: "кассира нет за столом, пока клиент у окна" },
-  { code: "V-CASH-OPEN", title: "Деньги вне запираемого устройства / на столе без кассира", cat: "cash", severity: "critical", steps: ["ci.lock", "se.lock"], cites: ["R231_20_2"],
-    detector: "дорожка «Где деньги» = на столе, а кассира нет; или чужие/ранее принятые деньги на столе" },
-  { code: "V-NO-RECOUNT", title: "Нет пересчёта при клиенте", cat: "recount", severity: "critical", steps: ["ci.recount", "co.recount"], cites: ["R231_19_2", "R231_20_1", "R231_31_4"],
-    detector: "деньги приняты/выданы, а пересчёта при клиенте не было (по бездействию) или пересчёт без клиента",
-    caveat: "Целые корешки с неповреждённой упаковкой выдаются по надписи без полистного пересчёта (п. 32) — при выдаче проверить упаковку." },
-  { code: "V-CASH-OUT-ZONE", title: "Деньги унесены из зоны окна", cat: "cash", severity: "medium", steps: ["ci.lock"], cites: [], derived: true,
-    detector: "купюры пересекают границу зон «стол/окно» не в сторону сейфа",
-    caveat: "Производный признак детектора: прямого пункта «деньги не покидают зону окна» в Правилах нет. Связь с п. 20 — по смыслу, не цитата. Без подтверждения оператора в вердикт не идёт." },
-  { code: "V-SOLO-COUNT", title: "Пересчёт пачек без контролирующего работника", cat: "recount", severity: "medium", steps: ["nc.control"], cites: ["R231_42"],
-    detector: "пересчёт, клиента нет, у стола один сотрудник",
-    caveat: "Исключение п. 42: операции приёма и выдачи клиенту — если клиент у окна, правило не применяется." },
-  { code: "V-PHONE", title: "Личные вещи / смартфон в кассовом узле", cat: "personal", severity: "medium", steps: ["all.personal"], cites: ["R231_12", "R231_12_2"],
-    detector: "телефон в руках или на столе кассира",
-    caveat: "Средства связи без фото/видео разрешены (п. 12 ч. 2) — по видео не отличить, всегда ручная проверка." },
-  { code: "V-VAULT-ACCESS", title: "Кладовая: один человек / вход без сопровождения", cat: "access", severity: "critical", steps: ["va.access"], cites: ["R231_75", "R231_2_16"],
-    detector: "в кладовой меньше двух человек или вход без сопровождающего",
-    caveat: "Личность не определяется (распознавание лиц запрещено) — только число людей. «Вдвоём в кладовой» прямо в п. 75 не записано; п. 2 пп. 16 — о числе назначенных ответственных (не менее двух). Толкование — согласовать." },
-]
-export const TYPE_BY_CODE = Object.fromEntries(TAXONOMY.map((t) => [t.code, t])) as Record<VCode, VType>
-export const SEVERITY = { critical: { label: "критичное", cls: "bg-destructive text-white" }, medium: { label: "среднее", cls: "bg-warning-bg text-warning ring-1 ring-warning-border" } }
+export const TYPE_META: Record<string, { cat: CatKey; steps: string[] }> = {
+  cash_unattended: { cat: "cash", steps: ["ci.stay", "ci.lock", "co.stay"] },
+  seals_docs_unattended: { cat: "storage", steps: [] },
+  safe_left_open: { cat: "storage", steps: ["se.lock", "ci.lock"] },
+  door_left_open: { cat: "access", steps: [] },
+  outsider_in_cash_room: { cat: "access", steps: ["va.access"] },
+  cash_out_of_view: { cat: "cash", steps: [] },
+  collector_bag_no_check: { cat: "check", steps: ["cl.bag", "cl.doc"] },
+  cash_within_client_reach: { cat: "cash", steps: ["ci.lock"] },
+  counting_without_client: { cat: "check", steps: ["ci.recount"] },
+  issue_without_count: { cat: "check", steps: ["co.recount"] },
+  phone_or_personal_items: { cat: "workplace", steps: ["all.personal"] },
+  safe_opened_with_client: { cat: "storage", steps: [] },
+  eating_drinking: { cat: "workplace", steps: ["all.personal"] },
+  no_client_id_check: { cat: "check", steps: ["ci.id"] },
+  foreign_cash_on_desk: { cat: "cash", steps: ["ci.lock"] },
+  cash_accepted_without_count: { cat: "check", steps: ["ci.recount"] },
+  suspicious_note_returned: { cat: "check", steps: [] },
+  safe_key_left: { cat: "storage", steps: ["se.lock"] },
+  workstation_unlocked: { cat: "workplace", steps: [] },
+  other: { cat: "other", steps: [] },
+}
+export const typeOf = (id: string): Rule & { cat: CatKey; steps: string[] } => ({ ...RULE_BY_ID[id], ...(TYPE_META[id] ?? { cat: "other", steps: [] }) })
+export { RULES, RULE_BY_ID }
+export const STRENGTH: Record<Rule["strength"], { label: string; cls: string }> = {
+  strong: { label: "сильное основание", cls: "bg-success-bg text-success ring-1 ring-success/30" },
+  medium: { label: "среднее основание", cls: "bg-muted text-foreground/80 ring-1 ring-border" },
+  weak: { label: "косвенное основание", cls: "bg-warning-bg text-warning ring-1 ring-warning-border" },
+  none: { label: "нет нормы", cls: "bg-danger-bg text-destructive ring-1 ring-destructive/30" },
+  unknown: { label: "норма не определена", cls: "bg-muted text-muted-foreground ring-1 ring-border" },
+}

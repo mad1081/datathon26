@@ -11,7 +11,7 @@ import { Findings } from "@/components/forte/Findings"
 import { Detail } from "@/components/forte/Detail"
 import { Baseline } from "@/components/forte/Baseline"
 import { Taxonomy } from "@/components/forte/Taxonomy"
-import type { SessionKey } from "@/lib/baseline"
+import { typeOf, type SessionKey } from "@/lib/baseline"
 import { JsonPanel } from "@/components/forte/JsonPanel"
 import { UploadScreen } from "@/components/forte/Upload"
 import { SCENARIOS, OPS, buildResult, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
@@ -91,7 +91,7 @@ export default function App() {
   const g = S.gaps.length
   const result = useMemo(() => buildResult(S, items), [S, items])
   const labels = useMemo(() => items.filter((x) => x.status !== "pending").map((x) => ({
-    video: S.file, type: x.code, title: x.title, baseline_step: x.step, rule_id: x.rule, source: x.source, timecode_sec: x.tc, window_sec: x.iv, confidence: x.conf, operator_status: OPS[x.status],
+    video: S.file, type: typeOf(x.tid).name_ru, type_id: x.tid, title: x.title, baseline_step: x.step, rule_id: x.rule, source: x.source, timecode_sec: x.tc, window_sec: x.iv, confidence: x.conf, operator_status: OPS[x.status],
   })), [items, S.file])
 
   const selItem = sel && !sel.startsWith("gap") ? items.find((x) => x.id === sel) ?? null : null
