@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forte · Контроль кассовых операций (макет)</title>
+<style>
+:root{
+  --crimson:#9B1B4A; --plum:#2A0A1A; --plum2:#4A0E26; --bar:#6E2A4B;
+  --bg:#ECECEC; --card:#fff; --muted:#7a7a85; --line:#e6e6ea; --soft:#f3f3f5;
+  --green:#1F8A5B; --green-bg:#E6F4EC; --red:#B3123E; --red-bg:#FBE7EC; --yel-bg:#FFF4D6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:#1d1b22;font:14px/1.45 Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+a{color:#2361C4;text-decoration:none} a:hover{text-decoration:underline}
+.mono{font-family:"JetBrains Mono",Menlo,Consolas,monospace}
+
+header{background:#fff;height:58px;display:flex;align-items:center;padding:0 22px;border-bottom:1px solid #e3e3e3;gap:16px}
+.logo{font-weight:800;font-size:30px;letter-spacing:-1px;color:var(--crimson);line-height:1}
+.hdiv{width:1px;height:26px;background:#d5d5da}
+.htitle{font-weight:600;color:var(--plum);font-size:15px;white-space:nowrap}
+.hspacer{flex:1}
+.demo{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);white-space:nowrap}
+.seg{display:flex;background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:2px}
+.seg button{border:0;background:transparent;padding:4px 10px;border-radius:7px;font-size:12px;color:#555;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.seg button .dot{width:8px;height:8px;border-radius:50%}
+.seg button.on{background:#fff;color:var(--plum);box-shadow:0 1px 2px rgba(0,0,0,.12);font-weight:600}
+.fname{color:var(--muted);font-size:13px;white-space:nowrap}
+
+main{padding:16px 14px 30px;display:grid;grid-template-columns:300px minmax(0,1fr) 400px;gap:14px;align-items:start}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:var(--card);border-radius:18px;padding:18px}
+.card h2{margin:0;font-size:19px;font-weight:600;color:var(--plum)}
+
+/* портретный плеер */
+.player{background:var(--plum);border-radius:18px;padding:12px;color:#fff;position:relative}
+.player.drag{outline:3px dashed #F08A7E;outline-offset:-6px}
+.vwrap{position:relative;aspect-ratio:464/848;border-radius:12px;overflow:hidden;background:#000}
+.vwrap video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.vbadge{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.55);font-size:11px;padding:2px 8px;border-radius:6px;pointer-events:none}
+.vtime{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.55);font-size:11px;padding:2px 8px;border-radius:6px;pointer-events:none}
+.pinfo{font-size:11.5px;color:#cdb7c2;margin:10px 2px 0;line-height:1.5}
+.pinfo b{color:#fff;font-weight:600}
+.pbtns{display:flex;gap:8px;margin-top:10px}
+.btn-white{background:#fff;color:var(--plum);border:0;border-radius:10px;padding:8px 12px;font-weight:600;display:inline-flex;gap:7px;align-items:center;font-size:13px}
+.btn-ghost{background:transparent;color:#fff;border:1px solid #7a4a60;border-radius:10px;padding:8px 12px;font-size:13px}
+.chosen{margin-top:8px;font-size:11.5px;color:#F7C6B9}
+.dropnote{font-size:11px;color:#a98a98;margin-top:8px}
+
+/* таймлайн */
+.tlhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:10px}
+.tltime{color:var(--muted);font-size:14px;white-space:nowrap}
+.tl{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);row-gap:5px}
+.tl .lab{font-size:12.5px;color:#666;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl .lab.b{font-weight:600;color:#222}
+.axis{position:relative;height:16px}
+.axis span{position:absolute;transform:translateX(-50%);font-size:10.5px;color:#888;top:0}
+.axis i{position:absolute;bottom:0;width:1px;height:4px;background:#c8c8cf}
+.track{position:relative;height:14px;background:var(--soft);border-radius:7px;cursor:pointer}
+.vrow{position:relative;height:36px;background:#ebebef;border-radius:10px;cursor:pointer}
+.seg-bar{position:absolute;top:0;height:14px;border-radius:7px;background:var(--bar);color:#fff;font-size:9.5px;line-height:14px;padding:0 7px;white-space:nowrap;overflow:hidden}
+.seg-bar.soft{background:#b9a0ac}
+.ivbar{position:absolute;top:15px;height:6px;border-radius:3px;opacity:.38}
+.mk{position:absolute;top:7px;width:22px;height:22px;margin-left:-11px;border-radius:50%;color:#fff;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;border:0;padding:0;z-index:5}
+.mk.sq{border-radius:6px}
+.mk.vlm{background:#8d93a0!important}
+.mk.rej{opacity:.45}
+.mk.sel{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--plum)}
+.overlay{position:absolute;left:150px;right:0;top:21px;bottom:0;pointer-events:none}
+.hatch{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,rgba(120,120,130,.28) 0 4px,rgba(120,120,130,.06) 4px 8px);border-left:1px dashed #9a9aa5;border-right:1px dashed #9a9aa5;z-index:2}
+.playhead{position:absolute;top:-4px;bottom:0;width:2px;margin-left:-1px;background:var(--plum2);z-index:4}
+.playhead:before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--plum2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:11.5px;color:#777}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#8d93a0;margin-right:6px;vertical-align:-1px}
+.legend i.sq{border-radius:2px;background:var(--bar)}
+.legend i.r{background:var(--crimson)}
+.legend i.h{border-radius:2px;width:16px;background:repeating-linear-gradient(45deg,#9a9aa5 0 2px,#e9e9ee 2px 4px)}
+
+/* кадры */
+.frhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:10px}
+.frhint{font-size:12px;color:var(--muted);white-space:nowrap}
+.frames{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.frame{position:relative;border-radius:12px;overflow:hidden;background:#222;aspect-ratio:464/848;cursor:pointer}
+.frame img{display:block;width:100%;height:100%;object-fit:cover}
+.frame.mom{box-shadow:0 0 0 2px var(--crimson)}
+.frame .mark{position:absolute;border:2.5px solid #F08A7E;border-radius:5px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.frame .ill{position:absolute;left:6px;bottom:6px;background:rgba(42,10,26,.82);color:#fff;font-size:10.5px;padding:2px 7px;border-radius:6px}
+.frame .gapf{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:#3d3d44;font-size:12px;background:repeating-linear-gradient(45deg,rgba(220,220,226,.92) 0 8px,rgba(236,236,240,.92) 8px 16px)}
+.frcap{display:flex;justify-content:space-between;margin-top:7px;font-size:12.5px;color:#555;gap:6px}
+.frcap b{color:var(--plum)}
+
+/* вердикт */
+.verdict{border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;border:1.5px solid}
+.verdict .ico{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px}
+.verdict .vt{font-size:16.5px;font-weight:700;line-height:1.25}
+.verdict .vs{font-size:12.5px;margin-top:4px;color:#444}
+.verdict code{font-size:11px;background:rgba(255,255,255,.7);border-radius:5px;padding:1px 6px;margin-top:6px;display:inline-block;color:#333}
+.v-red{background:var(--red-bg);border-color:#E9A3B6}.v-red .ico{background:var(--red)}.v-red .vt{color:var(--red)}
+.v-green{background:var(--green-bg);border-color:#9ED3B7}.v-green .ico{background:var(--green)}.v-green .vt{color:#156B45}
+.rnote{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;margin:-8px 0 16px;background:var(--yel-bg);border:1px solid #EBC86A;border-radius:10px;padding:7px 12px;color:#7A4E00;font-size:13px;font-weight:600;text-align:left}
+.rnote:hover{background:#FFEDB8}.rnote span{font-weight:400;color:#8a6a2a;font-size:12px}
+.srctag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-bottom:12px}
+.src-real{background:#E3F2EA;color:#1A6C46}
+.src-demo{background:#FCE8EE;color:#9B1B4A;border:1px dashed #E3A3B8}
+
+.found{font-size:17px;font-weight:700;color:var(--plum);margin:0 0 12px}
+.found small{font-weight:400;font-size:13px;color:var(--muted);margin-left:6px}
+.vlist{display:flex;flex-direction:column;gap:8px}
+.vi{display:flex;align-items:center;gap:10px;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:10px 12px;cursor:pointer;text-align:left;width:100%}
+.vi:hover{background:#ededf1}
+.vi.sel{background:#fff;border-color:var(--crimson)}
+.vi .cb{flex:0 0 4px;align-self:stretch;border-radius:3px;min-height:34px}
+.vi .cb.gap{background:repeating-linear-gradient(45deg,#9a9aa5 0 3px,#e3e3e8 3px 6px)}
+.vi .tx{flex:1;min-width:0}
+.vi .tt{font-weight:600;color:#1d1b22;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+.vi .mt{font-size:12px;color:var(--muted);margin-top:2px}
+.pill{flex:0 0 auto;font-size:11px;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.p-pend{background:#e6e6ea;color:#6b6b75}
+.p-conf{background:var(--plum2);color:#fff}
+.p-rej{background:#e6e6ea;color:#8d8d96;text-decoration:line-through}
+.p-gap{background:#e6e6ea;color:#55555e}
+.empty{background:var(--soft);border-radius:12px;padding:16px;color:#555;font-size:13px}
+
+/* карточка */
+.kick{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dtitle{font-size:20px;font-weight:700;color:var(--plum);margin:4px 0 6px;line-height:1.2}
+.dlink{font-size:12.5px;cursor:pointer;color:#2361C4}
+.ddesc{margin:12px 0 14px;font-size:13.5px;color:#2b2b30}
+.rulebox{background:#ededf0;border-radius:14px;padding:14px}
+.cite+.cite{border-top:1px solid #d9d9df;margin-top:12px;padding-top:12px}
+.chead{font-weight:700;font-size:12.5px;color:#1d1b22}
+.chead a{color:#1d1b22}
+.cpart{display:flex;gap:8px;margin-top:8px;font-style:italic;font-size:13px;color:#2b2b30}
+.cpart .q{color:var(--crimson);font-weight:800;font-style:normal;font-size:16px;line-height:1}
+.cpart small{font-style:normal;color:var(--muted);white-space:nowrap}
+.cpill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-top:10px}
+.c-ok{background:#E3F2EA;color:#1A6C46}
+.c-warn{background:#FCEFC7;color:#7A4E00}
+.c-vlm{background:#E3E6EE;color:#3C4560}
+.cnote{font-size:12px;color:#55555e;margin-top:8px}
+.vnote{font-size:12px;background:#FFF8E5;border:1px solid #F1D98F;color:#6b4a00;border-radius:10px;padding:8px 10px;margin:0 0 12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.two h4{margin:0 0 4px;font-size:12.5px;color:#1d1b22}
+.two p{margin:0;font-size:12px;color:#666}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.btn-o{border:1.5px solid var(--crimson);background:#fff;color:var(--plum);border-radius:10px;padding:10px;font-weight:600}
+.btn-o.on{background:var(--plum2);border-color:var(--plum2);color:#fff}
+.btn-g{border:1.5px solid transparent;background:#fff;color:var(--plum);border-radius:10px;padding:10px;font-weight:600}
+.btn-g.on{background:#e6e6ea;border-color:#c9c9d0;color:#55555e}
+.ophint{font-size:11.5px;color:var(--muted);margin-top:8px;text-align:center}
+.checks{margin:10px 0 0;padding:0;list-style:none}
+.checks li{padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.checks li:before{content:"✓";color:var(--green);font-weight:700;margin-right:8px}
+
+/* API */
+.api{grid-column:1 / -1}
+.apihead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.apihead h2{flex:1}
+.btn-ol{border:1.5px solid #c7a3b3;background:#fff;color:var(--plum);border-radius:10px;padding:9px 16px;display:inline-flex;gap:8px;align-items:center;font-weight:500}
+.btn-dk{border:0;background:var(--plum2);color:#fff;border-radius:10px;padding:10px 16px;display:inline-flex;gap:8px;align-items:center;font-weight:500}
+.cap{font-size:12.5px;color:var(--muted);margin:10px 0}
+.cap code{background:var(--soft);border-radius:4px;padding:0 5px;color:#333}
+.endpoints{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;background:var(--soft);border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:12.5px}
+.ep{background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 9px}
+.ep b{color:var(--crimson);margin-right:6px;font-weight:700}
+.endpoints .sp{flex:1}
+.btn-sm{border:1.5px solid #c7a3b3;background:#fff;color:var(--plum);border-radius:8px;padding:5px 12px;font-size:12.5px;font-weight:600}
+pre.json{background:var(--plum);color:#f2e6eb;border-radius:14px;padding:18px 22px;margin:0;font-size:12.5px;line-height:1.6;max-height:560px;overflow:auto;white-space:pre}
+.jk{color:#F6B6C9}.js{color:#F7DDB0}.jn{color:#A8E6C9}.jb{color:#9CC3FF}.jtr{color:#b58a9c}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--plum);color:#fff;padding:9px 16px;border-radius:10px;font-size:13px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%)}
+
+@media (max-width:1360px){
+  main{grid-template-columns:260px minmax(0,1fr) 370px}
+  .tl{grid-template-columns:132px minmax(0,1fr)} .overlay{left:132px}
+  .htitle{display:none} header .hdiv.t{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">forte</div>
+  <div class="hdiv t"></div>
+  <div class="htitle">Контроль кассовых операций</div>
+  <div class="hspacer"></div>
+  <div class="demo">сценарий
+    <div class="seg" id="seg">
+      <button data-s="real"><span class="dot" style="background:#1F8A5B"></span>реальное видео</button>
+      <button data-s="demo_viol"><span class="dot" style="background:#B3123E"></span>демо: нарушения</button>
+      <button data-s="demo_clean"><span class="dot" style="background:#8bc7a8"></span>демо: чисто</button>
+    </div>
+  </div>
+  <div class="hdiv"></div>
+  <div class="fname" id="fname">sample.mov</div>
+</header>
+
+<main>
+  <!-- левая колонка: портретный плеер -->
+  <div class="col">
+    <div class="player" id="drop">
+      <div class="vwrap">
+        <video id="vid" controls muted playsinline preload="auto" poster="video/poster.jpg">
+          <source src="video/sample.mov" type="video/mp4">
+          <source src="video/sample.webm" type="video/webm">
+        </video>
+        <span class="vbadge">CAM · касса</span>
+        <span class="vtime mono" id="vtime">00:00.0</span>
+      </div>
+      <div class="pinfo" id="pinfo"><b>sample.mov</b><br>H.264 · 464×848 (портрет) · 30 к/с · 17,07 с</div>
+      <div class="pbtns">
+        <button class="btn-white" id="pick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15V3M7 8l5-5 5 5M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></svg>Выбрать файл</button>
+        <button class="btn-ghost" id="play">▶ Играть</button>
+      </div>
+      <input type="file" id="file" accept=".mp4,.mov,video/*" hidden>
+      <div class="chosen" id="chosen"></div>
+      <div class="dropnote">Можно перетащить MP4/MOV сюда. Видео откроется в плеере; анализ в макете не запускается.</div>
+    </div>
+  </div>
+
+  <!-- центр: таймлайн + кадры -->
+  <div class="col">
+    <div class="card">
+      <div class="tlhead"><h2>Таймлайн</h2><div class="tltime mono" id="tltime">00:00.0 / 00:00.0</div></div>
+      <div class="tl" id="tl"></div>
+      <div class="legend">
+        <span><i class="r"></i>! — правило из базы</span>
+        <span><i></i>? — второй судья (VLM)</span>
+        <span><i class="sq"></i>■ — по бездействию</span>
+        <span><i class="h"></i>не проанализировано</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="frhead"><h2>Кадры-доказательства</h2><div class="frhint mono">timecode_sec = кадр «момент»</div></div>
+      <div class="frames" id="frames"></div>
+    </div>
+  </div>
+
+  <!-- правая колонка -->
+  <div class="col">
+    <div class="card">
+      <div id="srctag"></div>
+      <div id="verdict"></div>
+      <div class="found" id="found"></div>
+      <div class="vlist" id="vlist"></div>
+    </div>
+    <div class="card" id="detail"></div>
+  </div>
+
+  <div class="card api">
+    <div class="apihead">
+      <h2>Ответ API (JSON)</h2>
+      <button class="btn-ol" id="bCopy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Копировать</button>
+      <button class="btn-ol" id="bDl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>result.json</button>
+      <button class="btn-dk" id="bLab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg><span id="labTxt">Разметка (0)</span></button>
+    </div>
+    <div class="cap">Отклонённые оператором нарушения <b>остаются</b> в ответе с <code>"operator_status": "rejected_by_operator"</code> и не влияют на <code>verdict</code> — ошибка оператора не спрячет настоящее нарушение. Подтверждения и отклонения копятся в разметку для дообучения.</div>
+    <div class="endpoints mono">
+      <span class="ep"><b>POST</b>/api/v1/analyze</span>
+      <span class="ep"><b>GET</b>/api/v1/jobs/{job_id}</span>
+      <span class="ep">заголовок <b style="margin:0 0 0 4px">X-API-Key</b></span>
+      <span class="sp"></span>
+      <button class="btn-sm" id="bCurl">Скопировать curl</button>
+    </div>
+    <pre class="json mono" id="json"></pre>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- нормы: дословно из локальной копии adilet.zan.kz (src/*.html), якоря проверены ---------- */
+const ADILET = {
+  R231:{name:"Постановление Правления НБРК №231 от 29.11.2019", url:"https://adilet.zan.kz/rus/docs/V1900019680"},
+  R14:{name:"Постановление Правления НБРК №14 от 24.02.2020", url:"https://adilet.zan.kz/rus/docs/V2000020075"}
+};
+const CITES = {
+  R231_20:{act:"R231", clause:"п. 20", parts:[
+    {label:"ч. 1", z:"z111", text:"Наличные деньги принимаются и пересчитываются кассовым работником в присутствии клиента."},
+    {label:"ч. 2", z:"z112", text:"На рабочем месте кассового работника находятся наличные деньги клиента. Все ранее принятые наличные деньги хранятся в специальных устройствах, находящихся на рабочем месте кассового работника, закрывающихся на ключ, предназначенных для хранения наличных денег (металлический шкаф, сейф, тележка, ящики стола, тумба)."}]},
+  R231_20_1:{act:"R231", clause:"п. 20 ч. 1", parts:[{label:"", z:"z111", text:"Наличные деньги принимаются и пересчитываются кассовым работником в присутствии клиента."}]},
+  R231_22:{act:"R231", clause:"п. 22", parts:[{label:"", z:"z114", text:"Кассовому работнику не допускается покидать рабочее место до окончания обслуживания клиента."}]},
+  R231_12:{act:"R231", clause:"п. 12", parts:[{label:"", z:"z81", text:"Хранение личных вещей, наличных денег и ценностей работников банка осуществляется вне кассового узла в порядке, установленном внутренними документами банка."}]},
+  R231_12_2:{act:"R231", clause:"п. 12 ч. 2", parts:[{label:"", z:"z490", text:"Допускается внос работниками банка в кассовый узел лекарственных средств, медицинских изделий и средств связи, не имеющих функции фото и видео фиксации."}]}
+};
+
+/* ---------- кадры из sample.mov (ffmpeg), размер base64 в KB ---------- */
+const B64KB={"0.5":49,"1.0":50,"2.0":50,"3.0":50,"4.0":51,"5.0":51,"6.0":51,"7.5":51,"8.4":50,"9.0":50,"10.0":51,"11.0":52,"12.0":52,"13.0":52,"14.0":53,"14.6":53,"15.5":52,"16.2":52,"16.5":52};
+const IMG=t=>`video/f_${t.toFixed(1)}.jpg`;
+const W=464,H=848; /* разрешение кадра; рамки в пикселях кадра */
+const R={deskall:[34,384,262,92],phone:[150,410,70,40], card:[140,418,42,28], device:[32,396,88,90], desk:[118,404,150,76], chair:[168,428,150,150]};
+const DUR=17.07;
+
+const SCEN = {
+ real:{
+  src:"real", file:"sample.mov", job:"5b0e7c21a94d4f0f8e3a6c19d2b74e10", dur:DUR, start:8.0, sel:"r1",
+  tracks:{
+   "Клиент в помещении":[[2.0,DUR,"входит → сидит у стола"]],
+   "Кассир за столом":[[0,DUR,"кассир"]],
+   "Деньги в руках":[], "Пересчёт":[], "Второй сотрудник":[],
+   "Телефон":[[0,DUR,"на столе (по VLM)",1]],
+   "Документ / карта":[[7.0,15.0,"карта: передана → проверка → в устройство"]]
+  },
+  gaps:[],
+  items:[
+   {id:"r1",kind:"observation",source:"rule",omission:false,title:"Телефон на рабочем столе кассира",color:"#E0A100",tc:0.5,iv:[0,DUR],conf:.41,thr:.6,rule:"phone_or_personal_items",status:"pending",demoConf:true,
+    cites:["R231_12","R231_12_2"],
+    desc:"Видео-модель отмечает смартфон на столе кассира весь ролик. Кассир его не берёт, наличных в кадре нет — уверенность ниже порога правила (0,60), в нарушения не попало. Нужна ручная проверка.",
+    vnote:"При ручном просмотре кадров смартфон на столе не найден (тёмный изгиб за ноутбуком — спинка кресла). Рамка обводит весь стол, а не телефон. Проверьте по исходному видео.",
+    visual:"По VLM — смартфон на столе; кассир его не берёт. На кадрах видны ноутбук, чёрное устройство и карта клиента",
+    cannot:"Что это личный смартфон с камерой, а не служебный телефон (служебный — не нарушение); что комната — кассовый узел; связь с наличными — их в кадре нет",
+    frames:[[0.5,"deskall"],[8.4,"deskall"],[16.5,"deskall"]], mi:0, flab:["момент (начало)","середина","конец"]}
+  ]
+ },
+ demo_viol:{
+  src:"demo", file:"sample.mov", job:"3c639f53e0b74ab7a3f4609eb4caf05b", dur:DUR, start:9.0, sel:"v2",
+  tracks:{
+   "Клиент в помещении":[[2.0,8.6,"клиент"],[10.5,DUR,"клиент"]],
+   "Кассир за столом":[[0,11.8,""],[13.6,DUR,""]],
+   "Деньги в руках":[[2.5,4.6,"купюры"],[7.5,8.0,""],[14.0,15.6,"пачки"]],
+   "Пересчёт":[[2.8,4.6,"пересчёт"],[14.0,15.6,"пересчёт"]],
+   "Второй сотрудник":[[0,1.4,""]],
+   "Телефон":[[15.8,16.8,"тел"]],
+   "Документ / карта":[]
+  },
+  gaps:[{a:5.0,b:6.0,why:"окно пропущено при укрупнении (лимит времени)"}],
+  items:[
+   {id:"v1",kind:"violation",source:"rule",omission:false,title:"Пересчёт без клиента",color:"#A3174E",tc:3.0,iv:[3.0,4.6],conf:.91,thr:.6,rule:"counting_without_client",status:"pending",cites:["R231_20_1"],
+    desc:"Кассир пересчитывает купюры, когда клиента у стола нет. Признаки возможного нарушения п. 20.",
+    visual:"Купюры в руках кассира, у стола никого нет",cannot:"Сумму пересчёта; чьи это деньги",
+    frames:[[2.0,null],[3.0,"desk"],[4.0,null]]},
+   {id:"v2",kind:"violation",source:"rule",omission:true,title:"Нет пересчёта после приёма денег",color:"#F08A7E",tc:9.0,iv:[7.5,9.0],conf:.78,thr:.6,rule:"counting_without_client",status:"pending",cites:["R231_20"],
+    desc:"Клиент передал деньги в 7,5 с, до 9,0 с пересчёта не зафиксировано. Признаки возможного нарушения п. 20 (по бездействию).",
+    visual:"Купюры лежат на столе, пересчёта нет",cannot:"Точную сумму и номиналы; умысел кассира",
+    frames:[[7.5,null],[9.0,"card"],[10.0,null]]},
+   {id:"v3",kind:"violation",source:"rule",omission:false,title:"Уход с рабочего места",color:"#F2C14E",tc:12.0,iv:[11.8,13.6],conf:.86,thr:.6,rule:"cash_unattended",status:"confirmed",cites:["R231_22"],
+    desc:"Кассир отходит от стола в 11,8 с при клиенте и возвращается в 13,6 с. Признаки возможного нарушения п. 22.",
+    visual:"Кресло кассира пустое, клиент у стола",cannot:"Причину ухода",
+    frames:[[11.0,null],[12.0,"chair"],[13.0,null]]},
+   {id:"v4",kind:"observation",source:"rule",omission:false,title:"Пересчёт без контролирующего",color:"#5BC0EB",tc:14.6,iv:[14.0,15.6],conf:.69,thr:null,rule:null,status:"pending",cites:null,
+    desc:"Пачки пересчитывает один кассир, второго сотрудника нет. В rules.json нормы для этого типа нет — нужна ручная проверка.",
+    visual:"Один сотрудник, пачки в руках",cannot:"Что требовался второй сотрудник",
+    frames:[[14.0,null],[14.6,"device"],[15.5,null]]},
+   {id:"v5",kind:"observation",source:"vlm",omission:false,title:"Телефон над наличными",color:"#1B2A4A",tc:16.2,iv:[15.8,16.8],conf:.58,thr:null,rule:null,status:"rejected",cites:null,near:true,
+    desc:"VLM видит смартфон в руке кассира над купюрами. Тип вне базы правил: базовое правило не применялось.",
+    visual:"Тёмный прямоугольник над купюрами",cannot:"Что телефон с камерой; что велась съёмка",
+    frames:[[15.5,null],[16.2,"phone"],[16.5,null]]}
+  ]
+ },
+ demo_clean:{
+  src:"demo", file:"sample.mov", job:"f07a2c3be19d4e5aa1c8d6b29e4f7031", dur:DUR, start:8.4, sel:null,
+  tracks:{
+   "Клиент в помещении":[[2.0,DUR,"клиент"]],
+   "Кассир за столом":[[0,DUR,""]],
+   "Деньги в руках":[[9.0,12.0,"купюры"]],
+   "Пересчёт":[[9.5,12.0,"пересчёт"]],
+   "Второй сотрудник":[], "Телефон":[], "Документ / карта":[]
+  },
+  gaps:[], items:[], sample:[1.0,8.4,16.5]
+ }
+};
+const TRACKS=Object.keys(SCEN.real.tracks);
+const TRACK_KEYS={"Клиент в помещении":"client_at_window","Кассир за столом":"cashier_at_desk","Деньги в руках":"cash_in_hands","Пересчёт":"counting","Второй сотрудник":"second_employee","Телефон":"phone","Документ / карта":"document_card"};
+
+/* ---------- состояние ---------- */
+let S, cur, sel, ph=0;
+const $=id=>document.getElementById(id);
+const vid=$("vid");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=t=>{t=Math.max(0,t);const m=Math.floor(t/60),s=t-m*60;return String(m).padStart(2,"0")+":"+(s<10?"0":"")+s.toFixed(1)};
+const pct=t=>(Math.min(t,S.dur)/S.dur*100)+"%";
+function plural(n,a,b,c){const m=n%10,h=n%100;return (m==1&&h!=11)?a:(m>=2&&m<=4&&(h<10||h>=20))?b:c}
+const itemById=id=>S.items.find(x=>x.id===id);
+const isViolation=it=>it.status!=="rejected"&&(it.kind==="violation"||it.status==="confirmed");
+const needsReview=it=>!isViolation(it)&&it.status==="pending";
+
+function loadScenario(name){
+  cur=name; S=JSON.parse(JSON.stringify(SCEN[name]));
+  document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.s===name));
+  sel=S.sel; renderAll(); seek(S.start);
+}
+function renderAll(){renderSrc();renderVerdict();renderList();renderTimeline();renderFrames();renderDetail();renderJSON()}
+
+/* ---------- синхронизация с видео ---------- */
+function seek(t){ph=Math.max(0,Math.min(S.dur,t));try{if(vid.readyState>=1)vid.currentTime=ph;else vid._pending=ph}catch(e){}movePH()}
+function movePH(){const p=$("ph");if(p)p.style.left=pct(ph);$("tltime").textContent=fmt(ph)+" / "+fmt(S.dur);$("vtime").textContent=fmt(ph)}
+vid.addEventListener("loadedmetadata",()=>{if(vid._pending!=null){vid.currentTime=vid._pending;vid._pending=null}});
+vid.addEventListener("timeupdate",()=>{ph=vid.currentTime;movePH()});
+vid.addEventListener("seeked",()=>{ph=vid.currentTime;movePH()});
+let raf;const tick=()=>{ph=vid.currentTime;movePH();if(!vid.paused)raf=requestAnimationFrame(tick)};
+vid.addEventListener("play",()=>{$("play").textContent="❚❚ Пауза";tick()});
+vid.addEventListener("pause",()=>{$("play").textContent="▶ Играть";cancelAnimationFrame(raf)});
+$("play").onclick=()=>vid.paused?vid.play():vid.pause();
+
+/* ---------- источник данных ---------- */
+function renderSrc(){
+  $("srctag").innerHTML=S.src==="real"
+    ?`<span class="srctag src-real">● реальное видео · треки по событиям ролика · уверенность — демо-значение</span>`
+    :`<span class="srctag src-demo">демо-данные, не результат модели</span>`;
+}
+
+/* ---------- вердикт (бинарный) + жёлтая заметка ---------- */
+function reviewTargets(){return [...S.items.filter(needsReview).map(x=>x.id),...S.gaps.map((g,i)=>"gap"+i)]}
+function renderVerdict(){
+  const v=S.items.filter(isViolation).length,r=S.items.filter(needsReview).length,g=S.gaps.length,n=r+g;
+  let h;
+  if(v)h=`<div class="verdict v-red"><div class="ico">!</div><div><div class="vt">Обнаружены признаки возможных нарушений</div><div class="vs">${v} ${plural(v,"нарушение","нарушения","нарушений")} выше порога правил</div><code class="mono">"verdict": "violation"</code></div></div>`;
+  else h=`<div class="verdict v-green"><div class="ico">✓</div><div><div class="vt">Нарушений не обнаружено</div><div class="vs">${n?"Нарушений выше порога правил нет":`Видео ${fmt(S.dur)} проанализировано целиком`}</div><code class="mono">"verdict": "no_violation"</code></div></div>`;
+  if(n){const parts=[];if(r)parts.push(`${r} ниже порога / VLM`);if(g)parts.push(`${g} не ${plural(g,"проанализирован","проанализированы","проанализированы")}`);
+    h+=`<button class="rnote" id="rnote">⚠ ${n} ${plural(n,"момент","момента","моментов")} проверить вручную<span>${parts.join(" · ")} →</span></button>`}
+  $("verdict").innerHTML=h;
+  if(n)$("rnote").onclick=()=>{const t=reviewTargets()[0];select(t);document.querySelector(`.vi[data-id="${t}"]`).scrollIntoView({behavior:"smooth",block:"center"})};
+}
+
+/* ---------- список ---------- */
+const PILL={pending:["p-pend","на проверке"],confirmed:["p-conf","подтверждено"],rejected:["p-rej","отклонено"]};
+function metaOf(it){
+  const p=[it.iv[1]-it.iv[0]>10?`${fmt(it.iv[0])}–${fmt(it.iv[1])}`:fmt(it.tc),Math.round(it.conf*100)+"%"+(it.demoConf?" (демо)":""),it.source==="vlm"?"VLM":"правило"];
+  if(it.omission)p.push("бездействие");
+  if(it.kind==="observation")p.push(it.source==="vlm"?"вне базы":(it.rule?"ниже порога":"нормы нет"));
+  return p.join(" · ");
+}
+function renderList(){
+  const conf=S.items.filter(x=>x.status==="confirmed").length,rej=S.items.filter(x=>x.status==="rejected").length;
+  $("found").innerHTML=`Найдено: ${S.items.length}<small>подтверждено ${conf}${rej?` · отклонено ${rej}`:""}</small>`;
+  let h=S.items.map(it=>{const [c,t]=PILL[it.status];
+    return `<button class="vi ${sel===it.id?"sel":""}" data-id="${it.id}"><span class="cb" style="background:${it.color}"></span><span class="tx"><div class="tt">${esc(it.title)}</div><div class="mt">${metaOf(it)}</div></span><span class="pill ${c}">${t}</span></button>`}).join("");
+  h+=S.gaps.map((g,i)=>`<button class="vi ${sel==="gap"+i?"sel":""}" data-id="gap${i}"><span class="cb gap"></span><span class="tx"><div class="tt">Не проанализировано</div><div class="mt">${fmt(g.a)}–${fmt(g.b)} · ${(g.b-g.a).toFixed(1)} с</div></span><span class="pill p-gap">смотреть вручную</span></button>`).join("");
+  if(!S.items.length&&!S.gaps.length)h=`<div class="empty">Ничего не найдено. Видео проанализировано целиком, моментов для ручной проверки нет.</div>`;
+  $("vlist").innerHTML=h;
+  $("vlist").querySelectorAll(".vi").forEach(b=>b.onclick=()=>select(b.dataset.id));
+}
+
+/* ---------- таймлайн (секунды) ---------- */
+function renderTimeline(){
+  let h=`<div></div><div class="axis">`;
+  for(let t=0;t<=S.dur;t+=1){const l=t/S.dur*100;h+=`<i style="left:${l}%"></i>`;if(t%2===0)h+=`<span style="left:${Math.min(Math.max(l,2.5),96.5)}%">${fmt(t).slice(0,5)}</span>`}
+  h+=`</div><div class="lab b">Нарушения</div><div class="vrow" data-track="1">`;
+  S.items.forEach(it=>{h+=`<div class="ivbar" style="left:${pct(it.iv[0])};width:${pct(it.iv[1]-it.iv[0])};background:${it.source==="vlm"?"#8d93a0":it.color}"></div>`});
+  S.items.forEach(it=>{
+    const cls=["mk",it.omission?"sq":"",it.source==="vlm"?"vlm":"",it.status==="rejected"?"rej":"",sel===it.id?"sel":""].join(" ");
+    h+=`<button class="${cls}" data-id="${it.id}" title="${esc(it.title)} · ${fmt(it.tc)}" style="left:${pct(Math.max(it.tc,0.25))};background:${it.color}">${it.source==="vlm"?"?":"!"}</button>`});
+  h+=`</div>`;
+  TRACKS.forEach(name=>{
+    h+=`<div class="lab" title="${name} (${TRACK_KEYS[name]})">${name}</div><div class="track" data-track="1">`;
+    (S.tracks[name]||[]).forEach(([a,b,l,soft])=>{h+=`<div class="seg-bar ${soft?"soft":""}" style="left:${pct(a)};width:${pct(b-a)}" title="${fmt(a)}–${fmt(b)} ${esc(l)}">${esc(l)}</div>`});
+    h+=`</div>`});
+  h+=`<div class="overlay">`;
+  S.gaps.forEach(g=>{h+=`<div class="hatch" title="не проанализировано: ${fmt(g.a)}–${fmt(g.b)} — ${esc(g.why)}" style="left:${pct(g.a)};width:${pct(g.b-g.a)}"></div>`});
+  h+=`<div class="playhead" id="ph" style="left:${pct(ph)}"></div></div>`;
+  $("tl").innerHTML=h; movePH();
+  $("tl").querySelectorAll(".mk").forEach(b=>b.onclick=e=>{e.stopPropagation();select(b.dataset.id)});
+  $("tl").querySelectorAll("[data-track]").forEach(el=>el.onclick=e=>{
+    const r=el.getBoundingClientRect(),t=(e.clientX-r.left)/r.width*S.dur;
+    const gi=S.gaps.findIndex(g=>t>=g.a&&t<=g.b); if(gi>=0){select("gap"+gi);return}
+    seek(t)});
+}
+
+/* ---------- кадры: реальные JPEG из sample.mov ---------- */
+function frameHTML(t,region,cap,isMom,ill){
+  const m=region?R[region]:null;
+  return `<div><div class="frame ${isMom?"mom":""}" data-t="${t}"><img src="${IMG(t)}" alt="кадр ${fmt(t)}" loading="eager">`+
+    (m?`<div class="mark" style="left:${m[0]/W*100}%;top:${m[1]/H*100}%;width:${m[2]/W*100}%;height:${m[3]/H*100}%"></div>`:"")+
+    (ill?`<span class="ill">иллюстрация</span>`:"")+
+    `</div><div class="frcap">${isMom?`<b>${cap}</b>`:`<span>${cap}</span>`}<span class="mono">${fmt(t)}</span></div></div>`;
+}
+function renderFrames(){
+  const ill=S.src!=="real"; let h="";
+  const it=sel&&!sel.startsWith("gap")&&itemById(sel);
+  if(it){const lab=it.flab||["до","момент","после"],mi=it.mi??1;
+    h=it.frames.map((f,i)=>frameHTML(f[0],f[1],lab[i],i===mi,ill)).join("")}
+  else if(sel&&sel.startsWith("gap")){const g=S.gaps[+sel.slice(3)];
+    h=frameHTML(4.0,null,"до",false,ill)+`<div><div class="frame"><img src="${IMG(5.0)}" alt=""><div class="gapf">Кадры ${fmt(g.a)}–${fmt(g.b)} не проанализированы</div></div><div class="frcap"><b>пропуск</b><span class="mono">${fmt(g.a)}–${fmt(g.b)}</span></div></div>`+frameHTML(7.5,null,"после",false,ill)}
+  else h=(S.sample||[]).map(t=>frameHTML(t,null,"выборка",false,ill)).join("");
+  $("frames").innerHTML=h;
+  $("frames").querySelectorAll(".frame[data-t]").forEach(f=>f.onclick=()=>seek(+f.dataset.t));
+}
+
+/* ---------- карточка ---------- */
+function citeHTML(key){
+  const c=CITES[key],a=ADILET[c.act];
+  return `<div class="cite"><div class="chead"><a href="${a.url}#${c.parts[0].z}" target="_blank" rel="noopener">${a.name}, ${c.clause} ↗</a></div>`+
+    c.parts.map(p=>`<div class="cpart"><span class="q">❞</span><span>${esc(p.text)} ${p.label?`<small>(<a href="${a.url}#${p.z}" target="_blank" rel="noopener">${p.label}</a>)</small>`:""}</span></div>`).join("")+
+    `<span class="cpill c-ok">✓ Дословно, adilet.zan.kz · #${c.parts.map(p=>p.z).join(", #")}</span></div>`;
+}
+function renderDetail(){
+  const d=$("detail");
+  if(!sel){
+    d.innerHTML=`<div class="kick">итог</div><div class="dtitle">Нарушений не обнаружено</div>
+    <ul class="checks"><li>Проанализировано 100% видео (${fmt(S.dur)})</li><li>Нарушений выше порога правил: 0</li><li>Моментов ниже порога и от VLM: 0</li><li>Непроанализированных отрезков: 0</li></ul>
+    <div class="ddesc" style="margin-bottom:0">Пороги правил — из rules.json (0,60–0,85). В центре — кадры-выборка из видео.</div>`;return}
+  if(sel.startsWith("gap")){const g=S.gaps[+sel.slice(3)];
+    d.innerHTML=`<div class="kick">не проанализировано</div><div class="dtitle">Отрезок ${fmt(g.a)}–${fmt(g.b)}</div>
+    <div class="ddesc">Модель не смотрела этот кусок: ${esc(g.why)}. Нарушение внутри него не исключено — просмотрите видео вручную. В ответе API отрезок лежит в <span class="mono">unanalyzed_ranges</span>.</div>
+    <div class="rulebox"><span class="cpill c-warn" style="margin:0">⚠ Вердикт по этому отрезку не выносится</span></div>`;return}
+  const it=itemById(sel);
+  const kick=it.kind==="violation"?("нарушение · "+(it.omission?"по бездействию":"по действию")):("проверить вручную · "+(it.source==="vlm"?"второй судья (VLM)":(it.rule?"ниже порога":"норма не найдена")));
+  let rb;
+  if(it.cites)rb=it.cites.map(citeHTML).join("");
+  else if(it.source==="vlm")rb=`<div class="chead">Норма не привязана</div><span class="cpill c-vlm">VLM · тип вне базы — базового правила нет</span>
+    <div class="cnote">Сигнал второго судьи; правила из rules.json к нему автоматически не применялись.${it.near?" Ближайший тип в rules.json — «Смартфон / личные вещи на рабочем месте кассира» (п. 12 Правил №231); соответствие не подтверждено.":""}</div>`;
+  else rb=`<div class="chead">Норма не найдена</div><span class="cpill c-warn">⚠ норма не найдена — ручная проверка</span><div class="cnote">В rules.json нет нормы для этого типа. Номер пункта не подставляется наугад.</div>`;
+  const cOn=it.status==="confirmed",rOn=it.status==="rejected";
+  const win=it.iv[0]!==it.tc||it.iv[1]!==it.tc?` (окно ${fmt(it.iv[0])}–${fmt(it.iv[1])})`:"";
+  d.innerHTML=`<div class="kick">${kick}</div><div class="dtitle">${esc(it.title)}</div>
+   <a class="dlink" id="goto">Перейти к ${fmt(it.tc)}${win}</a>
+   <div class="ddesc">${esc(it.desc)}${it.demoConf?` <span style="color:var(--muted)">Уверенность ${Math.round(it.conf*100)}% — демо-значение.</span>`:""}</div>
+   ${it.vnote?`<div class="vnote">👁 ${esc(it.vnote)}</div>`:""}
+   <div class="rulebox">${rb}
+     <div class="two"><div><h4>Визуальный признак</h4><p>${esc(it.visual)}</p></div><div><h4>Нельзя утверждать по видео</h4><p>${esc(it.cannot)}</p></div></div>
+   </div>
+   <div class="actions"><button class="btn-o ${cOn?"on":""}" id="bOk">✓ ${cOn?"Подтверждено":"Подтвердить"}</button><button class="btn-g ${rOn?"on":""}" id="bNo">✕ ${rOn?"Отклонено":"Отклонить"}</button></div>
+   <div class="ophint">${cOn||rOn?"Нажмите ещё раз, чтобы вернуть «на проверке»":"Решение оператора попадёт в JSON и в разметку"}</div>`;
+  $("goto").onclick=()=>select(it.id);
+  $("bOk").onclick=()=>setStatus(it,"confirmed");
+  $("bNo").onclick=()=>setStatus(it,"rejected");
+}
+function setStatus(it,s){it.status=it.status===s?"pending":s;renderVerdict();renderList();renderTimeline();renderDetail();renderJSON();
+  toast(it.status==="pending"?"Возвращено на проверку":(s==="confirmed"?"Подтверждено — JSON обновлён":"Отклонено — осталось в JSON с rejected_by_operator"))}
+function select(id){
+  sel=id; const t=id.startsWith("gap")?S.gaps[+id.slice(3)].a:itemById(id).tc;
+  renderList();renderTimeline();renderFrames();renderDetail();seek(t);
+}
+
+/* ---------- JSON ---------- */
+const OPS={pending:"pending",confirmed:"confirmed_by_operator",rejected:"rejected_by_operator"};
+const B64=t=>`/9j/4AAQSkZJRg…(${B64KB[t.toFixed(1)]} KB)`;
+const refObj=k=>{const c=CITES[k],a=ADILET[c.act];return {doc:a.name,clause:c.clause,quote:c.parts.map(p=>p.text).join(" "),url:a.url+"#"+c.parts[0].z}};
+function itemJSON(it){
+  const o={type:it.title,timecode_sec:it.tc,description:it.desc,
+    evidence_frames:it.frames.map(f=>({timestamp_sec:f[0],image_base64:B64(f[0])})),
+    confidence:it.conf,window_sec:[it.iv[0],+it.iv[1].toFixed(2)],rule_ref:it.cites?refObj(it.cites[0]):null};
+  if(it.cites&&it.cites.length>1)o.rule_refs_extra=it.cites.slice(1).map(refObj);
+  if(!it.cites)o.rule_status=it.source==="vlm"?"vlm_type_outside_rule_base":"rule_not_found_manual_review";
+  if(it.rule)o.type_id=it.rule;
+  o.source=it.source==="vlm"?"vlm":"rule"; o.operator_status=OPS[it.status];
+  return o;
+}
+function buildResult(){
+  const v=S.items.filter(isViolation).length,n=S.items.filter(needsReview).length+S.gaps.length;
+  const viol=[],obs=[];
+  S.items.forEach(it=>{const o=itemJSON(it);((it.kind==="violation"||it.status==="confirmed")?viol:obs).push(o)});
+  const tracks=[];TRACKS.forEach(ru=>(S.tracks[ru]||[]).forEach(([a,b])=>tracks.push({label:TRACK_KEYS[ru],start_sec:a,end_sec:+b.toFixed(2)})));
+  tracks.sort((x,y)=>x.start_sec-y.start_sec);
+  const meta={video:S.file,duration_sec:S.dur,width:W,height:H,fps:30};
+  meta.data_source=S.src==="real"?"real_clip_demo_confidence":"demo_illustration";
+  return {job_id:S.job,status:"done",verdict:v?"violation":"no_violation",violations:viol,
+    needs_manual_review:n>0,observations:obs,tracks,unanalyzed_ranges:S.gaps.map(g=>({start_sec:g.a,end_sec:g.b,reason:g.why})),meta};
+}
+function renderJSON(){
+  let s=JSON.stringify(buildResult(),null,2);
+  s=s.replace(/\[\s*(-?[\d.]+),\s*(-?[\d.]+)\s*\]/g,"[$1, $2]");
+  $("json").innerHTML=s.split("\n").map(ln=>esc(ln)
+    .replace(/^(\s*)&quot;([^&]*?)&quot;:/,'$1<span class="jk">"$2"</span>:')
+    .replace(/: &quot;(.*)&quot;(,?)$/,(m,a,c)=>': <span class="js">"'+a.replace(/…\((\d+) KB\)/,'<span class="jtr">…($1 KB)</span>')+'"</span>'+c)
+    .replace(/: (\[?-?\d+\.?\d*(?:, -?\d+\.?\d*\])?)(,?)$/,': <span class="jn">$1</span>$2')
+    .replace(/: (null|true|false)(,?)$/,': <span class="jb">$1</span>$2')).join("\n");
+  $("labTxt").textContent=`Разметка (${S.items.filter(x=>x.status!=="pending").length})`;
+}
+
+/* ---------- кнопки ---------- */
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),1800)}
+async function copy(text,msg){try{await navigator.clipboard.writeText(text)}catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}toast(msg)}
+function dl(name,obj){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+$("bCopy").onclick=()=>copy(JSON.stringify(buildResult(),null,2),"JSON скопирован (base64 в демо сокращён)");
+$("bDl").onclick=()=>dl("result.json",buildResult());
+$("bLab").onclick=()=>{const L=S.items.filter(x=>x.status!=="pending").map(x=>({video:S.file,type:x.title,rule_id:x.rule,source:x.source,timecode_sec:x.tc,window_sec:x.iv,confidence:x.conf,operator_status:OPS[x.status]}));
+  if(!L.length){toast("Разметка пуста: подтвердите или отклоните момент");return}dl("labels_"+S.file.replace(/\.\w+$/,"")+".json",L)};
+$("bCurl").onclick=()=>copy(`curl -X POST -H "X-API-Key: $API_KEY" -F file=@video.mov http://HOST:8000/api/v1/analyze
+# -> 202 {"job_id":"...","status":"processing"}
+curl -H "X-API-Key: $API_KEY" http://HOST:8000/api/v1/jobs/<job_id>`,"curl скопирован");
+document.querySelectorAll("#seg button").forEach(b=>b.onclick=()=>loadScenario(b.dataset.s));
+$("pick").onclick=()=>$("file").click();
+function openFile(f){if(!f)return;vid.src=URL.createObjectURL(f);vid.load();$("fname").textContent=f.name;
+  $("pinfo").innerHTML=`<b>${esc(f.name)}</b><br>${(f.size/1048576).toFixed(1)} МБ · открыт локально`;
+  $("chosen").textContent="Видео открыто в плеере. Таймлайн и находки — по-прежнему демо-данные."}
+$("file").onchange=e=>openFile(e.target.files[0]);
+const dz=$("drop");
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag")};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");openFile(e.dataTransfer.files[0])};
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h in SCEN)loadScenario(h)});
+loadScenario((location.hash.slice(1) in SCEN)?location.hash.slice(1):"real");
+</script>
+</body>
+</html>
