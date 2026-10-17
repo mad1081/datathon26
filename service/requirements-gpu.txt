@@ -1,0 +1,4 @@
+# for VLM_BACKEND=transformers (torch comes from the CUDA base image)
+transformers>=4.57
+accelerate>=0.33
+# optional speed-up: flash-attn (BSD-3)  -> pip install flash-attn --no-build-isolation

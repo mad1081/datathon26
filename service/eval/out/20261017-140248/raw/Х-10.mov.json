@@ -1,0 +1,71 @@
+{
+ "status": "done",
+ "verdict": "no_violation",
+ "verdict_ru": "Нарушение не обнаружено",
+ "violations": [],
+ "observations": [],
+ "unanalyzed_ranges": [],
+ "needs_manual_review": false,
+ "manual_review_reasons": [],
+ "tracks": [
+  {
+   "label": "cashier_at_desk",
+   "start_sec": 0.0,
+   "end_sec": 15.57
+  },
+  {
+   "label": "client_at_window",
+   "start_sec": 0.0,
+   "end_sec": 12.0
+  }
+ ],
+ "meta": {
+  "model": "mock",
+  "duration_sec": 15.57,
+  "fps": 30.0,
+  "frames_sampled": 32,
+  "windows": 7,
+  "unanalyzed_ranges": [],
+  "partial": false,
+  "refined": false,
+  "processing_sec": 0.32,
+  "warnings": [],
+  "scenes": [
+   {
+    "start_sec": 0.0,
+    "end_sec": 4.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 2.0,
+    "end_sec": 6.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 4.0,
+    "end_sec": 8.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 6.0,
+    "end_sec": 10.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 8.0,
+    "end_sec": 12.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 10.0,
+    "end_sec": 14.0,
+    "scene": "mock: синтетическая сцена"
+   },
+   {
+    "start_sec": 12.0,
+    "end_sec": 15.57,
+    "scene": "mock: синтетическая сцена"
+   }
+  ]
+ }
+}

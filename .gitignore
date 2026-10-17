@@ -1,0 +1,8 @@
+# never commit dataset / job videos
+*.mov
+*.mp4
+data/
+var/
+.venv/
+__pycache__/
+*.pyc

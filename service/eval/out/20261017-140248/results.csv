@@ -1,0 +1,4 @@
+file,x,labelled,gt_verdict,gt_sec,gt_type,pred_verdict,pred_timecodes,pred_types,type_hit,tc_abs_err,proc_sec,status,error
+X-1.mov,1,True,violation,22,suspicious_note_returned,no_violation,,,False,,0.6,done,
+X-2.mov,2,True,violation,10,no_client_id_check,no_violation,,,False,,0.4,done,
+Х-10.mov,10,True,no_violation,,,no_violation,,,,,0.3,done,
