@@ -44,6 +44,10 @@ def test_mock_end_to_end():
     assert abs(v["timecode_sec"] - 4.0) <= 0.5
     assert 1 <= len(v["evidence_frames"]) <= 3
     assert v["rule"]["citations"] and "п. 20" in v["description"]
+    # ТЗ: type = «Название типа нарушения» (рус.), машинный ключ — в type_id
+    assert v["type_id"] == "cash_unattended"
+    assert v["type"] == a.rb.get("cash_unattended").name_ru and v["type"] != v["type_id"]
+    assert any("а" <= ch.lower() <= "я" for ch in v["type"])
     # optional UI fields (required jury fields unchanged)
     assert set(v["rule_ref"]) == {"doc", "clause", "quote", "url"} and v["rule_ref"]["clause"].startswith("п.")
     assert 0 <= v["confidence"] <= 1 and len(v["window_sec"]) == 2 and v["window_sec"][0] <= v["timecode_sec"] + 0.5

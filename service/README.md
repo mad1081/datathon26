@@ -53,6 +53,8 @@ curl -H "X-API-Key: $API_KEY" http://HOST:8000/api/v1/jobs/<job_id>
 #     "violations":[{"type","timecode_sec","description","evidence_frames":[{"timestamp_sec","image_base64"}...]}],
 #     + доп. поля: type_id, timecode, frame_index, confidence, observed, rule{citations[]}, observations, meta}
 ```
+
+**Поле `type` и `type_id`.** По ТЗ в `type` должно быть «Название типа нарушения», поэтому там русское название типа (`name_ru` из `rules.json`), например `"Наличные/ценности оставлены без присмотра"`. Машинный ключ того же типа (`cash_unattended`, `door_left_open` и т.д.) лежит в отдельном поле `type_id`. Логику (UI, eval, сравнение с разметкой) строить по `type_id`, название может меняться. Переменная `TYPE_FIELD=id` вернёт старое поведение (ключ в `type`), по умолчанию `name`.
 `?full=false` вернёт только обязательные поля схемы.
 
 Обязательные поля схемы жюри (`job_id`, `status`, `verdict`, `violations[].type/timecode_sec/description/evidence_frames`) не меняются. `verdict` бывает только `violation` или `no_violation`. Поля ниже необязательные (их использует UI, контракт совпадает с `review/forte_mockup.html`):
@@ -73,7 +75,7 @@ curl -H "X-API-Key: $API_KEY" http://HOST:8000/api/v1/jobs/<job_id>
 Пример фрагмента:
 ```json
 {"job_id":"…","status":"done","verdict":"violation","needs_manual_review":false,
- "violations":[{"type":"…","timecode_sec":9.3,"description":"…","evidence_frames":[{"timestamp_sec":9.3,"image_base64":"…"}],
+ "violations":[{"type":"Наличные/ценности оставлены без присмотра","type_id":"cash_unattended","timecode_sec":9.3,"description":"…","evidence_frames":[{"timestamp_sec":9.3,"image_base64":"…"}],
    "confidence":0.82,"window_sec":[7.5,12.0],
    "rule_ref":{"doc":"Правила осуществления кассовых операций…","clause":"п. 20 ч. 2","quote":"На рабочем месте кассового работника…","url":"https://adilet.zan.kz/rus/docs/V1900019680"}}],
  "tracks":[{"label":"cashier_at_desk","start_sec":0,"end_sec":8},{"label":"cash_in_hands","start_sec":4,"end_sec":9}],

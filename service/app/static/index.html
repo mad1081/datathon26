@@ -143,16 +143,17 @@ function tracksHtml(j){
   const rows = labels.map(l => `<div class="trow"><span class="tl">${esc(TRACK_RU[l]||l)}</span><div class="tbar">${(j.tracks||[]).filter(t=>t.label===l).map(t=>`<div class="seg" style="left:${pct(t.start_sec)};width:${pct(t.end_sec-t.start_sec)}" title="${t.start_sec}–${t.end_sec} с"></div>`).join('')}</div></div>`);
   const gaps = (j.unanalyzed_ranges||[]);
   if (gaps.length) rows.push(`<div class="trow"><span class="tl">Не проанализировано</span><div class="tbar">${gaps.map(g=>`<div class="seg gap" style="left:${pct(g.start_sec)};width:${pct(g.end_sec-g.start_sec)}" title="${esc(g.reason)}"></div>`).join('')}</div></div>`);
-  const marks = (j.violations||[]).map(v=>`<div class="mark" style="left:${pct(v.timecode_sec)}" title="${esc(v.type_name_ru||v.type)}"></div>`).join('');
+  const marks = (j.violations||[]).map(v=>`<div class="mark" data-type-id="${esc(v.type_id)}" style="left:${pct(v.timecode_sec)}" title="${esc(v.type_name_ru||v.type)}"></div>`).join('');
   return rows.length ? `<div class="tracks">${rows.join('')}<div class="trow"><span class="tl">Нарушения</span><div class="tbar">${marks}</div></div></div>` : '';
 }
 
+// v.type — русское название (для людей и жюри), v.type_id — машинный ключ из rules.json (для логики UI)
 function violationHtml(v, cls){
   const cites = (v.rule?.citations||[]).map(c => `<div class="cite"><b>${esc(c.short)}</b> — ${esc(c.act)}, <b>${esc(c.clause)}</b>: <q>${esc(c.quote)}</q><br><span class="muted">${esc(c.document||c.doc)}</span> · <a href="${esc(c.url)}" target="_blank" rel="noopener">adilet.zan.kz</a></div>`).join('')
       || `<div class="cite">Прямая норма в проверенных актах РК не найдена — требуется ручная проверка.</div>`;
   const frames = (v.evidence_frames||[]).map(f => `<figure><img src="data:image/jpeg;base64,${f.image_base64}" onclick="lb(this.src)" alt="кадр"><figcaption>${f.role==='peak'?'<b>момент события</b>':f.role==='before'?'до':'после'} · ${f.timestamp_sec.toFixed(2)} с · кадр №${f.frame_index}</figcaption></figure>`).join('');
   const strength = {strong:'сильное основание', medium:'среднее основание', weak:'косвенное основание', none:'нет нормы', unknown:'норма не определена'}[v.rule?.strength] || '';
-  return `<div class="viol ${cls}"><h3>${esc(v.type_name_ru||v.type)} <span class="badge">${strength}</span> <span class="badge">уверенность ${(v.confidence*100).toFixed(0)}%</span></h3>
+  return `<div class="viol ${cls}" data-type-id="${esc(v.type_id)}"><h3>${esc(v.type_name_ru||v.type)} <span class="badge">${strength}</span> <span class="badge">уверенность ${(v.confidence*100).toFixed(0)}%</span></h3>
     <div>Таймкод: <span class="tc">${esc(v.timecode)}</span> (${v.timecode_sec} с, кадр №${v.frame_index})</div>
     <p><b>Что видно:</b> ${esc(v.observed)}</p>
     ${v.reason_not_counted ? `<p class="muted">Не учтено в вердикте: ${esc(v.reason_not_counted)}</p>`:''}
