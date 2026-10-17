@@ -45,7 +45,7 @@ class RuleBook:
         for c in rule.citations:
             act = self.acts[c["act"]]
             out.append({"document": act["title"], "act": act["number"], "short": act["short"],
-                        "clause": c["clause"], "quote": c["quote"], "url": act["url"]})
+                        "clause": c["clause"], "quote": c["quote"], "url": c.get("url", act["url"])})
         return out
 
     def citation_text(self, rule: Rule) -> str:
