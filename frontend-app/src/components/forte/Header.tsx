@@ -1,6 +1,7 @@
 import { Moon, Sun, Upload, LayoutPanelTop } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+import { ForteLogo } from "./ForteLogo"
 import type { ScenarioKey } from "@/lib/data"
 
 type Props = {
@@ -24,12 +25,9 @@ export function Header({ screen, onScreen, scenario, onScenario, dark, onDark, f
   return (
     <header className="sticky top-0 z-30 border-b bg-card/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-4 px-6 max-[1360px]:px-4">
-        <div className="flex items-center gap-2.5 select-none">
-          <div className="grid size-9 place-items-center rounded-md text-[22px] font-extrabold leading-none text-white" style={{ background: "linear-gradient(135deg,#A31551,#F03785)" }}>f</div>
-          <div className="leading-tight">
-            <div className="text-[19px] font-extrabold tracking-[-0.04em] text-brand">forte</div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">кассовый контроль</div>
-          </div>
+        <div className="flex items-center gap-3 select-none">
+          <ForteLogo className="h-7 w-auto text-brand dark:text-white" />
+          <div className="border-l border-hairline pl-3 text-[11px] font-semibold uppercase leading-tight tracking-[0.14em] text-slate">кассовый<br />контроль</div>
         </div>
 
         <nav className="ml-4 flex h-full items-stretch gap-5" aria-label="Экран">

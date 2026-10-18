@@ -9,11 +9,12 @@ import { VerdictBanner } from "@/components/forte/VerdictBanner"
 import { MoreDetails } from "@/components/forte/MoreDetails"
 import { Findings } from "@/components/forte/Findings"
 import { Detail } from "@/components/forte/Detail"
-import { Baseline } from "@/components/forte/Baseline"
+import { Actions } from "@/components/forte/Actions"
 import { Taxonomy } from "@/components/forte/Taxonomy"
-import { typeOf, SESSION_BY_KEY, type SessionKey } from "@/lib/baseline"
+import { typeOf, SESSION_BY_KEY } from "@/lib/baseline"
 import { JsonPanel } from "@/components/forte/JsonPanel"
 import { UploadScreen } from "@/components/forte/Upload"
+import type { ApiResult } from "@/lib/api"
 import { SCENARIOS, OPS, buildResult, compliance, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
 
 const parseHash = () => {
@@ -36,9 +37,9 @@ export default function App() {
   const [ph, setPh] = useState(SCENARIOS[init.sc].start)
   const [playing, setPlaying] = useState(false)
   const [zones, setZones] = useState(true)
-  const [tab, setTab] = useState<SessionKey>(SCENARIOS[init.sc].sessions[0]?.type ?? "cash_in")
   const [taxOpen, setTaxOpen] = useState(location.hash.includes("taxonomy"))
   const [custom, setCustom] = useState<{ name: string; size: number; url: string } | null>(null)
+  const [apiResult, setApiResult] = useState<ApiResult | null>(null) // ответ сервиса после загрузки в режиме «Сервер»
   const vref = useRef<HTMLVideoElement>(null)
   const pending = useRef<number | null>(SCENARIOS[init.sc].start)
   const fileInput = useRef<HTMLInputElement>(null)
@@ -55,7 +56,7 @@ export default function App() {
 
   const loadScenario = useCallback((k: ScenarioKey) => {
     const s = SCENARIOS[k]
-    setScKey(k); setItems(structuredClone(s.items)); setSel(s.sel); setPh(s.start); setTab(s.sessions[0]?.type ?? "cash_in")
+    setScKey(k); setItems(structuredClone(s.items)); setSel(s.sel); setPh(s.start)
     const v = vref.current
     if (v && v.readyState >= 1) v.currentTime = s.start
     else pending.current = s.start
@@ -104,14 +105,12 @@ export default function App() {
       : (S.sample ?? []).map((t) => ({ t, region: null, cap: "выборка", moment: false }))
 
   const [more, setMore] = useState<"baseline" | "json">(location.hash.includes("json") ? "json" : "baseline")
-  const gotoStep = (sk: SessionKey, step: string) => {
-    setTab(sk); setMore("baseline")
-    requestAnimationFrame(() => {
-      const el = document.querySelector(`[data-testid=baseline] [data-step="${step}"]`) as HTMLElement | null
-      el?.scrollIntoView({ behavior: "smooth", block: "center" })
-      el?.animate([{ background: "var(--accent)" }, { background: "transparent" }], { duration: 1400 })
-    })
+  // «к шагу процедуры» из карточки → панель «Действия кассира»
+  const gotoStep = () => {
+    setMore("baseline")
+    requestAnimationFrame(() => document.querySelector("[data-testid=actions]")?.scrollIntoView({ behavior: "smooth", block: "start" }))
   }
+
 
   const comp = useMemo(() => {
     if (!S.sessions.length) return null
@@ -139,14 +138,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <Header screen={screen} onScreen={setScreen} scenario={scKey} onScenario={(k) => { loadScenario(k); setScreen("result") }}
+      <Header screen={screen} onScreen={setScreen} scenario={scKey} onScenario={(k) => { loadScenario(k); setApiResult(null); setScreen("result") }}
         dark={dark} onDark={setDark} fileName={custom?.name ?? S.file} />
 
       {screen === "upload" ? (
-        <UploadScreen onDone={(f) => {
+        <UploadScreen onDone={(f, res) => {
+          setApiResult(res ?? null)
           if (f?.url) setCustom({ name: f.name, size: f.size, url: f.url })
           loadScenario("real"); setScreen("result")
-          toast.success("Обработка завершена", { description: f?.url ? "Показан результат на демо-данных реального сценария" : "sample.mov · реальный сценарий" })
+          toast.success("Обработка завершена", { description: res ? `Ответ сервиса: ${res.verdict === "violation" ? "есть признаки нарушений" : "нарушений не найдено"} — см. «Действия кассира» и «Ответ API (JSON)»` : "Демо-данные реального сценария" })
         }} />
       ) : (
         <main className="mx-auto flex max-w-[1440px] flex-col gap-5 px-6 py-5 max-[1360px]:gap-4 max-[1360px]:px-4 max-[1360px]:py-4" key={scKey}>
@@ -172,11 +172,10 @@ export default function App() {
               <Detail S={S} item={selItem} gap={selGap} onGoto={seek} onStatus={setStatus} onStep={gotoStep} shots={shots} ill={ill} zones={zones && !custom ? S.zonesFound : null} />
             </div>
           </div>
-          <MoreDetails tab={more} onTab={setMore} comp={comp} json={
-            <JsonPanel result={result} labels={labels} file={S.file} />
+          <MoreDetails tab={more} onTab={setMore} json={
+            <JsonPanel result={apiResult ?? result} labels={labels} file={custom?.name ?? S.file} />
           } baseline={
-            <Baseline S={S} items={items} tab={tab} onTab={setTab} onSeek={seek} onTaxonomy={() => setTaxOpen(true)}
-              onItem={(id) => { select(id); requestAnimationFrame(() => document.querySelector(`[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" })) }} />
+            <Actions result={apiResult} ph={ph} onSeek={seek} />
           } onTaxonomy={() => setTaxOpen(true)} />
         </main>
       )}

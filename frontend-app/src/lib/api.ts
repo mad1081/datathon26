@@ -10,7 +10,17 @@ export const STAGES: { key: StageKey; title: string; sub: string; weight: number
   { key: "steps", title: "Анализ шагов процедуры", sub: "сессии (приём / выдача / без клиента), эталон Правил № 231", weight: 1.6 },
   { key: "rules", title: "Проверка правил", sub: "rules.json v0.4 · пороги · count_in_verdict", weight: 1.2 },
 ]
-export type JobSnapshot = { job_id: string; status: JobStatus; stage: StageKey | null; progress: number; error?: string }
+/* Ответ GET /api/v1/jobs/{id} при status=done (final_service). Обязательное для жюри: verdict, violations[type, timecode_sec,
+   description, evidence_frames]; scenario и timeline — доп. поля сервиса (хронология действий от модели). */
+export type ApiTimelineEvent = { t: number; event: string }
+export type ApiViolation = { type: string; type_id?: string; timecode_sec: number; description: string; observed?: string;
+  evidence_frames?: { timestamp_sec: number; image_base64: string }[] }
+export type ApiResult = { job_id: string; status: "done"; verdict: "violation" | "no_violation"; violations: ApiViolation[];
+  scenario?: string | null; timeline?: ApiTimelineEvent[] | null; [extra: string]: unknown }
+export type JobSnapshot = { job_id: string; status: JobStatus; stage: StageKey | null; progress: number; error?: string; result?: ApiResult }
+
+/* этапы final_service (jobs.py, whole_video.py) → шаги степпера */
+const SERVER_STAGE: Record<string, StageKey> = { started: "upload", decoding: "frames", sampling: "frames", model: "steps", evidence: "rules" }
 
 export interface JobClient {
   submit(file: File | null, name: string): Promise<{ job_id: string; status: JobStatus }>
@@ -20,19 +30,21 @@ export interface JobClient {
 export class HttpJobClient implements JobClient {
   private base: string
   private apiKey: string
-  constructor(base: string, apiKey: string) { this.base = base; this.apiKey = apiKey }
+  constructor(base: string, apiKey: string) { this.base = base.replace(/\/+$/, ""); this.apiKey = apiKey }
   async submit(file: File | null) {
     if (!file) throw new Error("нет файла")
     const fd = new FormData(); fd.append("file", file)
     const r = await fetch(`${this.base}/api/v1/analyze`, { method: "POST", headers: { "X-API-Key": this.apiKey }, body: fd })
-    if (!r.ok) throw new Error(`analyze: HTTP ${r.status}`)
+    if (r.status === 401) throw new Error("неверный API-ключ (HTTP 401)")
+    if (!r.ok) throw new Error(`analyze: HTTP ${r.status} ${(await r.text()).slice(0, 200)}`)
     return r.json()
   }
   async poll(job_id: string): Promise<JobSnapshot> {
     const r = await fetch(`${this.base}/api/v1/jobs/${job_id}`, { headers: { "X-API-Key": this.apiKey } })
     if (!r.ok) return { job_id, status: "failed", stage: null, progress: 0, error: `HTTP ${r.status}` } /* не показывать зелёный вердикт при ошибке */
     const j = await r.json()
-    return { job_id, status: j.status, stage: j.stage ?? null, progress: j.progress ?? (j.status === "done" ? 1 : 0), error: j.error }
+    return { job_id, status: j.status, stage: SERVER_STAGE[j.stage] ?? null, progress: j.progress ?? (j.status === "done" ? 1 : 0),
+      error: j.error, result: j.status === "done" ? (j as ApiResult) : undefined }
   }
 }
 

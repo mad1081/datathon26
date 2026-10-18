@@ -1,13 +1,13 @@
 import type { ReactNode } from "react"
-import { BookOpen, Braces, ListChecks } from "lucide-react"
+import { BookOpen, Braces, Footprints } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { RULES } from "@/lib/rules"
 
 type Tab = "baseline" | "json"
 /* Вторичные подробности — за underline-табами (бренд-бук: активный таб — винный текст + черта sky-blue) */
-export function MoreDetails({ tab, onTab, baseline, json, comp, onTaxonomy }: { tab: Tab; onTab: (t: Tab) => void; baseline: ReactNode; json: ReactNode; comp: { ok: number; total: number } | null; onTaxonomy: () => void }) {
+export function MoreDetails({ tab, onTab, baseline, json, onTaxonomy }: { tab: Tab; onTab: (t: Tab) => void; baseline: ReactNode; json: ReactNode; onTaxonomy: () => void }) {
   const T: { k: Tab; label: string; Icon: typeof Braces; sub?: string }[] = [
-    { k: "baseline", label: "Эталон процедуры", Icon: ListChecks, sub: comp ? `${comp.ok}/${comp.total}` : undefined },
+    { k: "baseline", label: "Действия кассира", Icon: Footprints },
     { k: "json", label: "Ответ API (JSON)", Icon: Braces },
   ]
   return (

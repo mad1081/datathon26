@@ -5,12 +5,14 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Check, LoaderCircle, UploadCloud, FileVideo, PlayCircle, OctagonAlert, RotateCcw, ShieldCheck, EyeOff, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { STAGES, SimulatedJobClient, type JobClient, type JobSnapshot } from "@/lib/api"
+import { HttpJobClient, STAGES, SimulatedJobClient, type ApiResult, type JobClient, type JobSnapshot } from "@/lib/api"
 
 type F = { name: string; size: number; url: string | null }
 const ACCEPT = /\.(mov|mp4)$/i
+// UI, раздаваемый самим сервисом, ходит в API того же адреса
+const DEFAULT_BASE = location.protocol.startsWith("http") ? location.origin : ""
 
-export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
+export function UploadScreen({ onDone }: { onDone: (f: F | null, result?: ApiResult) => void }) {
   const [over, setOver] = useState(false)
   const [file, setFile] = useState<F | null>(null)
   const [snap, setSnap] = useState<JobSnapshot | null>(null)
@@ -18,23 +20,36 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
   const [failDemo, setFailDemo] = useState(location.hash.includes("fail"))
   const depth = useRef(0)
   const input = useRef<HTMLInputElement>(null)
-  const client = useMemo<JobClient>(() => new SimulatedJobClient(7000, failDemo), [failDemo])
+  const [mode, setMode] = useState<"demo" | "server">("server")
+  const [base, setBase] = useState(DEFAULT_BASE)
+  const [apiKey, setApiKey] = useState("") // только в памяти страницы, не сохраняется
+  const server = mode === "server"
+  const client = useMemo<JobClient>(() => server ? new HttpJobClient(base, apiKey) : new SimulatedJobClient(7000, failDemo), [server, base, apiKey, failDemo])
 
   useEffect(() => {
     if (!snap || snap.status === "done" || snap.status === "failed") return
-    const id = setTimeout(async () => setSnap(await client.poll(snap.job_id)), 250)
+    const id = setTimeout(async () => {
+      try { setSnap(await client.poll(snap.job_id)) }
+      catch (e) { setSnap({ ...snap, status: "failed", error: `нет связи с сервисом: ${(e as Error).message}` }) }
+    }, server ? 1500 : 250)
     return () => clearTimeout(id)
-  }, [snap, client])
+  }, [snap, client, server])
   useEffect(() => {
     if (snap?.status !== "done") return
-    const id = setTimeout(() => onDone(file), 1100)
+    const id = setTimeout(() => onDone(file, snap.result), 1100)
     return () => clearTimeout(id)
   }, [snap?.status]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const start = async (f: F, raw: File | null) => {
-    setErr(null); setFile(f)
-    const r = await client.submit(raw, f.name)
-    setSnap({ job_id: r.job_id, status: r.status, stage: null, progress: 0 })
+    setErr(null)
+    if (server && (!base || !apiKey)) { setErr("Укажите адрес сервиса и API-ключ"); return }
+    setFile(f)
+    try {
+      const r = await client.submit(raw, f.name)
+      setSnap({ job_id: r.job_id, status: r.status, stage: null, progress: 0 })
+    } catch (e) {
+      setFile(null); setErr(`Не удалось отправить видео: ${(e as Error).message}`)
+    }
   }
   const pick = (fl: FileList | null) => {
     const x = fl?.[0]; if (!x) return
@@ -57,6 +72,28 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
         <section className="rounded-2xl border bg-card p-6">
           {!snap ? (
             <>
+              <div className="mb-4 flex flex-wrap items-end gap-3" data-testid="server-settings">
+                <div className="flex rounded-lg border border-hairline p-0.5 text-[13px] font-medium">
+                  {(["server", "demo"] as const).map((m) => (
+                    <button key={m} onClick={() => setMode(m)} data-testid={"mode-" + m}
+                      className={cn("rounded-md px-3 py-1.5 transition-colors", mode === m ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground")}>
+                      {m === "server" ? "Сервер" : "Демо"}
+                    </button>
+                  ))}
+                </div>
+                {server && (
+                  <>
+                    <label className="flex min-w-[260px] flex-1 flex-col gap-1 text-[12px] text-muted-foreground">Адрес сервиса
+                      <input value={base} onChange={(e) => setBase(e.target.value.trim())} placeholder="https://…" data-testid="api-base"
+                        className="h-9 rounded-md border border-hairline bg-background px-3 font-mono text-[13px] text-foreground" />
+                    </label>
+                    <label className="flex w-[260px] flex-col gap-1 text-[12px] text-muted-foreground">API-ключ (X-API-Key)
+                      <input type="password" value={apiKey} onChange={(e) => setApiKey(e.target.value.trim())} autoComplete="off" data-testid="api-key"
+                        className="h-9 rounded-md border border-hairline bg-background px-3 font-mono text-[13px] text-foreground" />
+                    </label>
+                  </>
+                )}
+              </div>
               <div
                 onDragEnter={(e) => { e.preventDefault(); depth.current++; setOver(true) }}
                 onDragOver={(e) => e.preventDefault()}
@@ -74,7 +111,7 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
                   <div className="mt-1 text-[14px] text-muted-foreground">или выберите файл на компьютере</div>
                   <div className="mt-6 flex justify-center gap-3">
                     <Button size="lg" onClick={() => input.current?.click()} data-testid="pick"><FileVideo />Выбрать файл</Button>
-                    <Button size="lg" variant="outline" className="border-primary text-primary hover:text-primary dark:border-white/30 dark:text-foreground" onClick={() => void start({ name: "sample.mov", size: 9_400_000, url: null }, null)} data-testid="demo-run"><PlayCircle />Демо: sample.mov</Button>
+                    {!server && <Button size="lg" variant="outline" className="border-primary text-primary hover:text-primary dark:border-white/30 dark:text-foreground" onClick={() => void start({ name: "sample.mov", size: 9_400_000, url: null }, null)} data-testid="demo-run"><PlayCircle />Демо: sample.mov</Button>}
                   </div>
                   <div className="mt-4 flex justify-center gap-2 text-[12.5px] text-muted-foreground">
                     {[".mov", ".mp4", "до 5 мин", "портрет и альбом"].map((t) => <span key={t} className="rounded-full border border-hairline bg-card px-2.5 py-0.5">{t}</span>)}
@@ -83,9 +120,9 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
                 </div>
                 <input ref={input} type="file" accept=".mov,.mp4,video/mp4,video/quicktime" className="sr-only" onChange={(e) => { pick(e.target.files); e.target.value = "" }} />
               </div>
-              <label className="mt-4 flex w-fit cursor-pointer items-center gap-2 text-[12.5px] text-muted-foreground">
+              {!server && <label className="mt-4 flex w-fit cursor-pointer items-center gap-2 text-[12.5px] text-muted-foreground">
                 <input type="checkbox" checked={failDemo} onChange={(e) => setFailDemo(e.target.checked)} className="accent-[var(--primary)]" data-testid="fail-demo" />имитировать ошибку обработки (failed)
-              </label>
+              </label>}
             </>
           ) : (
             <div className="fade-in" data-testid="job">
@@ -110,7 +147,7 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
                 </div>
               </div>
               <div className="mt-2 text-[13px] text-muted-foreground" data-testid="job-stage">
-                {snap.status === "queued" ? "В очереди — ожидаем свободный обработчик" : snap.status === "processing" ? STAGES[stIdx]?.title + " — " + STAGES[stIdx]?.sub : snap.status === "done" ? "Готово — открываем результат…" : "Обработка прервана"}
+                {snap.status === "queued" ? "В очереди — ожидаем свободный обработчик" : snap.status === "processing" ? (stIdx >= 0 ? STAGES[stIdx].title + " — " + STAGES[stIdx].sub : "Обработка…") : snap.status === "done" ? "Готово — открываем результат…" : "Обработка прервана"}
               </div>
               {snap.status === "failed" && (
                 <div className="mt-5 flex gap-3 rounded-xl border border-destructive/30 bg-danger-bg p-4" data-testid="job-failed">
@@ -125,7 +162,7 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
                   </div>
                 </div>
               )}
-              {snap.status === "done" && <div className="mt-5"><Button size="lg" onClick={() => onDone(file)} data-testid="open-result">Открыть результат</Button></div>}
+              {snap.status === "done" && <div className="mt-5"><Button size="lg" onClick={() => onDone(file, snap.result)} data-testid="open-result">Открыть результат</Button></div>}
             </div>
           )}
         </section>
@@ -143,7 +180,7 @@ export function UploadScreen({ onDone }: { onDone: (f: F | null) => void }) {
           <div className="mt-5 grid gap-2 border-t pt-4 text-[12.5px] text-muted-foreground">
             <div className="flex items-center gap-2"><EyeOff className="size-4 text-brand" />Лица не распознаются, звук не анализируется</div>
             <div className="flex items-center gap-2"><ShieldCheck className="size-4 text-brand" />Обработка локально, видео не уходит наружу</div>
-            <div className="flex items-center gap-2"><Clock className="size-4 text-brand" />Имитация: ~8 с; реальный сервис — до нескольких минут</div>
+            <div className="flex items-center gap-2"><Clock className="size-4 text-brand" />{server ? "Реальный сервис: до 5 минут на видео" : "Имитация: ~8 с"}</div>
           </div>
         </aside>
       </div>
