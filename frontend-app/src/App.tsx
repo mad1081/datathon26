@@ -14,6 +14,7 @@ import { Taxonomy } from "@/components/forte/Taxonomy"
 import { typeOf, SESSION_BY_KEY } from "@/lib/baseline"
 import { JsonPanel } from "@/components/forte/JsonPanel"
 import { UploadScreen } from "@/components/forte/Upload"
+import { ServerResult } from "@/components/forte/ServerResult"
 import type { ApiResult } from "@/lib/api"
 import { SCENARIOS, OPS, buildResult, compliance, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
 
@@ -148,6 +149,15 @@ export default function App() {
           loadScenario("real"); setScreen("result")
           toast.success("Обработка завершена", { description: res ? `Ответ сервиса: ${res.verdict === "violation" ? "есть признаки нарушений" : "нарушений не найдено"} — см. «Действия кассира» и «Ответ API (JSON)»` : "Демо-данные реального сценария" })
         }} />
+      ) : apiResult ? (
+        <main className="mx-auto flex max-w-[1100px] flex-col gap-5 px-6 py-5">
+          <ServerResult result={apiResult} file={custom?.name ?? "видео"} />
+          <MoreDetails tab={more} onTab={setMore} json={
+            <JsonPanel result={apiResult} labels={labels} file={custom?.name ?? S.file} />
+          } baseline={
+            <Actions result={apiResult} ph={ph} onSeek={seek} />
+          } onTaxonomy={() => setTaxOpen(true)} />
+        </main>
       ) : (
         <main className="mx-auto flex max-w-[1440px] flex-col gap-5 px-6 py-5 max-[1360px]:gap-4 max-[1360px]:px-4 max-[1360px]:py-4" key={scKey}>
           <VerdictBanner v={v} r={r} g={g} dur={S.dur} src={S.src} file={custom?.name ?? S.file}
