@@ -1,0 +1,11 @@
+{
+ "name": "qwen35-9b",
+ "base_url": "https://fu5hgj1fspnnj6-8000.proxy.runpod.net/v1",
+ "model": "qwen35-9b",
+ "temperature": 0.6,
+ "fps": 1.0,
+ "max_frames": 250,
+ "max_side": 640,
+ "disable_thinking": true,
+ "max_tokens": 1500
+}
