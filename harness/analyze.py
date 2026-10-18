@@ -7,7 +7,9 @@ import checks
 import config
 from client import chat
 from frames import b64, frames_at_times, sample_frames
-from prompt import build_messages
+import importlib
+
+build_messages = importlib.import_module(config.PROMPT_MODULE).build_messages
 
 
 def analyze_raw(video_path, temperature=None, repeat=0):

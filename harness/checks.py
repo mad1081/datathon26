@@ -11,6 +11,8 @@ LAPTOP_SECURED = re.compile(
 CASHIER_LEAVES = re.compile(r"(кассир\w*[^.;]{0,40}(выход|выш|уход|ушл|ушёл|покида|покинул)|помещени\w* пуст)")
 SOMEONE_ENTERS = re.compile(r"(вход|вош(ёл|ел|ла|ли)|заход|появля\w*[^.;]{0,20}(двер|проём|проем))")
 CASH_WORDS = re.compile(r"(денег|деньги|деньгам|купюр|пачк|наличн|пересч|банкнот|машинк|счётн|счетн)")
+COUNTED = re.compile(r"(пересч|подсчит|считает|счётн\w* машин|счетн\w* машин|в машинк|купюросч)")
+NOT_COUNTED = re.compile(r"(без[^.;]{0,20}пересч|не пересч)")
 FOOD_WORDS = re.compile(r"(кружк|стакан|чашк|напит|пьёт|пьет|глото|еда|ест |печень|бутылк|кофе|чай)")
 
 
@@ -51,6 +53,10 @@ def contradicted(v, parsed):
                                 for t, text in events)
             if tc >= t_exit - 2 and not entered_after:
                 return "дверь открыта при выходе кассира, после этого никто не входил"
+
+    if tid == "cash_accepted_without_count":
+        if any(t <= tc + 1 and COUNTED.search(text) and not NOT_COUNTED.search(text) for t, text in events):
+            return "в хронологии деньги пересчитываются до этого момента"
 
     if tid == "eating_drinking":
         near = [text for t, text in events if abs(t - tc) <= 10]

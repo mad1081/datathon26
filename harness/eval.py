@@ -1,4 +1,5 @@
 import argparse
+import importlib
 import csv
 import json
 import os
@@ -219,9 +220,15 @@ def main():
     rd.mkdir(parents=True, exist_ok=True)
     cfg = {"name": args.name, "base_url": config.VLM_BASE_URL, "model": config.VLM_MODEL,
            "temperature": args.temperature if args.temperature is not None else config.TEMPERATURE,
-           "fps": config.FPS, "max_frames": config.MAX_FRAMES, "max_side": config.MAX_SIDE,
-           "disable_thinking": config.DISABLE_THINKING, "max_tokens": config.MAX_TOKENS}
-    (rd / "config.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
+           "fps": config.FPS, "fps_short": config.FPS_SHORT, "fps_long": config.FPS_LONG,
+           "max_frames": config.MAX_FRAMES, "max_side": config.MAX_SIDE,
+           "disable_thinking": config.DISABLE_THINKING, "max_tokens": config.MAX_TOKENS,
+           "prompt_module": config.PROMPT_MODULE, "consistency_checks": config.CONSISTENCY_CHECKS}
+    if not args.score_only:
+        (rd / "config.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
+        # exact system prompt used for this run, for later comparison across experiments
+        prompt_mod = importlib.import_module(config.PROMPT_MODULE)
+        (rd / "system_prompt.txt").write_text(prompt_mod.build_system_prompt(), encoding="utf-8")
 
     if not args.score_only:
         run_inference(args.name, videos, args.repeats, args.temperature, args.concurrency)

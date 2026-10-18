@@ -47,6 +47,8 @@ TIMEOUT = env_float("VLM_TIMEOUT", 280.0)
 RETRIES = env_int("VLM_RETRIES", 2)
 DISABLE_THINKING = env_bool("DISABLE_THINKING", False)
 SYSTEM_IN_USER = env_bool("SYSTEM_IN_USER", False)
+# prompt variant module inside harness/, e.g. prompt_v3
+PROMPT_MODULE = os.getenv("PROMPT_MODULE", "prompt")
 
 THRESHOLD_OFFSET = env_float("THRESHOLD_OFFSET", 0.0)
 # "rules" = use count_in_verdict from rules.json, "all" = every known rule except "other"

@@ -1,0 +1,8 @@
+{
+ "pooled_all_base_runs_best_threshold": [
+  0.5,
+  0.725
+ ],
+ "pooled_at_0.5": 0.725,
+ "videos_no_base_run_majority_correct": []
+}
