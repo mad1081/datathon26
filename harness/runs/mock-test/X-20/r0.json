@@ -1,0 +1,41 @@
+{
+ "video": "Х-20.mov",
+ "key": "X-20",
+ "repeat": 0,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 12,
+ "frames_sec": 0.778,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 11.0, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"eating_drinking\", \"timecode_sec\": 0.1, \"confidence\": 0.75, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 11.0,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "eating_drinking",
+    "timecode_sec": 0.1,
+    "confidence": 0.75,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

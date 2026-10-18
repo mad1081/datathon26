@@ -1,0 +1,93 @@
+{
+ "video": "Х-21.mov",
+ "key": "X-21",
+ "repeat": 1,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 39,
+ "frames_sec": 0.229,
+ "latency_sec": 11.844,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 474,
+  "prompt_tokens": 14319,
+  "total_tokens": 14793,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"Вход кассира на рабочее место\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассир входит в помещение кассы через стеклянную дверь.\"},\n{\"t\": 0.5, \"event\": \"Кассир закрывает за собой дверь.\"},\n{\"t\": 1.5, \"event\": \"Кассир открывает дверцу серого сейфа/тумбы.\"},\n{\"t\": 4.0, \"event\": \"Кассир закрывает дверцу сейфа.\"},\n{\"t\": 8.5, \"event\": \"Кассир садится на рабочее место.\"},\n{\"t\": 12.5, \"event\": \"Кассир подносит кружку ко рту и делает глоток.\"},\n{\"t\": 16.0, \"event\": \"Кассир ставит кружку обратно на стол.\"}\n],\n\"object_states\": [\n{\"object\": \"дверь\", \"t\": 1.0, \"state\": \"закрыта\"},\n{\"object\": \"сейф\", \"t\": 4.0, \"state\": \"закрыта плотно\"},\n{\"object\": \"кружка\", \"t\": 12.5, \"state\": \"на столе\"}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"не применимо\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"отсутствует\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"не применимо\"\n},\n\"violations\": [\n{\"type_id\": \"eating_drinking\", \"timecode_sec\": 12.5, \"confidence\": 0.95, \"obs\": \"Кассир принимает пищу/напитки на рабочем месте: подносит кружку ко рту и пьёт при наличии на столе оборудования для работы с наличными.\"}\n]\n}",
+ "parsed": {
+  "scenario": "Вход кассира на рабочее место",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир входит в помещение кассы через стеклянную дверь."
+   },
+   {
+    "t": 0.5,
+    "event": "Кассир закрывает за собой дверь."
+   },
+   {
+    "t": 1.5,
+    "event": "Кассир открывает дверцу серого сейфа/тумбы."
+   },
+   {
+    "t": 4.0,
+    "event": "Кассир закрывает дверцу сейфа."
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир садится на рабочее место."
+   },
+   {
+    "t": 12.5,
+    "event": "Кассир подносит кружку ко рту и делает глоток."
+   },
+   {
+    "t": 16.0,
+    "event": "Кассир ставит кружку обратно на стол."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 1.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "сейф",
+    "t": 4.0,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "кружка",
+    "t": 12.5,
+    "state": "на столе"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "отсутствует",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": [
+   {
+    "type_id": "eating_drinking",
+    "timecode_sec": 12.5,
+    "confidence": 0.95,
+    "obs": "Кассир принимает пищу/напитки на рабочем месте: подносит кружку ко рту и пьёт при наличии на столе оборудования для работы с наличными."
+   }
+  ]
+ }
+}

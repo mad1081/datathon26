@@ -1,0 +1,34 @@
+{
+ "video": "Х-8.mov",
+ "key": "X-8",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 38,
+ "frames_sec": 1.572,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 37.0, \"event\": \"конец\"}], \"violations\": []}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 37.0,
+    "event": "конец"
+   }
+  ],
+  "violations": []
+ }
+}

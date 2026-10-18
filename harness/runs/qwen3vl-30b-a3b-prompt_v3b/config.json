@@ -1,0 +1,15 @@
+{
+ "name": "qwen3vl-30b-a3b-prompt_v3b",
+ "base_url": "https://zwcvkbk2jh7m8h-8000.proxy.runpod.net/v1",
+ "model": "qwen3vl-30b-a3b",
+ "temperature": 0.6,
+ "fps": 1.0,
+ "fps_short": 2.0,
+ "fps_long": 1.0,
+ "max_frames": 250,
+ "max_side": 640,
+ "disable_thinking": false,
+ "max_tokens": 2500,
+ "prompt_module": "prompt_v3b",
+ "consistency_checks": true
+}

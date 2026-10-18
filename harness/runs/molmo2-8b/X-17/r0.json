@@ -1,0 +1,27 @@
+{
+ "video": "Х-17.mov",
+ "key": "X-17",
+ "repeat": 0,
+ "model": "molmo2-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 30,
+ "frames_sec": 0.191,
+ "latency_sec": 47.778,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 111,
+  "prompt_tokens": 21016,
+  "total_tokens": 21127,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Приём наличных от клиента\", \"timeline\": [{\"t=0.0, \"event\": \"Кассир сидит за столом, ожидает клиента\"}, {\"t=0.5, \"event\": \"Клиент входит в кассу через дверь, заходит за стойку\"}, {\"t=1.0, \"event\": \"Клиент подходит к кассиру и начинает обслуживаться\"}], \"violations\": []}",
+ "parsed": null
+}

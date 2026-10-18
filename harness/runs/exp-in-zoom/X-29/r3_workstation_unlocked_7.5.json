@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 7.0,
+ "evidence": "Кассир встаёт из-за рабочего места и отходит от ноутбука, оставляя его включённым с открытым экраном и без блокировки. Крышка ноутбука не закрыта. Кассир покидает рабочее место, что является нарушением.",
+ "latency_sec": 5.274,
+ "error": null,
+ "usage": {
+  "completion_tokens": 75,
+  "prompt_tokens": 17398,
+  "total_tokens": 17473,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 7.0, \"evidence\": \"Кассир встаёт из-за рабочего места и отходит от ноутбука, оставляя его включённым с открытым экраном и без блокировки. Крышка ноутбука не закрыта. Кассир покидает рабочее место, что является нарушением.\"}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 7.5,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

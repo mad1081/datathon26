@@ -1,0 +1,62 @@
+{
+ "check": "desk2",
+ "times": [
+  10.0,
+  14.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 10.0,
+     "items": [
+      "seals"
+     ]
+    },
+    {
+     "t": 14.5,
+     "items": [
+      "seals"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 10.0,
+     "items": [
+      "seals"
+     ]
+    },
+    {
+     "t": 14.5,
+     "items": [
+      "seals"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 10.0,
+     "items": [
+      "seals"
+     ]
+    },
+    {
+     "t": 14.5,
+     "items": [
+      "seals"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  2.383,
+  1.203,
+  1.731
+ ]
+}

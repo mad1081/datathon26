@@ -1,0 +1,35 @@
+{
+ "check": "desk",
+ "times": [
+  14.5,
+  14.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 14.5,
+     "items": [
+      "documents"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 14.5,
+     "items": [
+      "bag"
+     ]
+    }
+   ]
+  },
+  null
+ ],
+ "latencies": [
+  1.684,
+  1.053,
+  1.088
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно пустое рабочее место кассира. На столе отсутствует смартфон или личные вещи кассира. В помещении нет кассира, он появляется только в конце фрагмента (около 1.5 с) и не взаимодействует с предметами на столе.",
+ "latency_sec": 3.429,
+ "error": null,
+ "usage": {
+  "completion_tokens": 80,
+  "prompt_tokens": 10370,
+  "total_tokens": 10450,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 26,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах видно пустое рабочее место кассира. На столе отсутствует смартфон или личные вещи кассира. В помещении нет кассира, он появляется только в конце фрагмента (около 1.5 с) и не взаимодействует с предметами на столе.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 0.0,
+  "confidence": 0.8,
+  "observed": "",
+  "source": "kept"
+ }
+}

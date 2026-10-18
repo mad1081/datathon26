@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно, что кассир входит в помещение через стеклянную дверь и сразу закрывает её за собой. Дверь остается закрытой на протяжении всего фрагмента, нарушения нет.",
+ "latency_sec": 5.017,
+ "error": null,
+ "usage": {
+  "completion_tokens": 64,
+  "prompt_tokens": 18524,
+  "total_tokens": 18588,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 48,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах видно, что кассир входит в помещение через стеклянную дверь и сразу закрывает её за собой. Дверь остается закрытой на протяжении всего фрагмента, нарушения нет.\"}",
+ "cand": {
+  "type_id": "door_left_open",
+  "timecode_sec": 4.5,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

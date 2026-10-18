@@ -1,0 +1,202 @@
+Type mapping (teammate 'Тип нарушения' -> accepted rule ids):
+X-1    22       Приём: сомнительные купюры возвращены клиенту без оформления  ->  suspicious_note_returned
+X-2    10       Прием: Приём наличных без предъявления документа, удостоверяющего личность  ->  no_client_id_check
+X-4    57/68    Хранение: деньги клиента 1 не убраны | Хранение: деньги клиента 2 смешаны с деньгами клиента 1, не убраны  ->  foreign_cash_on_desk, cash_unattended
+X-11   18       Уход: ноутбук не заблокирован  ->  workstation_unlocked
+X-13   47       Пересчёт пропущен перед хранением  ->  cash_accepted_without_count
+X-15   15       Хранение: сумка с ценностями на столе  ->  cash_unattended
+X-17   7        Приём сумки без предъявления документа, удостоверяющего личность инкассатором  ->  collector_bag_no_check, no_client_id_check
+X-18   20       Сопутствующее: второй посетитель во время операции  ->  outsider_in_cash_room
+X-20   5        Хранение: сейф не закрыт  ->  safe_left_open
+X-22   14       Хранение: ключ в замке  ->  safe_key_left
+X-24   8        Уход: печати и буклет на столе  ->  seals_docs_unattended
+X-26   9        Хранение: деньги не убраны в сейф  ->  cash_unattended
+X-28   7        Уход: ноутбук не заблокирован  ->  workstation_unlocked
+X-30   13       Вход: дверь открыта, вошёл посторонний  ->  outsider_in_cash_room, door_left_open
+X-32   5        Вход: дверь открыта  ->  door_left_open
+X-33   6        Вход: дверь открыта, вошёл посторонний  ->  outsider_in_cash_room, door_left_open
+X-34   13       Пересчёт после ухода клиента  ->  counting_without_client
+X-38   33       Хранение: деньги клиента 1 не убраны | Хранение: деньги клиента 2 положены рядом с деньгами клиентам 1, не убраны  ->  foreign_cash_on_desk, cash_unattended
+X-40   17       Вход: личные вещи на рабочем столе  ->  phone_or_personal_items
+X-44   16       (empty)  ->  other, counting_without_controller, suspicious_note_returned
+X-46   11       Сопутствующее: напиток рядом с деньгами  ->  eating_drinking
+
+running 120 calls (concurrency=1) ...
+  [1/120] X-1 r0 24.0s frames=52 viol=1 ok  (elapsed 25s)
+  [2/120] X-2 r0 18.0s frames=34 viol=2 ok  (elapsed 44s)
+  [3/120] X-3 r0 13.0s frames=40 viol=0 ok  (elapsed 57s)
+  [4/120] X-4 r0 26.2s frames=146 viol=0 ok  (elapsed 85s)
+  [5/120] X-5 r0 37.4s frames=143 viol=0 ok  (elapsed 123s)
+  [6/120] X-8 r0 30.4s frames=76 viol=1 ok  (elapsed 154s)
+  [7/120] X-10 r0 15.9s frames=32 viol=0 ok  (elapsed 170s)
+  [8/120] X-11 r0 19.9s frames=51 viol=0 ok  (elapsed 191s)
+  [9/120] X-12 r0 25.4s frames=85 viol=1 ok  (elapsed 217s)
+  [10/120] X-13 r0 29.7s frames=131 viol=1 ok  (elapsed 250s)
+  [11/120] X-14 r0 21.0s frames=143 viol=0 ok  (elapsed 274s)
+  [12/120] X-15 r0 21.3s frames=42 viol=2 ok  (elapsed 296s)
+  [13/120] X-16 r0 15.3s frames=46 viol=0 ok  (elapsed 312s)
+  [14/120] X-17 r0 17.8s frames=30 viol=2 ok  (elapsed 330s)
+  [15/120] X-18 r0 17.3s frames=46 viol=1 ok  (elapsed 347s)
+  [16/120] X-19 r0 19.9s frames=115 viol=1 ok  (elapsed 369s)
+  [17/120] X-20 r0 12.3s frames=24 viol=0 ok  (elapsed 381s)
+  [18/120] X-21 r0 17.1s frames=39 viol=1 ok  (elapsed 398s)
+  [19/120] X-22 r0 14.3s frames=42 viol=1 ok  (elapsed 413s)
+  [20/120] X-23 r0 27.6s frames=37 viol=2 ok  (elapsed 441s)
+  [21/120] X-24 r0 15.1s frames=30 viol=2 ok  (elapsed 456s)
+  [22/120] X-25 r0 16.0s frames=64 viol=2 ok  (elapsed 473s)
+  [23/120] X-26 r0 20.5s frames=40 viol=3 ok  (elapsed 493s)
+  [24/120] X-27 r0 12.5s frames=53 viol=1 ok  (elapsed 506s)
+  [25/120] X-28 r0 11.0s frames=33 viol=0 ok  (elapsed 518s)
+  [26/120] X-29 r0 11.8s frames=35 viol=2 ok  (elapsed 530s)
+  [27/120] X-30 r0 13.4s frames=38 viol=2 ok  (elapsed 543s)
+  [28/120] X-31 r0 9.9s frames=48 viol=1 ok  (elapsed 554s)
+  [29/120] X-32 r0 12.1s frames=43 viol=1 ok  (elapsed 566s)
+  [30/120] X-33 r0 8.0s frames=29 viol=0 ok  (elapsed 575s)
+  [31/120] X-34 r0 15.5s frames=36 viol=3 ok  (elapsed 590s)
+  [32/120] X-35 r0 14.0s frames=114 viol=0 ok  (elapsed 605s)
+  [33/120] X-37 r0 16.3s frames=32 viol=2 ok  (elapsed 622s)
+  [34/120] X-38 r0 23.8s frames=118 viol=2 ok  (elapsed 646s)
+  [35/120] X-39 r0 19.8s frames=158 viol=0 ok  (elapsed 667s)
+  [36/120] X-40 r0 16.9s frames=51 viol=1 ok  (elapsed 684s)
+  [37/120] X-43 r0 16.5s frames=47 viol=1 ok  (elapsed 701s)
+  [38/120] X-44 r0 15.5s frames=41 viol=2 ok  (elapsed 717s)
+  [39/120] X-45 r0 13.2s frames=67 viol=1 ok  (elapsed 731s)
+  [40/120] X-46 r0 13.9s frames=39 viol=1 ok  (elapsed 745s)
+  [41/120] X-1 r1 12.1s frames=52 viol=0 ok  (elapsed 757s)
+  [42/120] X-2 r1 12.2s frames=34 viol=0 ok  (elapsed 770s)
+  [43/120] X-3 r1 15.2s frames=40 viol=2 ok  (elapsed 785s)
+  [44/120] X-4 r1 26.0s frames=146 viol=2 ok  (elapsed 812s)
+  [45/120] X-5 r1 25.6s frames=143 viol=0 ok  (elapsed 839s)
+  [46/120] X-8 r1 17.9s frames=76 viol=1 ok  (elapsed 857s)
+  [47/120] X-10 r1 13.9s frames=32 viol=1 ok  (elapsed 871s)
+  [48/120] X-11 r1 14.6s frames=51 viol=2 ok  (elapsed 886s)
+  [49/120] X-12 r1 17.9s frames=85 viol=1 ok  (elapsed 905s)
+  [50/120] X-13 r1 17.6s frames=131 viol=2 ok  (elapsed 923s)
+  [51/120] X-14 r1 21.9s frames=143 viol=0 ok  (elapsed 946s)
+  [52/120] X-15 r1 18.1s frames=42 viol=2 ok  (elapsed 965s)
+  [53/120] X-16 r1 14.4s frames=46 viol=1 ok  (elapsed 979s)
+  [54/120] X-17 r1 8.0s frames=30 viol=0 ok  (elapsed 988s)
+  [55/120] X-18 r1 11.3s frames=46 viol=1 ok  (elapsed 1000s)
+  [56/120] X-19 r1 20.1s frames=115 viol=0 ok  (elapsed 1023s)
+  [57/120] X-20 r1 5.2s frames=24 viol=0 ok  (elapsed 1028s)
+  [58/120] X-21 r1 9.5s frames=39 viol=1 ok  (elapsed 1038s)
+  [59/120] X-22 r1 11.8s frames=42 viol=1 ok  (elapsed 1050s)
+  [60/120] X-23 r1 9.4s frames=37 viol=0 ok  (elapsed 1060s)
+  [61/120] X-24 r1 16.0s frames=30 viol=1 ok  (elapsed 1076s)
+  [62/120] X-25 r1 12.0s frames=64 viol=1 ok  (elapsed 1088s)
+  [63/120] X-26 r1 11.6s frames=40 viol=2 ok  (elapsed 1100s)
+  [64/120] X-27 r1 14.3s frames=53 viol=3 ok  (elapsed 1115s)
+  [65/120] X-28 r1 10.4s frames=33 viol=1 ok  (elapsed 1126s)
+  [66/120] X-29 r1 16.6s frames=35 viol=1 ok  (elapsed 1143s)
+  [67/120] X-30 r1 15.8s frames=38 viol=2 ok  (elapsed 1159s)
+  [68/120] X-31 r1 13.3s frames=48 viol=0 ok  (elapsed 1172s)
+  [69/120] X-32 r1 12.2s frames=43 viol=1 ok  (elapsed 1185s)
+  [70/120] X-33 r1 10.8s frames=29 viol=1 ok  (elapsed 1196s)
+  [71/120] X-34 r1 13.4s frames=36 viol=0 ok  (elapsed 1209s)
+  [72/120] X-35 r1 18.3s frames=114 viol=0 ok  (elapsed 1229s)
+  [73/120] X-37 r1 11.6s frames=32 viol=0 ok  (elapsed 1240s)
+  [74/120] X-38 r1 25.5s frames=118 viol=1 ok  (elapsed 1267s)
+  [75/120] X-39 r1 26.2s frames=158 viol=2 ok  (elapsed 1294s)
+  [76/120] X-40 r1 15.8s frames=51 viol=2 ok  (elapsed 1311s)
+  [77/120] X-43 r1 12.6s frames=47 viol=1 ok  (elapsed 1324s)
+  [78/120] X-44 r1 11.7s frames=41 viol=1 ok  (elapsed 1336s)
+  [79/120] X-45 r1 10.4s frames=67 viol=1 ok  (elapsed 1346s)
+  [80/120] X-46 r1 8.7s frames=39 viol=1 ok  (elapsed 1355s)
+  [81/120] X-1 r2 12.4s frames=52 viol=0 ok  (elapsed 1368s)
+  [82/120] X-2 r2 9.2s frames=34 viol=0 ok  (elapsed 1378s)
+  [83/120] X-3 r2 10.0s frames=40 viol=0 ok  (elapsed 1388s)
+  [84/120] X-4 r2 24.9s frames=146 viol=0 ok  (elapsed 1414s)
+  [85/120] X-5 r2 22.5s frames=143 viol=0 ok  (elapsed 1437s)
+  [86/120] X-8 r2 10.0s frames=76 viol=1 ok  (elapsed 1448s)
+  [87/120] X-10 r2 12.6s frames=32 viol=0 ok  (elapsed 1461s)
+  [88/120] X-11 r2 14.1s frames=51 viol=3 ok  (elapsed 1475s)
+  [89/120] X-12 r2 15.0s frames=85 viol=2 ok  (elapsed 1490s)
+  [90/120] X-13 r2 21.5s frames=131 viol=2 ok  (elapsed 1513s)
+  [91/120] X-14 r2 15.8s frames=143 viol=0 ok  (elapsed 1530s)
+  [92/120] X-15 r2 16.6s frames=42 viol=2 ok  (elapsed 1547s)
+  [93/120] X-16 r2 11.1s frames=46 viol=1 ok  (elapsed 1558s)
+  [94/120] X-17 r2 9.5s frames=30 viol=0 ok  (elapsed 1568s)
+  [95/120] X-18 r2 11.5s frames=46 viol=1 ok  (elapsed 1580s)
+  [96/120] X-19 r2 13.6s frames=115 viol=0 ok  (elapsed 1594s)
+  [97/120] X-20 r2 7.2s frames=24 viol=1 ok  (elapsed 1601s)
+  [98/120] X-21 r2 12.1s frames=39 viol=1 ok  (elapsed 1614s)
+  [99/120] X-22 r2 10.4s frames=42 viol=1 ok  (elapsed 1624s)
+  [100/120] X-23 r2 11.0s frames=37 viol=2 ok  (elapsed 1636s)
+  [101/120] X-24 r2 9.6s frames=30 viol=1 ok  (elapsed 1645s)
+  [102/120] X-25 r2 11.9s frames=64 viol=2 ok  (elapsed 1658s)
+  [103/120] X-26 r2 9.7s frames=40 viol=2 ok  (elapsed 1668s)
+  [104/120] X-27 r2 8.6s frames=53 viol=3 ok  (elapsed 1677s)
+  [105/120] X-28 r2 7.9s frames=33 viol=1 ok  (elapsed 1685s)
+  [106/120] X-29 r2 9.5s frames=35 viol=1 ok  (elapsed 1694s)
+  [107/120] X-30 r2 11.5s frames=38 viol=2 ok  (elapsed 1706s)
+  [108/120] X-31 r2 7.5s frames=48 viol=0 ok  (elapsed 1714s)
+  [109/120] X-32 r2 9.7s frames=43 viol=0 ok  (elapsed 1724s)
+  [110/120] X-33 r2 9.3s frames=29 viol=2 ok  (elapsed 1733s)
+  [111/120] X-34 r2 9.4s frames=36 viol=1 ok  (elapsed 1743s)
+  [112/120] X-35 r2 14.4s frames=114 viol=0 ok  (elapsed 1758s)
+  [113/120] X-37 r2 20.8s frames=32 viol=0 ok  (elapsed 1779s)
+  [114/120] X-38 r2 30.4s frames=118 viol=0 ok  (elapsed 1810s)
+  [115/120] X-39 r2 23.8s frames=158 viol=2 ok  (elapsed 1837s)
+  [116/120] X-40 r2 23.8s frames=51 viol=1 ok  (elapsed 1861s)
+  [117/120] X-43 r2 15.7s frames=47 viol=1 ok  (elapsed 1878s)
+  [118/120] X-44 r2 9.4s frames=41 viol=1 ok  (elapsed 1887s)
+  [119/120] X-45 r2 12.6s frames=67 viol=1 ok  (elapsed 1900s)
+  [120/120] X-46 r2 16.0s frames=39 viol=1 ok  (elapsed 1917s)
+Per video:
+  X-1    gt=vi votes=1/3    maj=no BAD type=cash_within_client_reach@19.6 gt=suspicious_note_returned@22
+  X-2    gt=vi votes=1/3    maj=no BAD type=door_left_open@4.0 gt=no_client_id_check@10
+  X-3    gt=no votes=1/3    maj=no OK  type=door_left_open@5.5 gt=-@-
+  X-4    gt=vi votes=1/3    maj=no BAD type=door_left_open@53.5 gt=foreign_cash_on_desk,cash_unattended@57/68
+  X-5    gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-8    gt=no votes=1/3    maj=no OK  type=safe_key_left@24.0 gt=-@-
+  X-10   gt=no votes=1/3    maj=no OK  type=phone_or_personal_items@0.0 gt=-@-
+  X-11   gt=vi votes=1/3    maj=no BAD type=safe_key_left@14.6 gt=workstation_unlocked@18
+  X-12   gt=no votes=2/3    maj=vi BAD type=safe_key_left@32.2 gt=-@-
+  X-13   gt=vi votes=3/3    maj=vi OK  type=workstation_unlocked@61.5 gt=cash_accepted_without_count@47
+  X-14   gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-15   gt=vi votes=3/3    maj=vi OK  type=cash_unattended@18.0 gt=cash_unattended@15
+  X-16   gt=no votes=2/3    maj=vi BAD type=collector_bag_no_check@16.0 gt=-@-
+  X-17   gt=vi votes=1/3    maj=no BAD type=collector_bag_no_check@5.0 gt=collector_bag_no_check,no_client_id_check@7
+  X-18   gt=vi votes=3/3    maj=vi OK  type=outsider_in_cash_room@18.0 gt=outsider_in_cash_room@20
+  X-19   gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-20   gt=vi votes=1/3    maj=no BAD type=safe_left_open@5.5 gt=safe_left_open@5
+  X-21   gt=no votes=1/3    maj=no OK  type=eating_drinking@12.5 gt=-@-
+  X-22   gt=vi votes=0/3    maj=no BAD type=-@ gt=safe_key_left@14
+  X-23   gt=no votes=2/3    maj=vi BAD type=workstation_unlocked@14.8 gt=-@-
+  X-24   gt=vi votes=3/3    maj=vi OK  type=workstation_unlocked@10.5 gt=seals_docs_unattended@8
+  X-25   gt=no votes=3/3    maj=vi BAD type=workstation_unlocked@26.0 gt=-@-
+  X-26   gt=vi votes=3/3    maj=vi OK  type=cash_unattended@17.0 gt=cash_unattended@9
+  X-27   gt=no votes=3/3    maj=vi BAD type=workstation_unlocked@22.0 gt=-@-
+  X-28   gt=vi votes=2/3    maj=vi OK  type=workstation_unlocked@9.1 gt=workstation_unlocked@7
+  X-29   gt=no votes=1/3    maj=no OK  type=workstation_unlocked@14.0 gt=-@-
+  X-30   gt=vi votes=3/3    maj=vi OK  type=door_left_open@4.5 gt=outsider_in_cash_room,door_left_open@13
+  X-31   gt=no votes=1/3    maj=no OK  type=door_left_open@8.0 gt=-@-
+  X-32   gt=vi votes=1/3    maj=no BAD type=door_left_open@10.0 gt=door_left_open@5
+  X-33   gt=vi votes=2/3    maj=vi OK  type=door_left_open@4.8 gt=outsider_in_cash_room,door_left_open@6
+  X-34   gt=vi votes=2/3    maj=vi OK  type=outsider_in_cash_room@3.5 gt=counting_without_client@13
+  X-35   gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-37   gt=no votes=1/3    maj=no OK  type=outsider_in_cash_room@3.5 gt=-@-
+  X-38   gt=vi votes=2/3    maj=vi OK  type=cash_within_client_reach@24.0 gt=foreign_cash_on_desk,cash_unattended@33
+  X-39   gt=no votes=1/3    maj=no OK  type=safe_left_open@33.0 gt=-@-
+  X-40   gt=vi votes=3/3    maj=vi OK  type=phone_or_personal_items@14.5 gt=phone_or_personal_items@17
+  X-43   gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-44   gt=vi votes=1/3    maj=no BAD type=workstation_unlocked@18.0 gt=other,counting_without_controller,suspicious_note_returned@16
+  X-45   gt=no votes=0/3    maj=no OK  type=-@ gt=-@-
+  X-46   gt=vi votes=3/3    maj=vi OK  type=eating_drinking@12.0 gt=eating_drinking@11
+
+Sweep (majority accuracy / recall / precision / tc±3 / type):
+  mode=rules offset=-0.3  acc=0.65 rec=0.5714 prec=0.7059 tc3=0.3333 type=0.381 repeat_acc=0.6417
+  mode=rules offset=-0.2  acc=0.65 rec=0.5714 prec=0.7059 tc3=0.3333 type=0.381 repeat_acc=0.6417
+  mode=rules offset=-0.1  acc=0.65 rec=0.5714 prec=0.7059 tc3=0.3333 type=0.381 repeat_acc=0.6417
+  mode=rules offset=+0.0  acc=0.65 rec=0.5714 prec=0.7059 tc3=0.3333 type=0.381 repeat_acc=0.6417
+  mode=rules offset=+0.1  acc=0.65 rec=0.5714 prec=0.7059 tc3=0.3333 type=0.381 repeat_acc=0.6333
+  mode=rules offset=+0.2  acc=0.675 rec=0.5714 prec=0.75 tc3=0.2857 type=0.381 repeat_acc=0.6333
+  mode=all   offset=-0.3  acc=0.6 rec=0.6667 prec=0.6087 tc3=0.3333 type=0.4286 repeat_acc=0.5917
+  mode=all   offset=-0.2  acc=0.6 rec=0.6667 prec=0.6087 tc3=0.3333 type=0.4286 repeat_acc=0.5917
+  mode=all   offset=-0.1  acc=0.6 rec=0.6667 prec=0.6087 tc3=0.3333 type=0.4286 repeat_acc=0.5917
+  mode=all   offset=+0.0  acc=0.6 rec=0.6667 prec=0.6087 tc3=0.3333 type=0.4286 repeat_acc=0.5917
+  mode=all   offset=+0.1  acc=0.65 rec=0.619 prec=0.6842 tc3=0.3333 type=0.4286 repeat_acc=0.6417
+  mode=all   offset=+0.2  acc=0.675 rec=0.5714 prec=0.75 tc3=0.2857 type=0.381 repeat_acc=0.6333
+
+SUMMARY robust-mirror-v3b: n=40 rep=3 mode=rules off=+0.00 | MAJ acc=0.65 rec=0.5714 prec=0.7059 TP/FP/FN/TN=12/5/9/14 tc2=0.1429 tc3=0.3333 type=0.381 | REP acc=0.6417 rec=0.6349 prec=0.667 | lat mean=15.43 p95=26.25 max=37.44 badjson=0.0
+wrote C:\Users\123\Desktop\DATATHON26\harness\runs\robust-mirror-v3b\summary.json and C:\Users\123\Desktop\DATATHON26\harness\runs\robust-mirror-v3b\per_video.csv

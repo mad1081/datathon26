@@ -1,0 +1,43 @@
+{
+ "check": "notes",
+ "times": [
+  33.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 33.0,
+     "notes": [
+      "cashier"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 33.0,
+     "notes": [
+      "cashier"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 33.0,
+     "notes": [
+      "cashier"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.387,
+  1.523,
+  1.894
+ ]
+}

@@ -1,0 +1,79 @@
+name: forte
+services:
+  vlm:
+    image: ${VLM_IMAGE_TAG:-forte-vllm:0.31.0-tf5.17.0}
+    build:
+      context: ./deploy/vllm
+      args:
+        VLLM_BASE_IMAGE: ${VLLM_BASE_IMAGE:-vllm/vllm-openai:v0.31.0@sha256:c1c9f6fd5c109ba7f0546a59f5b2f15fb87f64c77782e90a27b648b42a8e67c3}
+        TRANSFORMERS_VERSION: ${TRANSFORMERS_VERSION:-5.17.0}
+    entrypoint: ["python3", "/opt/forte/serve.py"]
+    environment:
+      VLM_MODEL: ${VLM_MODEL:-Qwen/Qwen3.5-9B}
+      VLM_TP_SIZE: ${VLM_TP_SIZE:-}
+      VLM_PROFILE: ${VLM_PROFILE:-eval}
+      VLM_MAX_IMAGES: ${VLM_MAX_IMAGES:-160}
+      VLM_MAX_VIDEOS: ${VLM_MAX_VIDEOS:-1}
+      VLM_MAX_MODEL_LEN: ${VLM_MAX_MODEL_LEN:-65536}
+      VLM_MAX_NUM_SEQS: ${VLM_MAX_NUM_SEQS:-8}
+      VLM_MAX_BATCHED_TOKENS: ${VLM_MAX_BATCHED_TOKENS:-8192}
+      VLM_GPU_MEMORY_UTILIZATION: ${VLM_GPU_MEMORY_UTILIZATION:-0.90}
+      VLM_ENFORCE_EAGER: ${VLM_ENFORCE_EAGER:-}
+      # Backend has no Bearer-token setting; vLLM has no published host port.
+      VLLM_API_KEY: ""
+      VLLM_BUILD_COMMIT: ${VLLM_BUILD_COMMIT:-}
+      HF_TOKEN: ${HF_TOKEN:-}
+      HF_HOME: /root/.cache/huggingface
+      HF_HUB_OFFLINE: ${HF_HUB_OFFLINE:-0}
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      VLLM_NO_USAGE_STATS: "1"
+      DO_NOT_TRACK: "1"
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+    shm_size: "16gb"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: ${VLM_GPU_COUNT:-all}
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      start_period: 30m
+      retries: 5
+    restart: unless-stopped
+    stop_grace_period: 60s
+  app:
+    build:
+      context: ./service
+      args:
+        WITH_TRANSFORMERS: "0"
+    environment:
+      VLM_BACKEND: openai
+      OPENAI_BASE_URL: http://vlm:8000/v1
+      OPENAI_MODEL: ${VLM_MODEL:-Qwen/Qwen3.5-9B}
+      WINDOW_CONCURRENCY: "6"
+      FRAME_MAX_SIDE: "1024"
+      API_KEY: ${API_KEY:?Create .env with serve.py --write-env .env}
+      DATA_DIR: /data
+      RULES_PATH: /app/rules.json
+    ports:
+      - "${APP_BIND_ADDRESS:-0.0.0.0}:${APP_PORT:-8000}:8000"
+    volumes:
+      - app-data:/data
+      - ./deploy/vllm:/opt/forte:ro
+    depends_on:
+      vlm:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+volumes:
+  hf-cache:
+  app-data:

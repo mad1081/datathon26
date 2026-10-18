@@ -1,0 +1,58 @@
+{
+ "video": "Х-12.mov",
+ "key": "X-12",
+ "repeat": 3,
+ "model": "qwen3vl-30b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 85,
+ "frames_sec": 5.087,
+ "latency_sec": 8.191,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 300,
+  "prompt_tokens": 23839,
+  "total_tokens": 24139,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Работа кассира без клиентов\", \"timeline\": [\"Кассир работает за ноутбуком\", \"Кассир закрывает ноутбук\", \"Кассир встает со стула\", \"Кассир подходит к сейфу\", \"Кассир открывает сейф\", \"Кассир уходит из кассы\", \"Кассир закрывает дверь кассы\"], \"violations\": [{\"type_id\": \"safe_left_open\", \"timecode_sec\": 27.0, \"confidence\": 0.9, \"observed\": \"Сейф открыт, кассир отходит от рабочего места и уходит из помещения, оставляя сейф без присмотра\"}, {\"type_id\": \"door_left_open\", \"timecode_sec\": 37.0, \"confidence\": 0.8, \"observed\": \"Дверь кассы остается открытой, пока кассир уходит, и не закрывается за ней\"}, {\"type_id\": \"workstation_unlocked\", \"timecode_sec\": 10.0, \"confidence\": 0.7, \"observed\": \"Кассир уходит от рабочего места, но ноутбук остаётся открытым и разблокированным\"}]}",
+ "parsed": {
+  "scenario": "Работа кассира без клиентов",
+  "timeline": [
+   "Кассир работает за ноутбуком",
+   "Кассир закрывает ноутбук",
+   "Кассир встает со стула",
+   "Кассир подходит к сейфу",
+   "Кассир открывает сейф",
+   "Кассир уходит из кассы",
+   "Кассир закрывает дверь кассы"
+  ],
+  "violations": [
+   {
+    "type_id": "safe_left_open",
+    "timecode_sec": 27.0,
+    "confidence": 0.9,
+    "observed": "Сейф открыт, кассир отходит от рабочего места и уходит из помещения, оставляя сейф без присмотра"
+   },
+   {
+    "type_id": "door_left_open",
+    "timecode_sec": 37.0,
+    "confidence": 0.8,
+    "observed": "Дверь кассы остается открытой, пока кассир уходит, и не закрывается за ней"
+   },
+   {
+    "type_id": "workstation_unlocked",
+    "timecode_sec": 10.0,
+    "confidence": 0.7,
+    "observed": "Кассир уходит от рабочего места, но ноутбук остаётся открытым и разблокированным"
+   }
+  ]
+ }
+}

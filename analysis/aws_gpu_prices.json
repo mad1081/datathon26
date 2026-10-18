@@ -1,0 +1,119 @@
+﻿{
+    "manifest":  {
+                     "serviceId":  "ec2",
+                     "accessType":  "publish",
+                     "hawkFilePublicationDate":  "2026-10-15T19:13:16Z",
+                     "ETLIngestionTriggerDate":  "2026-10-15T19:13:16Z",
+                     "currencyCode":  "USD",
+                     "source":  "ec2-ondemand-without-sec-sel"
+                 },
+    "region":  "us-east-1",
+    "source_url":  "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json",
+    "instances":  [
+                      {
+                          "Instance Type":  "g6.2xlarge",
+                          "price":  "0.9776000000",
+                          "vCPU":  "8",
+                          "Memory":  "32 GiB",
+                          "Storage":  "1 x 450 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "p5.4xlarge",
+                          "price":  "6.8800000000",
+                          "vCPU":  "16",
+                          "Memory":  "256 GiB",
+                          "Storage":  "1 x 3840 GB SSD"
+                      },
+                      {
+                          "Instance Type":  "g5.xlarge",
+                          "price":  "1.0060000000",
+                          "vCPU":  "4",
+                          "Memory":  "16 GiB",
+                          "Storage":  "1 x 250 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g5.2xlarge",
+                          "price":  "1.2120000000",
+                          "vCPU":  "8",
+                          "Memory":  "32 GiB",
+                          "Storage":  "1 x 450 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g6e.xlarge",
+                          "price":  "1.8610000000",
+                          "vCPU":  "4",
+                          "Memory":  "32 GiB",
+                          "Storage":  "1 x 250 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g6e.2xlarge",
+                          "price":  "2.2420800000",
+                          "vCPU":  "8",
+                          "Memory":  "64 GiB",
+                          "Storage":  "1 x 450 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g6.xlarge",
+                          "price":  "0.8048000000",
+                          "vCPU":  "4",
+                          "Memory":  "16 GiB",
+                          "Storage":  "1 x 250 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g7e.2xlarge",
+                          "price":  "3.3631200000",
+                          "vCPU":  "8",
+                          "Memory":  "64 GiB",
+                          "Storage":  "1 x 1900 NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g7e.12xlarge",
+                          "price":  "8.2860800000",
+                          "vCPU":  "48",
+                          "Memory":  "512 GiB",
+                          "Storage":  "1 x 3800 NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "p5en.48xlarge",
+                          "price":  "63.2960000000",
+                          "vCPU":  "192",
+                          "Memory":  "2048 GiB",
+                          "Storage":  "8 x 3840 NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "p6-b200.48xlarge",
+                          "price":  "113.9328000000",
+                          "vCPU":  "192",
+                          "Memory":  "2048 GiB",
+                          "Storage":  "8 x 3840 NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g6e.4xlarge",
+                          "price":  "3.0042400000",
+                          "vCPU":  "16",
+                          "Memory":  "128 GiB",
+                          "Storage":  "1 x 600 GB NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "p5.48xlarge",
+                          "price":  "55.0400000000",
+                          "vCPU":  "192",
+                          "Memory":  "2048 GiB",
+                          "Storage":  "8 x 3840 GB SSD"
+                      },
+                      {
+                          "Instance Type":  "g7e.4xlarge",
+                          "price":  "3.9981600000",
+                          "vCPU":  "16",
+                          "Memory":  "128 GiB",
+                          "Storage":  "1 x 1900 NVMe SSD"
+                      },
+                      {
+                          "Instance Type":  "g7e.24xlarge",
+                          "price":  "16.5721600000",
+                          "vCPU":  "96",
+                          "Memory":  "1024 GiB",
+                          "Storage":  "2 x 3800 NVMe SSD"
+                      }
+                  ]
+}

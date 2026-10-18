@@ -1,0 +1,91 @@
+{
+ "video": "Х-3.mov",
+ "key": "X-3",
+ "repeat": 0,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 40,
+ "frames_sec": 1.508,
+ "latency_sec": 19.19,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 584,
+  "prompt_tokens": 14549,
+  "total_tokens": 15133,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Прием наличных от клиента\",\n  \"timeline\": [\n    {\n      \"t\": 0.0,\n      \"event\": \"Кассир сидит за рабочим местом. Клиент подходит к стеклу.\"\n    },\n    {\n      \"t\": 6.5,\n      \"event\": \"Клиент садится на стул перед кассиром.\"\n    },\n    {\n      \"t\": 8.0,\n      \"event\": \"Клиент протягивает кассиру документ (карточку) и пачку купюр.\"\n    },\n    {\n      \"t\": 8.5,\n      \"event\": \"Кассир берет документ и начинает его осматривать.\"\n    },\n    {\n      \"t\": 13.0,\n      \"event\": \"Кассир отдает документ обратно клиенту.\"\n    },\n    {\n      \"t\": 13.5,\n      \"event\": \"Кассир берет купюры и начинает их пересчитывать на столе.\"\n    },\n    {\n      \"t\": 17.0,\n      \"event\": \"Кассир берет счетную машину и отодвигает её в сторону.\"\n    }\n  ],\n  \"object_states\": [\n    {\n      \"object\": \"дверь\",\n      \"t\": 7.0,\n      \"state\": \"закрыта\"\n    },\n    {\n      \"object\": \"документ\",\n      \"t\": 8.5,\n      \"state\": \"осматривается кассиром\"\n    },\n    {\n      \"object\": \"деньги\",\n      \"t\": 13.5,\n      \"state\": \"пересчитываются на столе\"\n    },\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 19.6,\n      \"state\": \"разблокирован, экран включен\"\n    }\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"да\",\n    \"part_of_notes_returned_to_client\": \"нет\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"не применимо\",\n    \"at_departure_key_in_safe_lock\": \"не применимо\",\n    \"at_departure_safe_door\": \"не применимо\",\n    \"at_departure_laptop_screen\": \"не применимо\"\n  },\n  \"violations\": []\n}",
+ "parsed": {
+  "scenario": "Прием наличных от клиента",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за рабочим местом. Клиент подходит к стеклу."
+   },
+   {
+    "t": 6.5,
+    "event": "Клиент садится на стул перед кассиром."
+   },
+   {
+    "t": 8.0,
+    "event": "Клиент протягивает кассиру документ (карточку) и пачку купюр."
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир берет документ и начинает его осматривать."
+   },
+   {
+    "t": 13.0,
+    "event": "Кассир отдает документ обратно клиенту."
+   },
+   {
+    "t": 13.5,
+    "event": "Кассир берет купюры и начинает их пересчитывать на столе."
+   },
+   {
+    "t": 17.0,
+    "event": "Кассир берет счетную машину и отодвигает её в сторону."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 7.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "документ",
+    "t": 8.5,
+    "state": "осматривается кассиром"
+   },
+   {
+    "object": "деньги",
+    "t": 13.5,
+    "state": "пересчитываются на столе"
+   },
+   {
+    "object": "ноутбук",
+    "t": 19.6,
+    "state": "разблокирован, экран включен"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "да",
+   "part_of_notes_returned_to_client": "нет",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "не применимо",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": []
+ }
+}

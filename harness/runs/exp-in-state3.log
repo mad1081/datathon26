@@ -1,0 +1,94 @@
+34 state requests x 3 votes
+  X-8 laptop3 (34.5, 37.5, 37.5) -> ['dark', 'dark', 'not_visible'] DROP/none 3.1s (6s)
+  X-1 laptop3 (3.0, 7.0, 25.5) -> ['white', 'white', 'white'] KEEP/ADD 3.5s (7s)
+  X-11 laptop3 (14.0, 18.0, 25.5) -> ['white', 'white', 'white'] KEEP/ADD 3.5s (8s)
+  X-11 laptop3 (15.5, 19.5, 25.5) -> ['white', 'white', 'white'] KEEP/ADD 3.4s (8s)
+  X-11 laptop3 (12.0, 16.0, 25.5) -> ['white', 'white', 'white'] KEEP/ADD 2.5s (12s)
+  X-15 laptop3 (14.0, 18.0, 20.5) -> ['white', 'white', 'white'] KEEP/ADD 2.1s (14s)
+  X-13 laptop3 (59.0, 63.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 1.8s (14s)
+  X-13 laptop3 (57.0, 61.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 2.5s (14s)
+  X-15 laptop3 (15.0, 19.0, 20.5) -> ['dark', 'dark', 'dark'] DROP/none 1.7s (17s)
+  X-15 laptop3 (15.5, 19.5, 20.5) -> ['dark', 'dark', 'dark'] DROP/none 1.6s (19s)
+  X-20 laptop3 (0.0, 1.0, 11.5) -> ['dark', 'dark', 'dark'] DROP/none 2.1s (19s)
+  X-23 laptop3 (10.5, 14.5, 18.0) -> ['picture', 'picture', 'picture'] DROP/none 2.1s (20s)
+  X-24 laptop3 (5.0, 9.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 1.4s (21s)
+  X-24 laptop3 (4.0, 8.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 1.4s (22s)
+  X-24 laptop3 (6.0, 10.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 2.1s (25s)
+  X-24 laptop3 (9.0, 13.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 1.7s (25s)
+  X-25 laptop3 (23.5, 27.5, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 1.6s (26s)
+  X-25 laptop3 (24.0, 28.0, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 2.3s (27s)
+  X-26 laptop3 (12.0, 16.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 1.2s (30s)
+  X-26 laptop3 (7.0, 11.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 2.2s (30s)
+  X-26 laptop3 (13.0, 17.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 2.2s (30s)
+  X-27 laptop3 (18.0, 22.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.8s (32s)
+  X-27 laptop3 (18.5, 22.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 2.1s (35s)
+  X-27 laptop3 (15.5, 19.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.8s (35s)
+  X-27 laptop3 (19.0, 23.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 2.1s (36s)
+  X-28 laptop3 (12.0, 16.0, 16.0) -> ['white', 'white', 'not_visible'] KEEP/ADD 1.4s (36s)
+  X-28 laptop3 (12.5, 16.0, 16.0) -> ['white', 'white', 'not_visible'] KEEP/ADD 1.4s (39s)
+  X-28 laptop3 (4.5, 8.5, 16.0) -> ['white', 'white', 'white'] KEEP/ADD 1.3s (39s)
+  X-28 laptop3 (7.0, 11.0, 16.0) -> ['white', 'white', 'white'] KEEP/ADD 1.6s (39s)
+  X-28 laptop3 (8.0, 12.0, 16.0) -> ['white', 'white', 'white'] KEEP/ADD 2.5s (41s)
+  X-37 laptop3 (12.5, 15.5, 15.5) -> ['dark', 'dark', 'not_visible'] DROP/none 2.1s (43s)
+  X-29 laptop3 (5.0, 9.0, 17.0) -> ['white', 'picture', 'picture'] DROP/none 2.4s (44s)
+  X-38 laptop3 (54.0, 58.0, 58.5) -> ['white', 'white', 'white'] KEEP/ADD 1.8s (44s)
+  X-40 laptop3 (16.0, 20.0, 25.0) -> ['dark', 'dark', 'dark'] DROP/none 1.9s (46s)
+base    acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.0s calls/video=0.00
+door    acc=0.75 TP/FP/FN/TN=13/2/8/17 rec=0.619 prec=0.8667 tc2=0.5385 tc3=0.6154 type=0.6154 rep_acc=0.68 | extra lat/video=0.6s calls/video=0.14
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 2/5 workstation_unlocked@15.6 OK
+laptop  acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.705 | extra lat/video=0.5s calls/video=0.20
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+laptop2 acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.705 | extra lat/video=1.0s calls/video=0.20
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-29  gt=- []  base 1/5 workstation_unlocked@8.0 -> 0/5 None@None OK
+laptop3 acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.715 | extra lat/video=0.4s calls/video=0.20
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-23  gt=- []  base 1/5 workstation_unlocked@13.5 -> 0/5 None@None OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-29  gt=- []  base 1/5 workstation_unlocked@8.0 -> 0/5 None@None OK
+key     acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.8s calls/video=0.35
+all     acc=0.75 TP/FP/FN/TN=11/0/10/19 rec=0.5238 prec=1.0 tc2=0.6364 tc3=0.6364 type=0.7273 rep_acc=0.675 | extra lat/video=1.9s calls/video=0.69
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 1/5 outsider_in_cash_room@5.5 OK

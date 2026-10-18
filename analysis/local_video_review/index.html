@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; media-src 'self' file: blob:; connect-src 'none'; font-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Forte · Локальный просмотр датасета</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="manifest.js" defer></script>
+  <script src="review.js" defer></script>
+</head>
+<body>
+  <header>
+    <div><span class="eyebrow">FORTE / DATA REVIEW</span><h1>Локальный разбор видео</h1></div>
+    <div class="header-actions"><span id="progress" aria-live="polite"></span><button id="export" class="primary">Экспорт JSON</button></div>
+  </header>
+  <p class="intro">40 уникальных роликов · 42 исходных файла. Сначала проверьте отмеченные моменты, затем весь ролик и отрицательные примеры. Подтверждайте только видимые действия. Это инструмент ручной разметки: AI-анализ здесь не выполняется.</p>
+  <p id="storage-status" role="status"></p>
+  <main>
+    <aside aria-label="Список видео">
+      <label for="filter">Показать</label>
+      <select id="filter"><option value="all">Все, положительные сначала</option><option value="positive">С исходной меткой нарушения</option><option value="negative">Без нарушения по разметке</option><option value="pending">Ещё не проверены</option><option value="uncertain">Есть сомнения</option></select>
+      <div id="video-list"></div>
+    </aside>
+    <section class="workspace" aria-label="Просмотр и разметка">
+      <div class="clip-heading"><div><h2 id="clip-title"></h2><p id="clip-meta" class="muted"></p></div><span id="label-badge" class="badge"></span></div>
+      <div class="review-layout">
+        <section class="viewer">
+          <video id="player" controls preload="metadata" playsinline aria-label="Локальное видео"></video>
+          <p id="media-error" class="warning" hidden>Браузер не смог открыть MOV. Скачайте файл по ссылке ниже и откройте локальным плеером. Для просмотра в браузере может потребоваться локальный remux в MP4 (см. README).</p>
+          <div class="transport"><button id="back-five">−5 сек</button><output id="clock">0.00 с</output><button id="forward-five">+5 сек</button><label>Скорость <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label></div>
+          <p class="small muted">Моменты исходной разметки — ориентиры, а не подтверждённые типы событий.</p>
+          <div id="seek-buttons" class="seek-buttons"></div>
+          <p><a id="source-link" download>Открыть исходный файл в локальном плеере</a></p>
+        </section>
+        <section class="annotation">
+          <label for="review-status">Состояние проверки</label>
+          <select id="review-status"><option value="not_reviewed">Не проверено</option><option value="in_progress">В работе</option><option value="reviewed">Проверено</option><option value="uncertain">Есть сомнения</option></select>
+          <label class="check"><input id="full-clip" type="checkbox"> Просмотрен весь ролик</label>
+          <label for="human-verdict">Вывод проверяющего</label>
+          <select id="human-verdict"><option value="unreviewed">Вывод ещё не сделан</option><option value="possible_violation">Есть признаки возможного нарушения</option><option value="no_visible_violation">Видимых нарушений не обнаружено</option><option value="uncertain">Недостаточно оснований для вывода</option></select>
+          <label for="clip-notes">Заметки о разметке и неопределённости</label>
+          <textarea id="clip-notes" rows="3" placeholder="Например: нужно проверить правило, действие закрыто, метка спорная"></textarea>
+          <div class="section-heading"><h3>Наблюдаемые события</h3><button id="add-event">+ Событие</button></div>
+          <p class="small muted">Можно добавить несколько событий. Категорию и правило оставьте пустыми, если они ещё не установлены.</p>
+          <div id="events"></div>
+        </section>
+      </div>
+      <div class="next-row"><button id="previous">← Предыдущий</button><span id="save-indicator" class="small muted" aria-live="polite"></span><button id="next">Следующий →</button></div>
+    </section>
+  </main>
+  <footer>Видео читаются с вашего диска. Разметка сохраняется в этом браузере и выгружается в JSON. Сетевые AI-запросы отсутствуют. Экспортируйте работу перед закрытием или сменой браузера.</footer>
+</body>
+</html>

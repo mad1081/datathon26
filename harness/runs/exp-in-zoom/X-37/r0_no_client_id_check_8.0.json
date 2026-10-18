@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 8.2,
+ "evidence": "На кадрах видно, что клиент подходит к столу и кладёт на стол документ (похожий на удостоверение или карту), а не наличные. Кассир принимает документ и начинает его проверять. Наличные в этом фрагменте не передаются, поэтому нарушение no_client_id_check отсутствует.",
+ "latency_sec": 5.159,
+ "error": null,
+ "usage": {
+  "completion_tokens": 91,
+  "prompt_tokens": 17465,
+  "total_tokens": 17556,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 8.2,\n  \"evidence\": \"На кадрах видно, что клиент подходит к столу и кладёт на стол документ (похожий на удостоверение или карту), а не наличные. Кассир принимает документ и начинает его проверять. Наличные в этом фрагменте не передаются, поэтому нарушение no_client_id_check отсутствует.\"\n}",
+ "cand": {
+  "type_id": "no_client_id_check",
+  "timecode_sec": 8.0,
+  "confidence": 0.85,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "video": "Х-32.mov",
+ "key": "X-32",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 22,
+ "frames_sec": 0.939,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 21.1, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"outsider_in_cash_room\", \"timecode_sec\": 5.8, \"confidence\": 0.6, \"observed\": \"тестовое наблюдение\"}, {\"type_id\": \"suspicious_note_returned\", \"timecode_sec\": 16.3, \"confidence\": 0.49, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 21.1,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "outsider_in_cash_room",
+    "timecode_sec": 5.8,
+    "confidence": 0.6,
+    "observed": "тестовое наблюдение"
+   },
+   {
+    "type_id": "suspicious_note_returned",
+    "timecode_sec": 16.3,
+    "confidence": 0.49,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

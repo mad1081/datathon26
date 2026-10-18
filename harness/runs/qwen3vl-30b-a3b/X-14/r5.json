@@ -1,0 +1,57 @@
+{
+ "video": "Х-14.mov",
+ "key": "X-14",
+ "repeat": 5,
+ "model": "qwen3vl-30b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 143,
+ "frames_sec": 10.119,
+ "latency_sec": 8.303,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 314,
+  "prompt_tokens": 37232,
+  "total_tokens": 37546,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Обработка наличных без клиента\", \"timeline\": [\"Кассир достаёт зелёную сумку из-под стола\", \"Кассир открывает сумку и достаёт из неё банкноты\", \"Кассир кладёт банкноты на стол\", \"Кассир сортирует банкноты на счётной машине\", \"Кассир убирает банкноты в сейф\", \"Кассир работает на ноутбуке\"], \"violations\": [{\"type_id\": \"cash_unattended\", \"timecode_sec\": 32.0, \"confidence\": 0.7, \"observed\": \"Кассир уходит от стола, оставив банкноты на столе без присмотра\"}, {\"type_id\": \"workstation_unlocked\", \"timecode_sec\": 85.0, \"confidence\": 0.8, \"observed\": \"Кассир использует смартфон на рабочем месте, ноутбук оставлен разблокированным с открытым экраном\"}, {\"type_id\": \"counting_without_controller\", \"timecode_sec\": 49.0, \"confidence\": 0.6, \"observed\": \"Кассир пересчитывает наличные в одиночку, без присутствия контролирующего работника\"}]}",
+ "parsed": {
+  "scenario": "Обработка наличных без клиента",
+  "timeline": [
+   "Кассир достаёт зелёную сумку из-под стола",
+   "Кассир открывает сумку и достаёт из неё банкноты",
+   "Кассир кладёт банкноты на стол",
+   "Кассир сортирует банкноты на счётной машине",
+   "Кассир убирает банкноты в сейф",
+   "Кассир работает на ноутбуке"
+  ],
+  "violations": [
+   {
+    "type_id": "cash_unattended",
+    "timecode_sec": 32.0,
+    "confidence": 0.7,
+    "observed": "Кассир уходит от стола, оставив банкноты на столе без присмотра"
+   },
+   {
+    "type_id": "workstation_unlocked",
+    "timecode_sec": 85.0,
+    "confidence": 0.8,
+    "observed": "Кассир использует смартфон на рабочем месте, ноутбук оставлен разблокированным с открытым экраном"
+   },
+   {
+    "type_id": "counting_without_controller",
+    "timecode_sec": 49.0,
+    "confidence": 0.6,
+    "observed": "Кассир пересчитывает наличные в одиночку, без присутствия контролирующего работника"
+   }
+  ]
+ }
+}

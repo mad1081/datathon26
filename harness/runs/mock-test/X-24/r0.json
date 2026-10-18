@@ -1,0 +1,21 @@
+{
+ "video": "Х-24.mov",
+ "key": "X-24",
+ "repeat": 0,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 15,
+ "frames_sec": 0.656,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "Не могу определить нарушение по кадрам.",
+ "parsed": null
+}

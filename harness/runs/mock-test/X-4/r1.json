@@ -1,0 +1,47 @@
+{
+ "video": "Х-4.mov",
+ "key": "X-4",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 73,
+ "frames_sec": 3.124,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 72.1, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"issue_without_count\", \"timecode_sec\": 71.1, \"confidence\": 0.47, \"observed\": \"тестовое наблюдение\"}, {\"type_id\": \"suspicious_note_returned\", \"timecode_sec\": 51.0, \"confidence\": 0.76, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 72.1,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "issue_without_count",
+    "timecode_sec": 71.1,
+    "confidence": 0.47,
+    "observed": "тестовое наблюдение"
+   },
+   {
+    "type_id": "suspicious_note_returned",
+    "timecode_sec": 51.0,
+    "confidence": 0.76,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

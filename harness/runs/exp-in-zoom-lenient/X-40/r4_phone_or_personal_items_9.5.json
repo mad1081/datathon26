@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 9.5,
+ "evidence": "На кадрах видно, как кассир кладет свою личную сумку на рабочий стол, а затем снимает верхнюю одежду и также кладет её на стол рядом с сумкой.",
+ "latency_sec": 4.278,
+ "error": null,
+ "usage": {
+  "completion_tokens": 62,
+  "prompt_tokens": 19372,
+  "total_tokens": 19434,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 9.5, \"evidence\": \"На кадрах видно, как кассир кладет свою личную сумку на рабочий стол, а затем снимает верхнюю одежду и также кладет её на стол рядом с сумкой.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 9.5,
+  "confidence": 0.95,
+  "observed": "Кассир положила личную сумку и верхнюю одежду на рабочий стол кассира.",
+  "source": "kept"
+ }
+}

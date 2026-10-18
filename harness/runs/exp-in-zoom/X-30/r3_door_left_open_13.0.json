@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На всех кадрах фрагмента дверь кассового узла закрыта. В момент появления мужчины (с t=12.5 с) он находится за порогом, дверь не распахнута и не оставлена открытой. Нарушение не подтверждено.",
+ "latency_sec": 4.202,
+ "error": null,
+ "usage": {
+  "completion_tokens": 80,
+  "prompt_tokens": 17530,
+  "total_tokens": 17610,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На всех кадрах фрагмента дверь кассового узла закрыта. В момент появления мужчины (с t=12.5 с) он находится за порогом, дверь не распахнута и не оставлена открытой. Нарушение не подтверждено.\"}",
+ "cand": {
+  "type_id": "door_left_open",
+  "timecode_sec": 13.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

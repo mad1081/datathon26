@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 16.0,
+ "evidence": "На кадрах видно, что кассир подходит к сейфу, закрывает его дверцу и выходит из помещения. На рабочем столе в момент ухода кассира (с 21.0 с) отсутствуют наличные деньги, они были убраны в сейф. Нарушение cash_unattended не подтверждается.",
+ "latency_sec": 5.227,
+ "error": null,
+ "usage": {
+  "completion_tokens": 91,
+  "prompt_tokens": 19448,
+  "total_tokens": 19539,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 16.0, \"evidence\": \"На кадрах видно, что кассир подходит к сейфу, закрывает его дверцу и выходит из помещения. На рабочем столе в момент ухода кассира (с 21.0 с) отсутствуют наличные деньги, они были убраны в сейф. Нарушение cash_unattended не подтверждается.\"}",
+ "cand": {
+  "type_id": "cash_unattended",
+  "timecode_sec": 21.0,
+  "confidence": 0.85,
+  "observed": "",
+  "source": "kept"
+ }
+}

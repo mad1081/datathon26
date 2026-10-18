@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 6.0,
+ "evidence": "На кадрах фрагмента видно, что клиент передает кассиру документ (белая карточка/паспорт), кассир принимает его, осматривает и затем возвращает клиенту. Действие по проверке документа выполнено.",
+ "latency_sec": 25.306,
+ "error": null,
+ "usage": {
+  "completion_tokens": 86,
+  "prompt_tokens": 17490,
+  "total_tokens": 17576,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 6.0,\n  \"evidence\": \"На кадрах фрагмента видно, что клиент передает кассиру документ (белая карточка/паспорт), кассир принимает его, осматривает и затем возвращает клиенту. Действие по проверке документа выполнено.\"\n}",
+ "cand": {
+  "type_id": "no_client_id_check",
+  "timecode_sec": 9.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

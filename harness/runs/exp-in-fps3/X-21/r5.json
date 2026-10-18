@@ -1,0 +1,52 @@
+{
+ "video": "Х-21.mov",
+ "key": "X-21",
+ "repeat": 5,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 59,
+ "frames_sec": 0.439,
+ "latency_sec": 12.839,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 158,
+  "prompt_tokens": 17026,
+  "total_tokens": 17184,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Начало рабочего дня кассира\",\n  \"timeline\": [\n    {\"t\": 0.0, \"event\": \"Кассир входит в кассовое помещение\"},\n    {\"t\": 2.0, \"event\": \"Кассир открывает металлический шкаф/сейф\"},\n    {\"t\": 6.0, \"event\": \"Кассир закрывает дверцу сейфа\"},\n    {\"t\": 8.5, \"event\": \"Кассир садится за рабочий стол\"},\n    {\"t\": 12.5, \"event\": \"Кассир начинает работу за компьютером\"}\n  ],\n  \"violations\": []\n}",
+ "parsed": {
+  "scenario": "Начало рабочего дня кассира",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир входит в кассовое помещение"
+   },
+   {
+    "t": 2.0,
+    "event": "Кассир открывает металлический шкаф/сейф"
+   },
+   {
+    "t": 6.0,
+    "event": "Кассир закрывает дверцу сейфа"
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир садится за рабочий стол"
+   },
+   {
+    "t": 12.5,
+    "event": "Кассир начинает работу за компьютером"
+   }
+  ],
+  "violations": []
+ }
+}

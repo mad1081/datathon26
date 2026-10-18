@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 7.6,
+ "evidence": "На кадрах видно, что кассир стоит спиной к рабочему столу и покидает рабочее место. Ноутбук на столе остается открытым, экран включен и отображает рабочее окно, крышка не закрыта, экран блокировки отсутствует.",
+ "latency_sec": 4.318,
+ "error": null,
+ "usage": {
+  "completion_tokens": 84,
+  "prompt_tokens": 17427,
+  "total_tokens": 17511,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 7.6,\n  \"evidence\": \"На кадрах видно, что кассир стоит спиной к рабочему столу и покидает рабочее место. Ноутбук на столе остается открытым, экран включен и отображает рабочее окно, крышка не закрыта, экран блокировки отсутствует.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 10.6,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

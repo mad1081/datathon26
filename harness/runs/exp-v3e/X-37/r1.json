@@ -1,0 +1,100 @@
+{
+ "video": "Х-37.mov",
+ "key": "X-37",
+ "repeat": 1,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 32,
+ "frames_sec": 0.236,
+ "latency_sec": 15.088,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 669,
+  "prompt_tokens": 12709,
+  "total_tokens": 13378,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Приём наличных от клиента\",\n  \"timeline\": [\n    {\n      \"t\": 0.0,\n      \"event\": \"Кассир сидит за рабочим столом, дверь кассы закрыта.\"\n    },\n    {\n      \"t\": 5.5,\n      \"event\": \"Клиент открывает стеклянную дверь и входит в кассовое помещение.\"\n    },\n    {\n      \"t\": 8.1,\n      \"event\": \"Клиент кладёт на стол пачку купюр.\"\n    },\n    {\n      \"t\": 9.1,\n      \"event\": \"Кассир берет пачку купюр и начинает пересчет на счетной машине.\"\n    },\n    {\n      \"t\": 12.1,\n      \"event\": \"Кассир перекладывает купюры в лоток счетной машины.\"\n    }\n  ],\n  \"object_states\": [\n    {\n      \"object\": \"дверь\",\n      \"t\": 6.0,\n      \"state\": \"открыта\"\n    },\n    {\n      \"object\": \"дверь\",\n      \"t\": 15.6,\n      \"state\": \"открыта\"\n    },\n    {\n      \"object\": \"сейф\",\n      \"t\": 15.6,\n      \"state\": \"закрыт\"\n    },\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 15.6,\n      \"state\": \"открыт (экран включен)\"\n    },\n    {\n      \"object\": \"наличные\",\n      \"t\": 9.1,\n      \"state\": \"на столе, в руках кассира\"\n    },\n    {\n      \"object\": \"карточка/документ\",\n      \"t\": 9.1,\n      \"state\": \"не предъявлена\"\n    }\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"нет\",\n    \"part_of_notes_returned_to_client\": \"не применимо\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"не применимо\",\n    \"at_departure_key_in_safe_lock\": \"не применимо\",\n    \"at_departure_safe_door\": \"не применимо\",\n    \"at_departure_laptop_screen\": \"не применимо\"\n  },\n  \"violations\": [\n    {\n      \"type_id\": \"no_client_id_check\",\n      \"timecode_sec\": 9.1,\n      \"confidence\": 0.95,\n      \"obs\": \"Клиент передал наличные на стол, кассир сразу начал их пересчет на машине, не приняв и не осмотрев документ, удостоверяющий личность.\"\n    }\n  ]\n}",
+ "parsed": {
+  "scenario": "Приём наличных от клиента",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за рабочим столом, дверь кассы закрыта."
+   },
+   {
+    "t": 5.5,
+    "event": "Клиент открывает стеклянную дверь и входит в кассовое помещение."
+   },
+   {
+    "t": 8.1,
+    "event": "Клиент кладёт на стол пачку купюр."
+   },
+   {
+    "t": 9.1,
+    "event": "Кассир берет пачку купюр и начинает пересчет на счетной машине."
+   },
+   {
+    "t": 12.1,
+    "event": "Кассир перекладывает купюры в лоток счетной машины."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 6.0,
+    "state": "открыта"
+   },
+   {
+    "object": "дверь",
+    "t": 15.6,
+    "state": "открыта"
+   },
+   {
+    "object": "сейф",
+    "t": 15.6,
+    "state": "закрыт"
+   },
+   {
+    "object": "ноутбук",
+    "t": 15.6,
+    "state": "открыт (экран включен)"
+   },
+   {
+    "object": "наличные",
+    "t": 9.1,
+    "state": "на столе, в руках кассира"
+   },
+   {
+    "object": "карточка/документ",
+    "t": 9.1,
+    "state": "не предъявлена"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "нет",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "не применимо",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": [
+   {
+    "type_id": "no_client_id_check",
+    "timecode_sec": 9.1,
+    "confidence": 0.95,
+    "obs": "Клиент передал наличные на стол, кассир сразу начал их пересчет на машине, не приняв и не осмотрев документ, удостоверяющий личность."
+   }
+  ]
+ }
+}

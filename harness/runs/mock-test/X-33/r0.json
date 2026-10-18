@@ -1,0 +1,41 @@
+{
+ "video": "Х-33.mov",
+ "key": "X-33",
+ "repeat": 0,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 15,
+ "frames_sec": 1.206,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 14.0, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"no_client_id_check\", \"timecode_sec\": 13.9, \"confidence\": 0.65, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 14.0,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "no_client_id_check",
+    "timecode_sec": 13.9,
+    "confidence": 0.65,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

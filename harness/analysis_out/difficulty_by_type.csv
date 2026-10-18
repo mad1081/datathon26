@@ -1,0 +1,17 @@
+﻿group,videos,call_flag_rate,call_type_correct_rate,runs_majority_detect
+safe_key_left,X-22,0.181,0.029,1/14
+other(unclear: unchecked notes into bundle),X-44,0.248,0.0,3/14
+no_client_id_check,X-2,0.314,0.219,4/14
+safe_left_open,X-20,0.343,0.114,3/14
+door_entry(+outsider),X-30 X-32 X-33,0.378,0.298,11/42
+suspicious_note_returned,X-1,0.467,0.019,5/14
+counting_without_client,X-34,0.533,0.057,9/14
+client_cash_left(foreign/unattended),X-4 X-38,0.581,0.29,17/28
+workstation_unlocked,X-11 X-28,0.614,0.529,19/28
+seals_docs_unattended,X-24,0.705,0.086,13/14
+eating_drinking,X-46,0.705,0.695,9/14
+outsider_in_cash_room,X-18,0.743,0.362,10/14
+cash_accepted_without_count,X-13,0.762,0.114,10/14
+collector_bag_no_check,X-17,0.762,0.657,11/14
+cash_unattended,X-15 X-26,0.862,0.51,25/28
+phone_or_personal_items,X-40,0.933,0.905,14/14

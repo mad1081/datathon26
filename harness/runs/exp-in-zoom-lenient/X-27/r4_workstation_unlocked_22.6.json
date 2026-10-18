@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 17.6,
+ "evidence": "Кассир (женщина в розовой кофте) покидает рабочее место, отходит от стола и выходит через дверь. На столе остается открытый ноутбук с включенным экраном, крышка не закрыта, экран блокировки отсутствует.",
+ "latency_sec": 5.016,
+ "error": null,
+ "usage": {
+  "completion_tokens": 83,
+  "prompt_tokens": 17141,
+  "total_tokens": 17224,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 44,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 17.6,\n  \"evidence\": \"Кассир (женщина в розовой кофте) покидает рабочее место, отходит от стола и выходит через дверь. На столе остается открытый ноутбук с включенным экраном, крышка не закрыта, экран блокировки отсутствует.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 22.6,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

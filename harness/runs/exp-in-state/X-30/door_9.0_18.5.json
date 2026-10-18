@@ -1,0 +1,50 @@
+{
+ "check": "door",
+ "times": [
+  9.0,
+  18.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 9.0,
+     "door": "closed"
+    },
+    {
+     "t": 18.5,
+     "door": "open"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 9.0,
+     "door": "closed"
+    },
+    {
+     "t": 18.5,
+     "door": "open"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 9.0,
+     "door": "closed"
+    },
+    {
+     "t": 18.5,
+     "door": "open"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.483,
+  1.859,
+  1.111
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "check": "notes",
+ "times": [
+  15.0,
+  17.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 15.0,
+     "notes": [
+      "cashier"
+     ]
+    },
+    {
+     "t": 17.0,
+     "notes": [
+      "none"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 15.0,
+     "notes": [
+      "none"
+     ]
+    },
+    {
+     "t": 17.0,
+     "notes": [
+      "none"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 15.0,
+     "notes": [
+      "cashier"
+     ]
+    },
+    {
+     "t": 17.0,
+     "notes": [
+      "none"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  2.431,
+  3.657,
+  2.772
+ ]
+}

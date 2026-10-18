@@ -1,0 +1,11 @@
+{
+ "name": "molmo2-8b",
+ "base_url": "https://m4g47mgcwpsvep-8000.proxy.runpod.net/v1",
+ "model": "molmo2-8b",
+ "temperature": 0.6,
+ "fps": 1.0,
+ "max_frames": 250,
+ "max_side": 640,
+ "disable_thinking": false,
+ "max_tokens": 1500
+}

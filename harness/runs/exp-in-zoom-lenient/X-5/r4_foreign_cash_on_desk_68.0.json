@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 63.0,
+ "evidence": "На кадрах фрагмента видно, что рабочий стол кассира пустой. При входе и посадке второго клиента (с 63.0 по 68.0 с) на столе отсутствуют какие-либо пачки банкнот или наличные деньги предыдущего клиента. Нарушение не подтверждается.",
+ "latency_sec": 6.127,
+ "error": null,
+ "usage": {
+  "completion_tokens": 92,
+  "prompt_tokens": 16877,
+  "total_tokens": 16969,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 43,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 63.0, \"evidence\": \"На кадрах фрагмента видно, что рабочий стол кассира пустой. При входе и посадке второго клиента (с 63.0 по 68.0 с) на столе отсутствуют какие-либо пачки банкнот или наличные деньги предыдущего клиента. Нарушение не подтверждается.\"}",
+ "cand": {
+  "type_id": "foreign_cash_on_desk",
+  "timecode_sec": 68.0,
+  "confidence": 0.7,
+  "observed": "",
+  "source": "kept"
+ }
+}

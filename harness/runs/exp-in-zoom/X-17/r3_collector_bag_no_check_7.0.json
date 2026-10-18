@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 8.0,
+ "evidence": "На кадрах с 8.0 с по 10.0 с видно, что кассир после получения сумки не убирает её сразу, а удерживает её на столе, наклоняется и внимательно осматривает верхнюю часть и пломбу, что соответствует процедуре проверки.",
+ "latency_sec": 2.077,
+ "error": null,
+ "usage": {
+  "completion_tokens": 97,
+  "prompt_tokens": 17847,
+  "total_tokens": 17944,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 8.0,\n  \"evidence\": \"На кадрах с 8.0 с по 10.0 с видно, что кассир после получения сумки не убирает её сразу, а удерживает её на столе, наклоняется и внимательно осматривает верхнюю часть и пломбу, что соответствует процедуре проверки.\"\n}",
+ "cand": {
+  "type_id": "collector_bag_no_check",
+  "timecode_sec": 7.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

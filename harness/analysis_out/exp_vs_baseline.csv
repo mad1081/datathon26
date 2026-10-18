@@ -1,0 +1,6 @@
+run,calls,per_call_acc,tp_fp_fn_tn,baseline_same_cells_acc,baseline_tp_fp_fn_tn
+qwen36-35b-a3b:v3a,173,0.671,61/28/29/55,0.578,50/33/40/50
+qwen36-35b-a3b:v3b,161,0.727,61/20/24/56,0.578,47/30/38/46
+qwen36-35b-a3b:v2@848px,200,0.595,65/41/40/54,0.6,60/35/45/60
+qwen36-35b-a3b:v2@3fps<40s,182,0.676,63/27/32/60,0.582,53/34/42/53
+judge[local-qwen36-27b] on qwen36-35b-a3b-p2,200,0.625,54/24/51/71,0.6,60/35/45/60

@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 7.5,
+ "evidence": "Кассир принимает сумку и удерживает её на столе, осматривая верхнюю часть и пломбу в течение нескольких секунд (с 7.5 до 9.5 с), не убирая её сразу, что соответствует процедуре проверки.",
+ "latency_sec": 8.969,
+ "error": null,
+ "usage": {
+  "completion_tokens": 78,
+  "prompt_tokens": 17810,
+  "total_tokens": 17888,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 7.5, \"evidence\": \"Кассир принимает сумку и удерживает её на столе, осматривая верхнюю часть и пломбу в течение нескольких секунд (с 7.5 до 9.5 с), не убирая её сразу, что соответствует процедуре проверки.\"}",
+ "cand": {
+  "type_id": "collector_bag_no_check",
+  "timecode_sec": 7.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

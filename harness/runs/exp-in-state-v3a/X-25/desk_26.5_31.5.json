@@ -1,0 +1,62 @@
+{
+ "check": "desk",
+ "times": [
+  26.5,
+  31.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 26.5,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 31.5,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 26.5,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 31.5,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 26.5,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 31.5,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.16,
+  0.862,
+  1.918
+ ]
+}

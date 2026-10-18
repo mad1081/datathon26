@@ -1,0 +1,22 @@
+0 state requests x 3 votes
+l3desk                 acc=0.825 TP/FP/FN/TN=14/0/7/19 prec=1.0 tc2=0.5 tc3=0.6429 type=0.8571 rep_acc=0.735 | lat/video=0.8s calls/video=0.55
+l3+desk2               acc=0.85 TP/FP/FN/TN=15/0/6/19 prec=1.0 tc2=0.5333 tc3=0.6667 type=0.8 rep_acc=0.75 | lat/video=1.9s calls/video=0.55
+    X-15  gt=V ['cash_unattended']@[15.0]  ref 2/5 cash_unattended@14.0 -> 5/5 seals_docs_unattended@15.0 OK
+l3desk+safe2           acc=0.85 TP/FP/FN/TN=15/0/6/19 prec=1.0 tc2=0.5333 tc3=0.6667 type=0.8667 rep_acc=0.75 | lat/video=2.9s calls/video=1.00
+    X-20  gt=V ['safe_left_open']@[5.0]  ref 2/5 safe_left_open@4.0 -> 5/5 safe_left_open@5.0 OK
+l3desk+tc_last         acc=0.825 TP/FP/FN/TN=14/0/7/19 prec=1.0 tc2=0.5714 tc3=0.7143 type=0.8571 rep_acc=0.735 | lat/video=2.5s calls/video=0.74
+    X-15  gt=V ['cash_unattended']@[15.0]  ref 2/5 cash_unattended@14.0 -> 2/5 cash_unattended@11.8 BAD
+    X-24  gt=V ['seals_docs_unattended']@[8.0]  ref 5/5 seals_docs_unattended@8.0 -> 5/5 seals_docs_unattended@5.5 OK
+    X-26  gt=V ['cash_unattended']@[9.0]  ref 5/5 cash_unattended@12.0 -> 5/5 cash_unattended@10.0 OK
+    X-27  gt=- []@[]  ref 2/5 safe_key_left@19.0 -> 2/5 safe_key_left@18.5 OK
+    X-28  gt=V ['workstation_unlocked']@[7.0]  ref 5/5 workstation_unlocked@11.0 -> 5/5 workstation_unlocked@7.0 OK
+SHIP: l3+desk2+safe2   acc=0.875 TP/FP/FN/TN=16/0/5/19 prec=1.0 tc2=0.5625 tc3=0.6875 type=0.8125 rep_acc=0.765 | lat/video=4.0s calls/video=1.00
+    X-15  gt=V ['cash_unattended']@[15.0]  ref 2/5 cash_unattended@14.0 -> 5/5 seals_docs_unattended@15.0 OK
+    X-20  gt=V ['safe_left_open']@[5.0]  ref 2/5 safe_left_open@4.0 -> 5/5 safe_left_open@5.0 OK
+SHIP+tc_last           acc=0.875 TP/FP/FN/TN=16/0/5/19 prec=1.0 tc2=0.625 tc3=0.75 type=0.8125 rep_acc=0.765 | lat/video=5.7s calls/video=1.20
+    X-15  gt=V ['cash_unattended']@[15.0]  ref 2/5 cash_unattended@14.0 -> 5/5 seals_docs_unattended@14.0 OK
+    X-20  gt=V ['safe_left_open']@[5.0]  ref 2/5 safe_left_open@4.0 -> 5/5 safe_left_open@5.0 OK
+    X-24  gt=V ['seals_docs_unattended']@[8.0]  ref 5/5 seals_docs_unattended@8.0 -> 5/5 seals_docs_unattended@5.5 OK
+    X-26  gt=V ['cash_unattended']@[9.0]  ref 5/5 cash_unattended@12.0 -> 5/5 cash_unattended@10.0 OK
+    X-27  gt=- []@[]  ref 2/5 safe_key_left@19.0 -> 2/5 safe_key_left@18.5 OK
+    X-28  gt=V ['workstation_unlocked']@[7.0]  ref 5/5 workstation_unlocked@11.0 -> 5/5 workstation_unlocked@7.0 OK

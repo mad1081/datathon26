@@ -1,0 +1,499 @@
+{
+  "checked_at": "2026-10-17",
+  "scope": "Exactly six first_wave models, one optional model; other candidates retained as not_first_wave.",
+  "verification": "Pinned HF configs/tokenizers/model cards and vLLM v0.31.0 source inspected. Source support is not a successful GPU execution.",
+  "runtimes": {
+    "stable": {
+      "version": "0.31.0",
+      "transformers": "5.17.0",
+      "image": "vllm/vllm-openai:v0.31.0@sha256:c1c9f6fd5c109ba7f0546a59f5b2f15fb87f64c77782e90a27b648b42a8e67c3",
+      "local_image": "forte-vllm:0.31.0-tf5.17.0",
+      "release": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0"
+    },
+    "minicpm47": {
+      "version": "0.32.0rc1.dev329+g39983a5e7",
+      "commit": "39983a5e7a5a575a7829f5d5ada50a33d9337ec1",
+      "transformers": "5.18.0",
+      "image": "vllm/vllm-openai:nightly@sha256:a3bc7f09c1e2e72e068021feb75118c92e98c538706caa0c5d1acc0bb9252623",
+      "local_image": "forte-vllm:39983a5e7-tf5.18.0",
+      "wheel_index": "https://wheels.vllm.ai/39983a5e7a5a575a7829f5d5ada50a33d9337ec1/vllm/"
+    }
+  },
+  "models": {
+    "Qwen/Qwen2.5-VL-7B-Instruct": {
+      "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+      "architecture": "Qwen2_5_VLForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/blob/cc594898137f460bfe9f0759e9844b3ce807cfb5/README.md",
+      "config_source": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/blob/cc594898137f460bfe9f0759e9844b3ce807cfb5/config.json",
+      "server": {
+        "instance_type": "g6e.2xlarge",
+        "gpu_count": 1,
+        "vram_gb_per_gpu": 48
+      },
+      "trust_remote_code": false,
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen2_5_vl.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      },
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending."
+    },
+    "Qwen/Qwen3-VL-8B-Instruct": {
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "architecture": "Qwen3VLForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct/blob/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/README.md",
+      "config_source": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct/blob/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/config.json",
+      "server": {
+        "instance_type": "g6e.2xlarge",
+        "gpu_count": 1,
+        "vram_gb_per_gpu": 48
+      },
+      "trust_remote_code": false,
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen3_vl.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      },
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending."
+    },
+    "Qwen/Qwen3.5-9B": {
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending.",
+      "config_source": "https://huggingface.co/Qwen/Qwen3.5-9B/blob/c202236235762e1c871ad0ccb60c8ee5ba337b9a/config.json",
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3.5-9B/blob/c202236235762e1c871ad0ccb60c8ee5ba337b9a/README.md",
+      "server": {
+        "instance_type": "g6e.2xlarge",
+        "gpu_count": 1,
+        "vram_gb_per_gpu": 48
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen3_5.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      }
+    },
+    "Qwen/Qwen3.8-27B": {
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending.",
+      "config_source": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+      "server": {
+        "instance_type": "g7e.4xlarge",
+        "gpu_count": 1,
+        "vram_gb_per_gpu": 96
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen3_5.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      }
+    },
+    "Qwen/Qwen3-VL-32B-Instruct": {
+      "revision": "0cfaf48183f594c314753d30a4c4974bc75f3ccb",
+      "architecture": "Qwen3VLForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 2,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending.",
+      "config_source": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct/blob/0cfaf48183f594c314753d30a4c4974bc75f3ccb/config.json",
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct/blob/0cfaf48183f594c314753d30a4c4974bc75f3ccb/README.md",
+      "server": {
+        "instance_type": "g7e.12xlarge",
+        "gpu_count": 2,
+        "vram_gb_per_gpu": 96
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen3_vl.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      }
+    },
+    "OpenGVLab/InternVL3_5-38B": {
+      "revision": "de99855be3642cd44fe97c9b72d70e5ce2c07f69",
+      "architecture": "InternVLChatModel",
+      "runtime": "stable",
+      "default_tp": 2,
+      "status": "first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/OpenGVLab/InternVL3_5-38B/blob/de99855be3642cd44fe97c9b72d70e5ce2c07f69/README.md",
+      "config_source": "https://huggingface.co/OpenGVLab/InternVL3_5-38B/blob/de99855be3642cd44fe97c9b72d70e5ce2c07f69/config.json",
+      "server": {
+        "instance_type": "g7e.12xlarge",
+        "gpu_count": 2,
+        "vram_gb_per_gpu": 96
+      },
+      "trust_remote_code": true,
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "processor_kwargs": {},
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/internvl.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/transformers_utils/processors/internvl.py",
+          "https://huggingface.co/OpenGVLab/InternVL3_5-38B/blob/de99855be3642cd44fe97c9b72d70e5ce2c07f69/tokenizer_config.json"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Images: config min_dynamic_patch=4, max=12, 448px tiles; 464x848 -> 896x1792 tiled canvas plus thumbnail. Native video is fixed one 448x448 tile per frame in vLLM 0.31.0; no max_pixels control. Backend uses images, so native-video resolution limitation does not affect backend frames."
+      },
+      "evidence": "InternVLChatModel supports encoder data parallelism. Qwen3 decoder tokenizer has video_pad id 151656; processor handles image + video together. Vision has 25 heads: encoder TP=data avoids splitting 25 heads across TP2.",
+      "hf_overrides": {
+        "min_dynamic_patch": 4,
+        "llm_config": {
+          "max_position_embeddings": 65536,
+          "rope_parameters": {
+            "rope_type": "yarn",
+            "factor": 2.0,
+            "original_max_position_embeddings": 32768,
+            "rope_theta": 1000000.0
+          }
+        }
+      },
+      "extra_args": [
+        "--mm-encoder-tp-mode",
+        "data"
+      ],
+      "context_extension": {
+        "checkpoint_max_position_embeddings": 40960,
+        "status": "experimental_yarn_64k_requires_gpu_validation",
+        "basis": "Qwen3-32B decoder author recommends YaRN factor 2 for 65536. This is an inference adaptation, not an InternVL author-validated 64K checkpoint.",
+        "source": "https://huggingface.co/Qwen/Qwen3-32B#processing-long-texts"
+      }
+    },
+    "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8": {
+      "revision": "7fbcd8c9e2ad011808ed8a57d64c462605c3e381",
+      "architecture": "Qwen3VLMoeForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 4,
+      "status": "optional",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct-FP8/blob/7fbcd8c9e2ad011808ed8a57d64c462605c3e381/README.md",
+      "config_source": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct-FP8/blob/7fbcd8c9e2ad011808ed8a57d64c462605c3e381/config.json",
+      "server": {
+        "instance_type": "g7e.24xlarge",
+        "gpu_count": 4,
+        "vram_gb_per_gpu": 96
+      },
+      "trust_remote_code": false,
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "processor_kwargs": {
+        "min_pixels": 400000,
+        "max_pixels": 524288
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "vllm_0_31_0": {
+        "multi_image": "source_verified",
+        "video": "source_verified",
+        "mixed_image_video": "source_verified_gpu_smoke_pending",
+        "sources": [
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/qwen3_vl.py",
+          "https://github.com/vllm-project/vllm/blob/v0.31.0/vllm/model_executor/models/registry.py"
+        ]
+      },
+      "resolution": {
+        "backend_frame_max_side": 1024,
+        "input_example_width_height": [
+          464,
+          848
+        ],
+        "note": "Qwen smart_resize min/max pixel budget avoids downscaling this image; patch-grid alignment still applies. Native video may have separate frame/token budgets."
+      },
+      "evidence": "Native registered architecture; image and video processing supported, mixed modalities share one processor. GPU execution pending.",
+      "quantization": "Checkpoint FP8, dynamic activation scheme, 128x128 blocks; auto-detected from config. --dtype bfloat16 is the activation dtype, not conversion of FP8 weights."
+    },
+    "openbmb/MiniCPM-V-4_5": {
+      "revision": "daef484c35ec93210ec93c5e901f8f3e9b78ee34",
+      "architecture": "MiniCPMV",
+      "runtime": "stable",
+      "default_tp": 1,
+      "trust_remote_code": true,
+      "processor_kwargs": {
+        "max_slice_nums": 2
+      },
+      "request_defaults": {
+        "stop_token_ids": [
+          1,
+          151645
+        ],
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "MiniCPMV version 4.5 is in the stable dispatch table; image limit is None.",
+      "config_source": "https://huggingface.co/openbmb/MiniCPM-V-4_5/blob/daef484c35ec93210ec93c5e901f8f3e9b78ee34/config.json",
+      "status": "not_first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/openbmb/MiniCPM-V-4_5/blob/daef484c35ec93210ec93c5e901f8f3e9b78ee34/README.md"
+    },
+    "openbmb/MiniCPM-V-4.7-35B-A3B": {
+      "revision": "0bbda78419a0b505a58234574ff40b1c344a86fc",
+      "architecture": "MiniCPMV4_7ForConditionalGeneration",
+      "runtime": "minicpm47",
+      "default_tp": 2,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "max_slice_nums": 2
+      },
+      "request_defaults": {
+        "stop_token_ids": [
+          248044,
+          248046
+        ],
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": false,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Exact architecture absent in 0.31.0; present in pinned nightly. Inherits multi-image processing from MiniCPMV4_6.",
+      "config_source": "https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B/blob/0bbda78419a0b505a58234574ff40b1c344a86fc/config.json",
+      "status": "not_first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B/blob/0bbda78419a0b505a58234574ff40b1c344a86fc/README.md"
+    },
+    "zai-org/GLM-4.6V-Flash": {
+      "revision": "411bb4d77144a3f03accbf4b780f5acb8b7cde4e",
+      "architecture": "Glm4vForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "trust_remote_code": false,
+      "processor_kwargs": {},
+      "request_defaults": {},
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Glm4vForConditionalGeneration is registered; processor permits arbitrary image count within configured limits.",
+      "config_source": "https://huggingface.co/zai-org/GLM-4.6V-Flash/blob/411bb4d77144a3f03accbf4b780f5acb8b7cde4e/config.json",
+      "status": "not_first_wave",
+      "license": "MIT",
+      "license_source": "https://huggingface.co/zai-org/GLM-4.6V-Flash/blob/411bb4d77144a3f03accbf4b780f5acb8b7cde4e/README.md"
+    },
+    "nvidia/Cosmos3-Nano": {
+      "revision": "e59a53c25979a090fa8706c9acc0c254a6e89b92",
+      "architecture": "Cosmos3ForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 1,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "max_pixels": 262144
+      },
+      "request_defaults": {},
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Native Cosmos3ForConditionalGeneration loads understanding tower via Qwen3VL and skips generation-only weights; no external plugin.",
+      "config_source": "https://huggingface.co/nvidia/Cosmos3-Nano/blob/e59a53c25979a090fa8706c9acc0c254a6e89b92/config.json",
+      "status": "not_first_wave",
+      "license": "OpenMDW-1.1",
+      "license_source": "https://huggingface.co/nvidia/Cosmos3-Nano/blob/e59a53c25979a090fa8706c9acc0c254a6e89b92/README.md"
+    },
+    "Qwen/Qwen3.5-122B-A10B": {
+      "revision": "dc4d348443bc740c68e2d77492492c11606384d5",
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "runtime": "stable",
+      "default_tp": 4,
+      "trust_remote_code": false,
+      "processor_kwargs": {
+        "max_pixels": 262144
+      },
+      "request_defaults": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "stable_multi_image": true,
+      "selected_runtime_multi_image": true,
+      "gpu_tested": false,
+      "evidence": "Optional eighth candidate. Native Qwen3_5MoeForConditionalGeneration shares Qwen3VL multimodal processing.",
+      "config_source": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B/blob/dc4d348443bc740c68e2d77492492c11606384d5/config.json",
+      "status": "not_first_wave",
+      "license": "Apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B/blob/dc4d348443bc740c68e2d77492492c11606384d5/README.md"
+    }
+  },
+  "profiles": {
+    "eval": {
+      "enforce_eager": 1
+    },
+    "final": {
+      "enforce_eager": 0
+    }
+  },
+  "defaults": {
+    "max_num_seqs": 8,
+    "max_model_len": 65536,
+    "limit_mm_per_prompt": {
+      "image": 160,
+      "video": 1
+    },
+    "max_num_batched_tokens": 8192,
+    "gpu_memory_utilization": 0.9
+  }
+}

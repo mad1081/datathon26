@@ -1,0 +1,55 @@
+{
+ "video": "Х-46.mov",
+ "key": "X-46",
+ "repeat": 8,
+ "model": "qwen3vl-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 39,
+ "frames_sec": 2.174,
+ "latency_sec": 24.612,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 213,
+  "prompt_tokens": 13259,
+  "total_tokens": 13472,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Кассир работает за столом, пьёт напиток\", \"timeline\": [{\"t\": 0.0, \"event\": \"Кассир сидит за столом и работает с компьютером\"}, {\"t\": 6.0, \"event\": \"Кассир берёт стакан с напитком с стола\"}, {\"t\": 12.0, \"event\": \"Кассир подносит стакан ко рту и начинает пить\"}, {\"t\": 18.0, \"event\": \"Кассир заканчивает пить и ставит стакан обратно на стол\"}], \"violations\": [{\"type_id\": \"eating_drinking\", \"timecode_sec\": 12.0, \"confidence\": 0.95, \"observed\": \"Кассир подносит стакан ко рту и пьёт напиток, находясь за рабочим столом\"}]}",
+ "parsed": {
+  "scenario": "Кассир работает за столом, пьёт напиток",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом и работает с компьютером"
+   },
+   {
+    "t": 6.0,
+    "event": "Кассир берёт стакан с напитком с стола"
+   },
+   {
+    "t": 12.0,
+    "event": "Кассир подносит стакан ко рту и начинает пить"
+   },
+   {
+    "t": 18.0,
+    "event": "Кассир заканчивает пить и ставит стакан обратно на стол"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "eating_drinking",
+    "timecode_sec": 12.0,
+    "confidence": 0.95,
+    "observed": "Кассир подносит стакан ко рту и пьёт напиток, находясь за рабочим столом"
+   }
+  ]
+ }
+}

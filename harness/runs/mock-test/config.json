@@ -1,0 +1,11 @@
+{
+ "name": "mock-test",
+ "base_url": "mock",
+ "model": "default",
+ "temperature": 0.0,
+ "fps": 1.0,
+ "max_frames": 150,
+ "max_side": 768,
+ "disable_thinking": false,
+ "max_tokens": 1500
+}

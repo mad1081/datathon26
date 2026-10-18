@@ -1,0 +1,120 @@
+{
+ "check": "where",
+ "times": [
+  13.5,
+  14.5,
+  15.5,
+  16.5,
+  17.5,
+  18.5,
+  19.5,
+  20.5,
+  21.5,
+  22.5,
+  23.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 13.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 14.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 15.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 16.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 17.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 18.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 19.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 20.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 21.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 22.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 23.5,
+     "cashier": "leaving"
+    }
+   ]
+  },
+  null,
+  {
+   "frames": [
+    {
+     "t": 13.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 14.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 15.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 16.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 17.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 18.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 19.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 20.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 21.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 22.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 23.5,
+     "cashier": "leaving"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  5.876,
+  9.965,
+  8.233
+ ]
+}

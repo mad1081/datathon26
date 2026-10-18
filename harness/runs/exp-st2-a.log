@@ -1,0 +1,41 @@
+33 state requests x 3 votes
+  X-1 idcard (1.0, 3.0, 5.0, 7.0) -> ['no', 'no', 'no', 'yes'] False 12.3s (29s)
+  X-1 idcard (3.0, 5.0, 7.0, 9.0) -> ['no', 'no', 'yes', 'no'] False 5.3s (44s)
+  X-1 idcard (18.0, 20.0, 22.0, 24.0) -> ['no', 'no', 'no', 'yes'] False 5.6s (57s)
+  X-1 idcard (17.0, 19.0, 21.0, 23.0) -> ['no', 'no', 'no', 'no'] True 15.4s (84s)
+  X-2 idcard (8.0, 10.0, 12.0, 14.0) -> ['no', 'yes', 'yes', 'yes'] False 7.5s (102s)
+  X-3 idcard (6.5, 8.5, 10.5, 12.5) -> ['no', 'yes', 'yes', 'yes'] False 4.3s (111s)
+  X-3 idcard (2.5, 4.5, 6.5, 8.5) -> ['no', 'no', 'no', 'yes'] False 7.7s (129s)
+  X-3 idcard (7.0, 9.0, 11.0, 13.0) -> ['no', 'yes', 'no', 'yes'] False 8.4s (142s)
+  X-4 idcard (42.0, 44.0, 46.0, 48.0) -> ['no', 'no', 'no', 'yes'] False 5.3s (155s)
+  X-4 idcard (44.0, 46.0, 48.0, 50.0) -> ['no', 'no', 'yes', 'no'] False 3.7s (164s)
+  X-5 idcard (20.0, 22.0, 24.0, 26.0) -> ['no', 'no', 'no', 'no'] True 5.8s (177s)
+  X-5 idcard (50.5, 52.5, 54.5, 56.5) -> ['not_visible', 'not_visible', 'yes', 'yes'] False 14.2s (196s)
+  X-5 safe (59.0, 62.0) -> ['closed', 'closed'] False 2.8s (204s)
+  X-8 safe (25.5, 28.5) -> ['closed', 'closed'] False 9.2s (218s)
+  X-10 idcard (7.0, 9.0, 11.0, 13.0) -> ['no', 'no', 'no', 'no'] True 12.3s (236s)
+  X-13 safe (51.5, 54.5) -> ['ajar', 'ajar'] True 2.6s (242s)
+  X-20 safe (6.5, 9.5) -> ['ajar', 'ajar'] True 2.7s (248s)
+  X-22 safe (14.0, 17.0) -> ['closed', 'closed'] False 5.3s (257s)
+  X-22 safe (16.5, 19.5) -> ['closed', 'closed'] False 4.8s (266s)
+  X-25 safe (17.5, 20.5) -> ['ajar', 'closed'] False 8.2s (280s)
+  X-25 safe (17.0, 20.0) -> ['open', 'closed'] False 3.4s (287s)
+  X-26 safe (19.5,) -> ['closed'] False 3.0s (293s)
+  X-35 idcard (17.0, 19.0, 21.0, 23.0) -> ['no', 'no', 'no', 'no'] True 4.8s (305s)
+  X-37 idcard (4.0, 6.0, 8.0, 10.0) -> ['no', 'no', 'yes', 'yes'] False 8.2s (321s)
+  X-37 idcard (3.5, 5.5, 7.5, 9.5) -> ['no', 'no', 'no', 'yes'] False 4.5s (332s)
+  X-38 idcard (22.0, 24.0, 26.0, 28.0) -> ['no', 'no', 'no', 'yes'] False 5.7s (344s)
+  X-38 idcard (1.0, 3.0, 5.0, 7.0) -> ['no', 'no', 'no', 'yes'] False 3.8s (352s)
+  X-39 safe (72.0, 75.0) -> ['closed', 'closed'] False 2.4s (358s)
+  X-39 idcard (62.0, 64.0, 66.0, 68.0) -> ['not_visible', 'not_visible', 'not_visible', 'not_visible'] True 5.8s (370s)
+  X-39 idcard (6.0, 8.0, 10.0, 12.0) -> ['no', 'yes', 'yes', 'no'] False 5.5s (382s)
+  X-44 idcard (0.0, 1.0, 3.0) -> ['no', 'no', 'yes'] False 5.2s (391s)
+  X-45 idcard (0.0, 1.0) -> ['no', 'yes'] False 4.9s (403s)
+  X-45 safe (5.5, 8.5) -> ['closed', 'closed'] False 3.4s (410s)
+l3desk+safe            acc=0.85 TP/FP/FN/TN=15/0/6/19 prec=1.0 tc2=0.5333 tc3=0.6667 type=0.8 rep_acc=0.745 | lat/video=1.3s calls/video=0.60
+l3desk+idcard          acc=0.825 TP/FP/FN/TN=15/1/6/18 prec=0.9375 tc2=0.5333 tc3=0.6667 type=0.8 rep_acc=0.725 | lat/video=1.9s calls/video=0.67
+    X-1   gt=V ['suspicious_note_returned']@[22.0]  ref 1/5 workstation_unlocked@6.0 -> 2/5 workstation_unlocked@6.0 BAD
+    X-5   gt=- []@[]  ref 0/5 None@None -> 1/5 no_client_id_check@26.0 OK
+    X-10  gt=- []@[]  ref 0/5 None@None -> 2/5 no_client_id_check@13.0 OK
+    X-35  gt=- []@[]  ref 2/5 door_left_open@53.0 -> 3/5 door_left_open@53.0 BAD
+    X-39  gt=- []@[]  ref 0/5 None@None -> 1/5 no_client_id_check@68.0 OK

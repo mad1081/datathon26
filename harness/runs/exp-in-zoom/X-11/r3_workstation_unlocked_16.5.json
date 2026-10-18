@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 16.0,
+ "evidence": "На кадрах видно, что кассир выключает свет в помещении (кадры 16.0 с) и выходит через дверь, оставляя ноутбук на рабочем столе включенным с открытым экраном. Крышка ноутбука не закрыта, экран блокировки не активирован.",
+ "latency_sec": 11.119,
+ "error": null,
+ "usage": {
+  "completion_tokens": 97,
+  "prompt_tokens": 17867,
+  "total_tokens": 17964,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 16.0,\n  \"evidence\": \"На кадрах видно, что кассир выключает свет в помещении (кадры 16.0 с) и выходит через дверь, оставляя ноутбук на рабочем столе включенным с открытым экраном. Крышка ноутбука не закрыта, экран блокировки не активирован.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 16.5,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно, что кассир приняла пачку банкнот от клиента и сразу загрузила её в счётную машину для пересчёта. Действие выполнено корректно, нарушение отсутствует.",
+ "latency_sec": 5.848,
+ "error": null,
+ "usage": {
+  "completion_tokens": 69,
+  "prompt_tokens": 17497,
+  "total_tokens": 17566,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах видно, что кассир приняла пачку банкнот от клиента и сразу загрузила её в счётную машину для пересчёта. Действие выполнено корректно, нарушение отсутствует.\"}",
+ "cand": {
+  "type_id": "cash_accepted_without_count",
+  "timecode_sec": 9.1,
+  "confidence": 0.5,
+  "observed": "",
+  "source": "sub"
+ }
+}

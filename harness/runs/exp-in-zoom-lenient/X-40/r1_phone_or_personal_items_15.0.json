@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 14.4,
+ "evidence": "На кадрах видно, как клиентка снимает верхнюю одежду и кладёт её на рабочий стол кассира рядом с рабочим местом. Это является нарушением правил хранения личных вещей на рабочем месте кассира.",
+ "latency_sec": 4.396,
+ "error": null,
+ "usage": {
+  "completion_tokens": 68,
+  "prompt_tokens": 19321,
+  "total_tokens": 19389,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 14.4, \"evidence\": \"На кадрах видно, как клиентка снимает верхнюю одежду и кладёт её на рабочий стол кассира рядом с рабочим местом. Это является нарушением правил хранения личных вещей на рабочем месте кассира.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 15.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

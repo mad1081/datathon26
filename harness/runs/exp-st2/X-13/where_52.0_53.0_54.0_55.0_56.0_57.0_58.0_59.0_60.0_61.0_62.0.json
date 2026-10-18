@@ -1,0 +1,167 @@
+{
+ "check": "where",
+ "times": [
+  52.0,
+  53.0,
+  54.0,
+  55.0,
+  56.0,
+  57.0,
+  58.0,
+  59.0,
+  60.0,
+  61.0,
+  62.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 52.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 53.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 54.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 55.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 56.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 57.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 58.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 59.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 60.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 61.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 62.0,
+     "cashier": "gone"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 52.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 53.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 54.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 55.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 56.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 57.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 58.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 59.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 60.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 61.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 62.0,
+     "cashier": "leaving"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 52.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 53.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 54.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 55.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 56.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 57.0,
+     "cashier": "safe"
+    },
+    {
+     "t": 58.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 59.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 60.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 61.0,
+     "cashier": "leaving"
+    },
+    {
+     "t": 62.0,
+     "cashier": "gone"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  5.238,
+  9.372,
+  6.403
+ ]
+}

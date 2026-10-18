@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 13.6,
+ "evidence": "На кадрах видно, что кассир держит на рабочем столе пластиковый стаканчик с напитком и делает из него глоток (начиная с момента t=13.6 с).",
+ "latency_sec": 2.056,
+ "error": null,
+ "usage": {
+  "completion_tokens": 75,
+  "prompt_tokens": 19393,
+  "total_tokens": 19468,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 13.6,\n  \"evidence\": \"На кадрах видно, что кассир держит на рабочем столе пластиковый стаканчик с напитком и делает из него глоток (начиная с момента t=13.6 с).\"\n}",
+ "cand": {
+  "type_id": "eating_drinking",
+  "timecode_sec": 12.0,
+  "confidence": 0.95,
+  "observed": "Кассир оставила на рабочем месте пластиковый стаканчик с напитком и начала пить, что является нарушением правил внутреннего распорядка.",
+  "source": "kept"
+ }
+}

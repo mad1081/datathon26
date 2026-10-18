@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 14.0,
+ "evidence": "Кассир снимает верхнюю одежду и кладёт её на рабочий стол в зоне кассовой дисциплины.",
+ "latency_sec": 5.261,
+ "error": null,
+ "usage": {
+  "completion_tokens": 46,
+  "prompt_tokens": 17458,
+  "total_tokens": 17504,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 14.0, \"evidence\": \"Кассир снимает верхнюю одежду и кладёт её на рабочий стол в зоне кассовой дисциплины.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 14.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,63 @@
+{
+ "check": "laptop3",
+ "times": [
+  14.0,
+  18.0,
+  20.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 14.0,
+     "screen": "white"
+    },
+    {
+     "t": 18.0,
+     "screen": "white"
+    },
+    {
+     "t": 20.5,
+     "screen": "white"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 14.0,
+     "screen": "dark"
+    },
+    {
+     "t": 18.0,
+     "screen": "dark"
+    },
+    {
+     "t": 20.5,
+     "screen": "dark"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 14.0,
+     "screen": "dark"
+    },
+    {
+     "t": 18.0,
+     "screen": "dark"
+    },
+    {
+     "t": 20.5,
+     "screen": "dark"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.649,
+  0.804,
+  0.885
+ ]
+}

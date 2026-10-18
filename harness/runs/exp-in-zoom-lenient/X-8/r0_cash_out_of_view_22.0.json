@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах фрагмента видно, что кассир берет пачку купюр из открытого напольного сейфа, который находится в зоне видимости камеры. Действия выполняются на виду, руки с ценностями не опускаются под стол и не скрываются от камеры.",
+ "latency_sec": 5.59,
+ "error": null,
+ "usage": {
+  "completion_tokens": 91,
+  "prompt_tokens": 19392,
+  "total_tokens": 19483,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 0.0,\n  \"evidence\": \"На кадрах фрагмента видно, что кассир берет пачку купюр из открытого напольного сейфа, который находится в зоне видимости камеры. Действия выполняются на виду, руки с ценностями не опускаются под стол и не скрываются от камеры.\"\n}",
+ "cand": {
+  "type_id": "cash_out_of_view",
+  "timecode_sec": 22.0,
+  "confidence": 0.7,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,16 @@
+﻿group,n,median_err,mean_err,within2,within3,early_gt2,late_gt2
+cash_accepted_without_count,12,-8.0,-14.8,0.333,0.333,0.667,0.0
+cash_unattended,108,1.0,0.1,0.315,0.435,0.324,0.361
+client_cash_left(foreign/unattended),71,0.0,0.6,0.437,0.592,0.282,0.282
+collector_bag_no_check,69,0.5,0.2,0.928,1.0,0.043,0.029
+counting_without_client,6,-0.4,-0.4,1.0,1.0,0.0,0.0
+door_entry(+outsider),114,-0.75,-1.7,0.518,0.614,0.342,0.14
+eating_drinking,73,1.5,1.1,0.658,0.959,0.096,0.247
+no_client_id_check,23,-1.0,-0.9,1.0,1.0,0.0,0.0
+outsider_in_cash_room,38,-4.0,-3.7,0.316,0.342,0.684,0.0
+phone_or_personal_items,98,-3.0,-4.5,0.194,0.582,0.806,0.0
+safe_key_left,3,1.6,-0.1,0.667,0.667,0.333,0.0
+safe_left_open,12,-3.75,-2.0,0.083,0.25,0.75,0.167
+seals_docs_unattended,9,2.0,0.2,0.556,1.0,0.333,0.111
+suspicious_note_returned,2,-5.0,-5.0,0.5,0.5,0.5,0.0
+workstation_unlocked,111,2.0,2.1,0.441,0.568,0.081,0.477

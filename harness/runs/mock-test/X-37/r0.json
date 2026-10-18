@@ -1,0 +1,41 @@
+{
+ "video": "Х-37.mov",
+ "key": "X-37",
+ "repeat": 0,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 16,
+ "frames_sec": 0.948,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 15.1, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"issue_without_count\", \"timecode_sec\": 1.2, \"confidence\": 0.48, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 15.1,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "issue_without_count",
+    "timecode_sec": 1.2,
+    "confidence": 0.48,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

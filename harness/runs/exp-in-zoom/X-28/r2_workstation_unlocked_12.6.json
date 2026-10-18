@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 9.6,
+ "evidence": "Кассир стоит спиной к рабочему месту и выходит из помещения кассы, оставляя ноутбук на столе открытым с включенным экраном без блокировки.",
+ "latency_sec": 4.154,
+ "error": null,
+ "usage": {
+  "completion_tokens": 60,
+  "prompt_tokens": 17473,
+  "total_tokens": 17533,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 9.6, \"evidence\": \"Кассир стоит спиной к рабочему месту и выходит из помещения кассы, оставляя ноутбук на столе открытым с включенным экраном без блокировки.\"}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 12.6,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}
