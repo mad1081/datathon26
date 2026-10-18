@@ -1,0 +1,10 @@
+{
+  "qwen36-35b-a3b": {"pod": "h5kvpru25aaii3", "url": "https://h5kvpru25aaii3-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3.6-35B-A3B", "thinking_toggle": true},
+  "qwen3vl-30b-a3b": {"pod": "zwcvkbk2jh7m8h", "url": "https://zwcvkbk2jh7m8h-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3-VL-30B-A3B-Instruct", "thinking_toggle": false},
+  "qwen3vl-32b": {"pod": "p5xws73os7jdsd", "url": "https://p5xws73os7jdsd-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3-VL-32B-Instruct", "thinking_toggle": false},
+  "qwen36-27b": {"pod": "lxn4e704v1jxhj", "url": "https://lxn4e704v1jxhj-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3.6-27B", "thinking_toggle": true},
+  "qwen38-27b": {"pod": "bm83gv8ddjyqpj", "url": "https://bm83gv8ddjyqpj-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3.8-27B", "thinking_toggle": true},
+  "qwen3vl-8b": {"pod": "d0mx4snoqxqofo", "url": "https://d0mx4snoqxqofo-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3-VL-8B-Instruct", "thinking_toggle": false},
+  "qwen35-9b": {"pod": "fu5hgj1fspnnj6", "url": "https://fu5hgj1fspnnj6-8000.proxy.runpod.net/v1", "hf": "Qwen/Qwen3.5-9B", "thinking_toggle": true},
+  "molmo2-8b": {"pod": "m4g47mgcwpsvep", "url": "https://m4g47mgcwpsvep-8000.proxy.runpod.net/v1", "hf": "allenai/Molmo2-8B", "thinking_toggle": false, "system_in_user": true}
+}
