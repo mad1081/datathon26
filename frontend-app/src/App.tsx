@@ -1,20 +1,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { toast } from "sonner"
 import { Toaster } from "@/components/ui/sonner"
-import { Card, CardContent } from "@/components/ui/card"
 import { Header } from "@/components/forte/Header"
 import { VideoPlayer } from "@/components/forte/VideoPlayer"
 import { Timeline } from "@/components/forte/Timeline"
-import { Evidence, type Shot } from "@/components/forte/Evidence"
-import { Verdict } from "@/components/forte/Verdict"
+import { type Shot } from "@/components/forte/Evidence"
+import { VerdictBanner } from "@/components/forte/VerdictBanner"
+import { MoreDetails } from "@/components/forte/MoreDetails"
 import { Findings } from "@/components/forte/Findings"
 import { Detail } from "@/components/forte/Detail"
 import { Baseline } from "@/components/forte/Baseline"
 import { Taxonomy } from "@/components/forte/Taxonomy"
-import { typeOf, type SessionKey } from "@/lib/baseline"
+import { typeOf, SESSION_BY_KEY, type SessionKey } from "@/lib/baseline"
 import { JsonPanel } from "@/components/forte/JsonPanel"
 import { UploadScreen } from "@/components/forte/Upload"
-import { SCENARIOS, OPS, buildResult, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
+import { SCENARIOS, OPS, buildResult, compliance, isViolation, needsReview, type Item, type ScenarioKey } from "@/lib/data"
 
 const parseHash = () => {
   const h = location.hash.slice(1).split("&")
@@ -103,8 +103,9 @@ export default function App() {
       ? [{ t: 4.0, region: null, cap: "до", moment: false }, { t: 5.0, region: null, cap: "пропуск", moment: true, gap: "Кадры не проанализированы" }, { t: 7.5, region: null, cap: "после", moment: false }]
       : (S.sample ?? []).map((t) => ({ t, region: null, cap: "выборка", moment: false }))
 
+  const [more, setMore] = useState<"baseline" | "json">(location.hash.includes("json") ? "json" : "baseline")
   const gotoStep = (sk: SessionKey, step: string) => {
-    setTab(sk)
+    setTab(sk); setMore("baseline")
     requestAnimationFrame(() => {
       const el = document.querySelector(`[data-testid=baseline] [data-step="${step}"]`) as HTMLElement | null
       el?.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -112,6 +113,18 @@ export default function App() {
     })
   }
 
+  const comp = useMemo(() => {
+    if (!S.sessions.length) return null
+    let ok = 0, total = 0
+    for (const ss of S.sessions) { const c = compliance(S, ss.type, items); ok += c.ok; total += c.total }
+    return { ok, total }
+  }, [S, items])
+  const firstViolation = () => {
+    const t = items.filter(isViolation).sort((a, b) => a.tc - b.tc)[0]?.id
+    if (!t) return
+    select(t)
+    requestAnimationFrame(() => document.querySelector('[data-testid="detail"]')?.scrollIntoView({ behavior: "smooth", block: "nearest" }))
+  }
   const reviewFirst = () => {
     const t = items.find(needsReview)?.id ?? (S.gaps.length ? "gap0" : null)
     if (!t) return
@@ -136,41 +149,35 @@ export default function App() {
           toast.success("Обработка завершена", { description: f?.url ? "Показан результат на демо-данных реального сценария" : "sample.mov · реальный сценарий" })
         }} />
       ) : (
-        <main className="grid grid-cols-[minmax(0,1fr)_400px] items-start gap-4 p-4 max-[1360px]:grid-cols-[minmax(0,1fr)_368px]">
-          <div className="flex min-w-0 flex-col gap-4">
-          <div className="grid grid-cols-[300px_minmax(0,1fr)] items-start gap-4 max-[1360px]:grid-cols-[256px_minmax(0,1fr)]">
-          <div className="flex min-w-0 flex-col gap-4">
-            <VideoPlayer ref={vref} ph={ph} playing={playing} customSrc={custom?.url ?? null}
-              fileInfo={custom ? { name: custom.name, line: `${(custom.size / 1048576).toFixed(1)} МБ · открыт локально` } : { name: "sample.mov", line: "H.264 · 464×848 (портрет) · 30 к/с · 17,07 с" }}
-              onToggle={() => { const el = vref.current; if (el) { if (el.paused) void el.play(); else el.pause() } }}
-              onPick={() => fileInput.current?.click()}
-              zones={zones} onZones={setZones} zonesFound={S.zonesFound}
-              onTime={(t) => { if (!playing) setPh(t) }} onPlaying={setPlaying}
-              onMeta={() => { const el = vref.current; if (el && pending.current != null) { el.currentTime = pending.current; pending.current = null } }} />
-            <input ref={fileInput} type="file" accept=".mp4,.mov,video/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) openFile(f); e.target.value = "" }} />
-          </div>
-
-          <div className="flex min-w-0 flex-col gap-4">
-            <Timeline S={S} items={items} sel={sel} ph={ph} onSelect={select} onSeek={seek} />
-            <Evidence shots={shots} ill={ill} onSeek={seek} zones={zones && !custom ? S.zonesFound : null} />
-          </div>
-
-          </div>
-          <div className="grid grid-cols-[460px_minmax(0,1fr)] items-start gap-4 max-[1360px]:grid-cols-[420px_minmax(0,1fr)]">
-              <Baseline S={S} items={items} tab={tab} onTab={setTab} onSeek={seek} onTaxonomy={() => setTaxOpen(true)}
-              onItem={(id) => { select(id); requestAnimationFrame(() => document.querySelector(`[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" })) }} />
-            <JsonPanel result={result} labels={labels} file={S.file} />
-          </div>
-          </div>
-          <div className="flex min-w-0 flex-col gap-4">
-            <Card><CardContent className="space-y-4">
-              <Verdict v={v} r={r} g={g} dur={S.dur} src={S.src} onReview={reviewFirst} />
+        <main className="mx-auto flex max-w-[1440px] flex-col gap-5 px-6 py-5 max-[1360px]:gap-4 max-[1360px]:px-4 max-[1360px]:py-4" key={scKey}>
+          <VerdictBanner v={v} r={r} g={g} dur={S.dur} src={S.src} file={custom?.name ?? S.file}
+            session={S.sessions.length ? S.sessions.map((x) => SESSION_BY_KEY[x.type].label).join(" → ") : "не определена"}
+            comp={comp} onFirstViolation={firstViolation} onReview={reviewFirst} />
+          <div className="grid grid-cols-[260px_minmax(0,1fr)_440px] items-start gap-5 max-[1360px]:grid-cols-[236px_minmax(0,1fr)_408px] max-[1360px]:gap-4">
+            <div className="sticky top-20 flex min-w-0 flex-col gap-4">
+              <VideoPlayer ref={vref} ph={ph} playing={playing} customSrc={custom?.url ?? null}
+                fileInfo={custom ? { name: custom.name, line: `${(custom.size / 1048576).toFixed(1)} МБ · открыт локально` } : { name: "sample.mov", line: "H.264 · 464×848 (портрет) · 30 к/с · 17,07 с" }}
+                onToggle={() => { const el = vref.current; if (el) { if (el.paused) void el.play(); else el.pause() } }}
+                onPick={() => fileInput.current?.click()}
+                zones={zones} onZones={setZones} zonesFound={S.zonesFound}
+                onTime={(t) => { if (!playing) setPh(t) }} onPlaying={setPlaying}
+                onMeta={() => { const el = vref.current; if (el && pending.current != null) { el.currentTime = pending.current; pending.current = null } }} />
+              <input ref={fileInput} type="file" accept=".mp4,.mov,video/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) openFile(f); e.target.value = "" }} />
+            </div>
+            <div className="flex min-w-0 flex-col gap-5 max-[1360px]:gap-4">
+              <Timeline S={S} items={items} sel={sel} ph={ph} onSelect={select} onSeek={seek} />
               <Findings items={items} gaps={S.gaps} sel={sel} onSelect={select} />
-            </CardContent></Card>
-            <Detail S={S} item={selItem} gap={selGap} onGoto={seek} onStatus={setStatus} onStep={gotoStep} />
-
+            </div>
+            <div className="min-w-0">
+              <Detail S={S} item={selItem} gap={selGap} onGoto={seek} onStatus={setStatus} onStep={gotoStep} shots={shots} ill={ill} zones={zones && !custom ? S.zonesFound : null} />
+            </div>
           </div>
-
+          <MoreDetails tab={more} onTab={setMore} comp={comp} json={
+            <JsonPanel result={result} labels={labels} file={S.file} />
+          } baseline={
+            <Baseline S={S} items={items} tab={tab} onTab={setTab} onSeek={seek} onTaxonomy={() => setTaxOpen(true)}
+              onItem={(id) => { select(id); requestAnimationFrame(() => document.querySelector(`[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" })) }} />
+          } onTaxonomy={() => setTaxOpen(true)} />
         </main>
       )}
       <Taxonomy open={taxOpen} onOpen={setTaxOpen} items={items} />

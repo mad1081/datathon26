@@ -27,7 +27,7 @@ export function Baseline({ S, items, tab, onTab, onItem, onSeek, onTaxonomy }: P
     <Card className="gap-0 py-0" data-testid="baseline">
       <div className="flex items-center gap-2 px-4 pt-3">
         <ListChecks className="size-4 text-primary" />
-        <span className="text-sm font-semibold">Эталон процедуры</span>
+        <span className="text-[17px] font-semibold">Эталон процедуры</span>
         <span className="text-[11px] text-muted-foreground">Правила №231</span>
         <Button variant="ghost" size="sm" className="ml-auto h-7 gap-1 px-2 text-[12px]" onClick={onTaxonomy} data-testid="open-taxonomy"><BookOpen className="size-3.5" />Типы нарушений</Button>
       </div>
@@ -52,14 +52,14 @@ export function Baseline({ S, items, tab, onTab, onItem, onSeek, onTaxonomy }: P
       </div>
 
       {/* сегментированный выбор типа сессии */}
-      <div className="mx-4 mt-2 grid grid-cols-3 gap-0.5 rounded-lg bg-muted p-0.5" role="tablist">
+      <div className="mx-4 mt-3 flex flex-wrap gap-2" role="tablist">
         {SESSIONS.map((s) => {
           const on = tab === s.key, det = detected.includes(s.key)
           return (
             <button key={s.key} role="tab" aria-selected={on} data-testid={"tab-" + s.key} data-detected={det} onClick={() => onTab(s.key)} title={s.hint}
-              className={cn("relative flex items-center justify-center gap-1 rounded-md px-1.5 py-1 text-[11.5px] transition",
-                on ? "bg-card font-semibold shadow-sm" : "text-muted-foreground hover:text-foreground", det && !on && "text-foreground")}>
-              {det && <span className="size-1.5 rounded-full bg-primary" />}{s.label}
+              className={cn("relative flex h-9 items-center justify-center gap-1.5 rounded-lg border px-3 text-[13.5px] font-medium transition-colors ease-forte",
+                on ? "border-transparent bg-primary text-primary-foreground" : det ? "border-primary text-primary hover:bg-accent dark:border-white/40 dark:text-foreground" : "border-hairline text-muted-foreground hover:bg-accent")}>
+              {det && <span className={cn("size-2 rounded-full", on ? "bg-sky" : "bg-brand")} />}{s.label}{det && <span className={cn("text-[10.5px] font-normal", on ? "text-white/75" : "text-muted-foreground")}>определено</span>}
             </button>
           )
         })}

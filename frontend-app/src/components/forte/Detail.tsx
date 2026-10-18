@@ -1,43 +1,39 @@
-import { Check, X, ExternalLink, Eye, ShieldAlert, ShieldCheck, ShieldQuestion, CircleSlash, Quote } from "lucide-react"
+import { Check, X, ExternalLink, Eye, EyeOff, ShieldCheck, ShieldQuestion, Quote, Play, ArrowRight, Images, CircleCheck } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
-import { ZONE_BY_KEY, fmt, isViolation, type Gap, type Item, type Scenario } from "@/lib/data"
+import { ZONE_BY_KEY, TONE, fmt, tone, type Gap, type Item, type Scenario, type ZoneKey } from "@/lib/data"
 import { BASELINE, CATEGORIES, SESSIONS, STEPS, STRENGTH, OUTSIDE_VERDICT, typeOf, type SessionKey } from "@/lib/baseline"
-import { RULE_ACTS, type RuleCite } from "@/lib/rules"
-import { TypeBadge } from "./Clause"
+import { RULE_ACTS, isCiteVerified, type RuleCite } from "@/lib/rules"
+import { FrameStrip, type Shot } from "./Evidence"
+import { ToneMark } from "./Timeline"
 
-/* статус привязки к норме — по мотивам «Failing» в compliance-обзорах */
-function normStatus(it: Item) {
-  if (it.status === "rejected") return { label: "отклонено оператором", cls: "bg-muted text-muted-foreground", Icon: CircleSlash }
-  if (it.status === "confirmed") return { label: "нарушение подтверждено", cls: "bg-destructive text-white border-transparent", Icon: ShieldAlert }
-  if (isViolation(it)) return { label: "признаки нарушения", cls: "bg-danger-bg text-destructive border-destructive/30", Icon: ShieldAlert }
-  return { label: "требует проверки", cls: "bg-warning-bg text-warning border-warning-border", Icon: ShieldQuestion }
-}
-
-function RuleCiteBlock({ c, it }: { c: RuleCite; it: Item }) {
+/* источник нормы: ссылка на adilet.zan.kz с якорем + бейдж «сверено» (якорь и цитата найдены в локальной копии) / «не сверено» */
+function RuleCiteBlock({ c }: { c: RuleCite }) {
   const a = RULE_ACTS[c.act]
-  const st = normStatus(it)
+  const ok = isCiteVerified(c.url)
+  const anchor = c.url.split("#")[1]
   return (
-    <div className="rounded-lg border bg-card p-3" data-testid="cite">
+    <div className="rounded-xl border bg-card p-3.5" data-testid="cite" data-verified={ok}>
       <div className="flex items-start gap-2">
         <div className="min-w-0 flex-1">
-          <a href={c.url} target="_blank" rel="noopener" className="group inline-flex items-center gap-1 text-[12.5px] font-semibold hover:text-primary">
-            {a?.short ?? c.act}, {c.clause}<ExternalLink className="size-3 opacity-60 group-hover:opacity-100" />
-          </a>
-          <div className="text-[11px] text-muted-foreground">{a?.number}</div>
+          <div className="text-[13.5px] font-semibold leading-snug">{a?.short ?? c.act}, {c.clause}</div>
+          <div className="text-[11.5px] text-muted-foreground">{a?.number}</div>
         </div>
-        <Badge variant="outline" className={cn("shrink-0 gap-1 rounded-full text-[10.5px]", st.cls)}><st.Icon className="size-3" />{st.label}</Badge>
+        {ok ? (
+          <span className="flex shrink-0 items-center gap-1 rounded-full bg-success-bg px-2 py-0.5 text-[11px] font-medium text-success" data-testid="cite-verified"><ShieldCheck className="size-3.5" />сверено</span>
+        ) : (
+          <span className="flex shrink-0 items-center gap-1 rounded-full border border-dashed border-warning-border bg-warning-bg px-2 py-0.5 text-[11px] font-medium text-warning" data-testid="unverified"><ShieldQuestion className="size-3.5" />не сверено</span>
+        )}
       </div>
-      <div className="mt-2 flex gap-2 text-[12.5px] italic leading-relaxed">
-        <Quote className="mt-0.5 size-3.5 shrink-0 text-primary" /><span>{c.quote}</span>
+      <div className="mt-2 flex gap-2 border-l-2 border-brand/40 pl-2.5 text-[13px] italic leading-relaxed">
+        <Quote className="mt-0.5 size-3.5 shrink-0 text-brand" /><span>{c.quote}</span>
       </div>
-      <Badge variant="outline" className="mt-2 gap-1 rounded-full border-success/30 bg-success-bg text-[10.5px] text-success">
-        <ShieldCheck className="size-3" />из research/rules.json · {c.url.split("#")[1] ? "#" + c.url.split("#")[1] : "без якоря"}
-      </Badge>
+      <a href={c.url} target="_blank" rel="noopener" className="mt-2.5 inline-flex items-center gap-1 text-[12.5px] font-medium text-[#185AC5] hover:underline dark:text-sky" data-testid="adilet-link">
+        adilet.zan.kz{anchor ? <code className="font-mono text-[11.5px]">#{anchor}</code> : " (без якоря)"}<ExternalLink className="size-3" />
+      </a>
     </div>
   )
 }
@@ -49,27 +45,37 @@ type Props = {
   onGoto: (t: number) => void
   onStatus: (id: string, s: "confirmed" | "rejected") => void
   onStep: (sk: SessionKey, step: string) => void
+  shots: Shot[]
+  ill: boolean
+  zones: ZoneKey[] | null
 }
 
-export function Detail({ S, item, gap, onGoto, onStatus, onStep }: Props) {
+export function Detail({ S, item, gap, onGoto, onStatus, onStep, shots, ill, zones }: Props) {
   if (gap) return (
-    <Card><CardContent className="space-y-3">
-      <div className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground">не проанализировано</div>
-      <div className="text-xl font-bold leading-tight">Отрезок {fmt(gap.a)}–{fmt(gap.b)}</div>
-      <p className="text-[13.5px]">Модель не смотрела этот кусок: {gap.why}. Нарушение внутри него не исключено — просмотрите видео вручную. В ответе API отрезок лежит в <code className="font-mono text-xs">unanalyzed_ranges</code>.</p>
+    <Card data-testid="detail"><CardContent className="space-y-3">
+      <div className={cn("text-[12px] font-semibold uppercase tracking-[0.12em]", TONE.manual.text)}>не проанализировано · проверить вручную</div>
+      <h2 className="text-[22px] font-bold leading-tight">Отрезок {fmt(gap.a)}–{fmt(gap.b)}</h2>
+      <FrameStrip shots={shots} ill={ill} zones={null} onSeek={onGoto} accent="var(--amber)" />
+      <p className="text-[13.5px] leading-relaxed">Модель не смотрела этот кусок: {gap.why}. Нарушение внутри него не исключено — просмотрите видео вручную. В ответе API отрезок лежит в <code className="font-mono text-xs">unanalyzed_ranges</code>.</p>
       <Badge variant="outline" className="rounded-full border-warning-border bg-warning-bg text-warning">Вердикт по этому отрезку не выносится</Badge>
     </CardContent></Card>
   )
   if (!item) return (
-    <Card><CardContent className="space-y-2">
-      <div className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground">итог</div>
-      <div className="text-xl font-bold">Нарушений не обнаружено</div>
-      <ul className="divide-y text-[13px]">
-        {[`Проанализировано 100% видео (${fmt(S.dur)})`, "Нарушений выше порога правил: 0", "Моментов ниже порога и от VLM: 0", "Непроанализированных отрезков: 0"].map((t) => (
-          <li key={t} className="flex items-center gap-2 py-1.5"><Check className="size-4 text-success" />{t}</li>
+    <Card data-testid="detail"><CardContent className="space-y-3">
+      <div className="flex items-center gap-3">
+        <div className="grid size-11 place-items-center rounded-full bg-success-bg text-success"><CircleCheck className="size-6" /></div>
+        <div><div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-slate">итог</div><h2 className="text-[20px] font-bold">Нарушений не обнаружено</h2></div>
+      </div>
+      <ul className="divide-y rounded-xl bg-muted px-3 text-[13px]">
+        {[`Проанализировано 100% видео (${fmt(S.dur)})`, "Нарушений выше порога правил: 0", "Моментов для ручной проверки: 0", "Непроанализированных отрезков: 0"].map((t) => (
+          <li key={t} className="flex items-center gap-2 py-2"><Check className="size-4 text-success" />{t}</li>
         ))}
       </ul>
-      <p className="text-[12.5px] text-muted-foreground">Пороги правил — из rules.json (0,60–0,85). В центре — кадры-выборка из видео.</p>
+      {shots.length > 0 && <>
+        <div className="flex items-center gap-1.5 text-[12.5px] font-medium text-muted-foreground"><Images className="size-4" />Кадры-выборка из видео</div>
+        <FrameStrip shots={shots} ill={ill} zones={zones} onSeek={onGoto} accent="var(--success)" />
+      </>}
+      <p className="text-[12px] text-muted-foreground">Пороги правил — из rules.json (0,60–0,85).</p>
     </CardContent></Card>
   )
   const it = item
@@ -80,31 +86,42 @@ export function Detail({ S, item, gap, onGoto, onStatus, onStep }: Props) {
   const stepN = sk && step ? BASELINE[sk].indexOf(step) + 1 : 0
   const cOn = it.status === "confirmed", rOn = it.status === "rejected"
   const win = it.iv[0] !== it.tc || it.iv[1] !== it.tc ? ` (окно ${fmt(it.iv[0])}–${fmt(it.iv[1])})` : ""
+  const tn = tone(it), TN = TONE[tn]
   return (
-    <Card data-testid="detail"><CardContent className="space-y-3">
+    <Card data-testid="detail" className="gap-0 py-0"><div className="h-1.5" style={{ background: TN.color }} />
+    <CardContent className="space-y-3.5 py-5">
       <div>
-        <div className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground">{kick}</div>
-        <div className="mt-1 text-xl font-bold leading-tight" data-testid="detail-type">{T.name_ru}</div>
-        <div className="mt-0.5 text-[12.5px] text-muted-foreground">{it.title} · <code className="font-mono text-[11px]">type_id: {it.tid}</code></div>
-        <button className="mt-1 text-[12.5px] text-primary hover:underline" onClick={() => onGoto(it.tc)}>Перейти к {fmt(it.tc)}{win}</button>
-        <div className="mt-2 flex flex-wrap items-center gap-1.5" data-testid="type-row">
-          <TypeBadge tid={it.tid} compact />
-          <span className="flex items-center gap-1 rounded-full border px-1.5 py-px text-[10.5px]" style={{ borderColor: cat.color + "66", color: cat.color }}><i className="size-1.5 rounded-full" style={{ background: cat.color }} />{cat.label}</span>
-          <span className={cn("rounded-full px-1.5 py-px text-[10.5px]", STRENGTH[T.strength].cls)}>{STRENGTH[T.strength].label}</span>
-          {!T.count_in_verdict && <span className="rounded-full bg-warning-bg px-1.5 py-px text-[10.5px] text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT}</span>}
-          <span className="font-mono text-[10.5px] text-muted-foreground">порог {T.threshold}</span>
-        </div>
-        {sk && step ? (
-          <button onClick={() => onStep(sk, step)} data-testid="goto-step"
-            className="mt-2 flex w-full items-start gap-2 rounded-lg border border-dashed px-2.5 py-1.5 text-left text-[12px] hover:border-primary hover:bg-accent/50">
-            <span className="min-w-0 flex-1"><span className="block text-[10.5px] uppercase tracking-[0.06em] text-muted-foreground">отклонение от эталона</span><b>{SESSIONS.find((x) => x.key === sk)!.label}</b> · шаг {stepN} «{STEPS[step].title}»</span>
-            <span className="shrink-0 text-primary">→</span>
+        <div className="flex items-center gap-2">
+          <ToneMark it={it} size={18} />
+          <span className={cn("text-[12px] font-semibold uppercase tracking-[0.12em]", TN.text)} data-testid="detail-tone">{TN.label}</span>
+          <button onClick={() => onGoto(it.tc)} data-testid="detail-tc"
+            className="ml-auto flex h-8 items-center gap-1.5 rounded-full border px-3 font-mono text-[12.5px] font-medium tabular text-primary transition hover:bg-accent dark:text-foreground">
+            <Play className="size-3.5 fill-current" />{fmt(it.tc)}
           </button>
-        ) : (
-          <div className="mt-2 rounded-lg border border-dashed px-2.5 py-1.5 text-[12px] text-muted-foreground" data-testid="goto-step">вне эталона — тип не привязан к шагу процедуры</div>
-        )}
+        </div>
+        <h2 className="mt-2 text-[22px] font-bold leading-[1.2] tracking-[-0.01em]" data-testid="detail-type">{T.name_ru}</h2>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11.5px]" data-testid="type-row">
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[11.5px]" data-type-id={it.tid}>type_id: {it.tid}</code>
+          <span className="flex items-center gap-1 rounded-full border px-2 py-0.5" style={{ borderColor: cat.color + "66", color: cat.color }}><i className="size-1.5 rounded-full" style={{ background: cat.color }} />{cat.label}</span>
+          <span className={cn("rounded-full px-2 py-0.5", STRENGTH[T.strength].cls)}>{STRENGTH[T.strength].label}</span>
+          <span className="font-mono text-muted-foreground">порог {T.threshold} · {it.zoneMissing ? "зона не найдена" : Math.round(it.conf * 100) + "%" + (it.demoConf ? " демо" : "")}</span>
+        </div>
+        <div className="mt-1 text-[12.5px] text-muted-foreground">{kick} · {it.title}{win}</div>
+        {!T.count_in_verdict && <div className="mt-2 rounded-lg bg-warning-bg px-3 py-2 text-[12.5px] font-medium text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT} — по rules.json (count_in_verdict: false)</div>}
       </div>
+
+      <FrameStrip shots={shots} ill={ill} zones={zones} onSeek={onGoto} accent={TN.color} />
+
       <p className="text-[13.5px] leading-relaxed">{it.desc}{it.demoConf && <span className="text-muted-foreground"> Уверенность {Math.round(it.conf * 100)}% — демо-значение.</span>}</p>
+      {sk && step ? (
+        <button onClick={() => onStep(sk, step)} data-testid="goto-step"
+          className="flex w-full items-center gap-2 rounded-xl border px-3 py-2 text-left text-[12.5px] transition hover:border-primary/50 hover:bg-accent">
+          <span className="min-w-0 flex-1"><span className="block text-[11px] uppercase tracking-[0.08em] text-muted-foreground">отклонение от эталона</span><b>{SESSIONS.find((x) => x.key === sk)!.label}</b> · шаг {stepN} «{STEPS[step].title}»</span>
+          <ArrowRight className="size-4 shrink-0 text-primary dark:text-foreground" />
+        </button>
+      ) : (
+        <div className="rounded-xl border border-dashed px-3 py-2 text-[12.5px] text-muted-foreground" data-testid="goto-step">вне эталона — тип не привязан к шагу процедуры</div>
+      )}
       {it.zoneMissing && (
         <Alert className="border-warning-border bg-warning-bg text-warning" data-testid="zone-missing">
           <ShieldQuestion />
@@ -118,25 +135,24 @@ export function Detail({ S, item, gap, onGoto, onStatus, onStep }: Props) {
         </Alert>
       )}
 
-      <div className="space-y-2.5 rounded-xl bg-muted/70 p-3">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Норма</div>
-        {T.citations.length ? T.citations.map((c, k) => <RuleCiteBlock key={k} c={c} it={it} />) : (
+      <div className="space-y-2.5 rounded-2xl bg-muted p-3">
+        <div className="flex items-center justify-between text-[12px] font-semibold uppercase tracking-[0.12em] text-slate"><span>Источник нормы</span><span className="font-normal normal-case tracking-normal">rules.json v0.4</span></div>
+        {T.citations.length ? T.citations.map((c, k) => <RuleCiteBlock key={k} c={c} />) : (
           <div className="rounded-lg border bg-card p-3" data-testid="derived">
             <Badge variant="outline" className="rounded-full border-destructive/30 bg-danger-bg text-destructive">нормы нет — по rules.json</Badge>
             <p className="mt-2 text-[12px] text-muted-foreground">Цитата не выводится. Номер пункта не подставляется наугад.</p>
           </div>
         )}
         {T.note && <div className="rounded-md border border-warning-border/60 bg-warning-bg/60 px-2.5 py-1.5 text-[11.5px] leading-snug text-warning" data-testid="caveat"><b>rules.json:</b> {T.note}</div>}
-        <Separator />
-        <div className="grid grid-cols-2 gap-3">
-          <div><div className="text-[12.5px] font-semibold">Визуальный признак</div><p className="mt-0.5 text-[12px] text-muted-foreground">{it.visual}</p></div>
-          <div><div className="text-[12.5px] font-semibold">Нельзя утверждать по видео</div><p className="mt-0.5 text-[12px] text-muted-foreground">{it.cannot}</p></div>
-        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2.5">
+        <div className="rounded-xl border p-3"><div className="flex items-center gap-1.5 text-[12.5px] font-semibold"><Eye className="size-3.5 text-sky" />Визуальный признак</div><p className="mt-1 text-[12px] leading-relaxed text-muted-foreground">{it.visual}</p></div>
+        <div className="rounded-xl border border-dashed border-warning-border p-3" data-testid="cannot"><div className="flex items-center gap-1.5 text-[12.5px] font-semibold"><EyeOff className="size-3.5 text-amber" />Что нельзя утверждать по видео</div><p className="mt-1 text-[12px] leading-relaxed text-muted-foreground">{it.cannot}</p></div>
       </div>
 
       <div className="grid grid-cols-2 gap-2.5">
-        <Button variant={cOn ? "default" : "outline"} className={cn("h-10", !cOn && "border-primary/60 text-primary hover:text-primary")} onClick={() => onStatus(it.id, "confirmed")} data-testid="confirm"><Check />{cOn ? "Подтверждено" : "Подтвердить"}</Button>
-        <Button variant={rOn ? "secondary" : "ghost"} className="h-10" onClick={() => onStatus(it.id, "rejected")} data-testid="reject"><X />{rOn ? "Отклонено" : "Отклонить"}</Button>
+        <Button size="lg" variant={cOn ? "default" : "outline"} className={cn(!cOn && "border-primary text-primary hover:text-primary dark:border-white/30 dark:text-foreground")} onClick={() => onStatus(it.id, "confirmed")} data-testid="confirm"><Check />{cOn ? "Подтверждено" : "Подтвердить"}</Button>
+        <Button size="lg" variant={rOn ? "secondary" : "outline"} onClick={() => onStatus(it.id, "rejected")} data-testid="reject"><X />{rOn ? "Отклонено" : "Отклонить"}</Button>
       </div>
       <p className="text-center text-[11.5px] text-muted-foreground">{cOn || rOn ? "Нажмите ещё раз, чтобы вернуть «на проверке»" : "Решение оператора попадёт в JSON и в разметку"}</p>
     </CardContent></Card>

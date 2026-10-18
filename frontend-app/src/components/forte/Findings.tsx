@@ -1,87 +1,94 @@
 import { useState } from "react"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Badge } from "@/components/ui/badge"
+import { SearchCheck } from "lucide-react"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { CATEGORIES, STRENGTH, OUTSIDE_VERDICT, typeOf, type CatKey } from "@/lib/baseline"
-import { IMG, fmt, type Gap, type Item, type Status } from "@/lib/data"
+import { IMG, TONE, fmt, tone, type Gap, type Item, type Status } from "@/lib/data"
+import { ToneMark } from "./Timeline"
 
 export const STATUS: Record<Status, { label: string; cls: string }> = {
   pending: { label: "на проверке", cls: "bg-muted text-muted-foreground" },
-  confirmed: { label: "подтверждено", cls: "bg-plum text-white dark:bg-primary" },
+  confirmed: { label: "подтверждено", cls: "bg-primary text-primary-foreground" },
   rejected: { label: "отклонено", cls: "bg-muted text-muted-foreground line-through" },
 }
 
 function meta(it: Item) {
   const p = [it.iv[1] - it.iv[0] > 10 ? `${fmt(it.iv[0])}–${fmt(it.iv[1])}` : fmt(it.tc), (it.zoneMissing ? "зона не найдена" : Math.round(it.conf * 100) + "%" + (it.demoConf ? " (демо)" : "")), it.source === "vlm" ? "VLM" : "правило"]
   if (it.omission) p.push("бездействие")
-  if (it.kind === "observation") p.push(it.source === "vlm" ? "ниже порога" : !typeOf(it.tid).citations.length ? "нормы нет" : it.rule ? "ниже порога" : "вручную")
   return p.join(" · ")
 }
 
+/* filter-chip по бренд-буку: белая «таблетка» с hairline, активная — заливка вином */
 export function Findings({ items, gaps, sel, onSelect }: { items: Item[]; gaps: Gap[]; sel: string | null; onSelect: (id: string) => void }) {
   const [cat, setCat] = useState<CatKey | "all">("all")
   const conf = items.filter((x) => x.status === "confirmed").length
   const rej = items.filter((x) => x.status === "rejected").length
   const cats = (Object.keys(CATEGORIES) as CatKey[]).map((k) => ({ k, n: items.filter((x) => typeOf(x.tid).cat === k).length })).filter((c) => c.n > 0)
-  const shown = cat === "all" ? items : items.filter((x) => typeOf(x.tid).cat === cat)
+  const shown = (cat === "all" ? items : items.filter((x) => typeOf(x.tid).cat === cat)).slice().sort((a, b) => (tone(a) === "verdict" ? 0 : 1) - (tone(b) === "verdict" ? 0 : 1) || a.tc - b.tc)
+  const chip = (on: boolean) => cn("flex h-8 items-center gap-1.5 rounded-full border px-3 text-[12.5px] font-medium transition-colors ease-forte",
+    on ? "border-primary bg-primary text-primary-foreground" : "border-hairline bg-card text-wine-deep hover:bg-accent")
   return (
-    <div>
-      <div className="mb-2 flex items-baseline gap-2">
-        <span className="text-[16px] font-bold" data-testid="found">Найдено: {items.length}</span>
-        <span className="text-xs text-muted-foreground">подтверждено {conf}{rej ? ` · отклонено ${rej}` : ""}</span>
+    <Card className="gap-3 py-4" data-testid="findings-card">
+      <div className="flex items-baseline gap-2 px-5">
+        <h2 className="text-[17px] font-semibold" data-testid="found">Находки: {items.length + gaps.length}</h2>
+        <span className="text-[12.5px] text-muted-foreground">подтверждено {conf}{rej ? ` · отклонено ${rej}` : ""}</span>
       </div>
-      {cats.length > 0 && (
-        <div className="mb-2 flex flex-wrap gap-1" data-testid="cat-filter">
-          <button onClick={() => setCat("all")} className={cn("rounded-full border px-2 py-0.5 text-[11px]", cat === "all" ? "border-foreground bg-foreground text-background" : "hover:bg-muted")}>все {items.length}</button>
-          {cats.map(({ k, n }) => {
-            const c = CATEGORIES[k], on = cat === k
-            return (
-              <button key={k} data-cat={k} onClick={() => setCat(on ? "all" : k)}
-                className={cn("flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] transition", !on && "hover:bg-muted")}
-                style={on ? { background: c.color, borderColor: c.color, color: "#fff" } : { borderColor: c.color + "66" }}>
-                <i className="size-2 rounded-full" style={{ background: on ? "#fff" : c.color }} />{c.label} <span className="opacity-70">{n}</span>
-              </button>
-            )
-          })}
+      {cats.length > 1 && (
+        <div className="flex flex-wrap gap-2 px-5" data-testid="cat-filter">
+          <button onClick={() => setCat("all")} className={chip(cat === "all")}>Все <span className="opacity-70">{items.length}</span></button>
+          {cats.map(({ k, n }) => (
+            <button key={k} data-cat={k} onClick={() => setCat(cat === k ? "all" : k)} className={chip(cat === k)}>
+              <i className="size-2 rounded-full" style={{ background: cat === k ? "#fff" : CATEGORIES[k].color }} />{CATEGORIES[k].label} <span className="opacity-70">{n}</span>
+            </button>
+          ))}
         </div>
       )}
       {!items.length && !gaps.length ? (
-        <div className="rounded-lg bg-muted p-3.5 text-[13px] text-muted-foreground">Ничего не найдено. Видео проанализировано целиком, моментов для ручной проверки нет.</div>
+        <div className="mx-5 flex items-center gap-3 rounded-xl bg-success-bg p-4" data-testid="empty-findings">
+          <div className="grid size-10 place-items-center rounded-full bg-card text-success"><SearchCheck className="size-5" /></div>
+          <div className="text-[13.5px]"><div className="font-semibold text-success">Ничего не найдено</div><div className="text-muted-foreground">Видео проанализировано целиком, моментов для ручной проверки нет.</div></div>
+        </div>
       ) : (
-        <ScrollArea className="max-h-[330px] pr-2 [&>[data-slot=scroll-area-viewport]]:max-h-[330px] [&>[data-slot=scroll-area-viewport]>div]:!block">
-          <div className="flex flex-col gap-1.5" data-testid="findings">
-            {shown.map((it) => {
-              const t = typeOf(it.tid)
-              return (
-                <button key={it.id} data-id={it.id} data-cat={t.cat} onClick={() => onSelect(it.id)}
-                  className={cn("flex items-center gap-2.5 rounded-lg border border-transparent bg-muted/70 p-1.5 pr-2.5 text-left transition hover:bg-muted",
-                    sel === it.id && "border-primary bg-card shadow-sm")}>
-                  <span className="relative shrink-0">
-                    <img src={IMG(it.frames[it.mi ?? 1].t)} alt="" className="h-[52px] w-[30px] rounded object-cover" />
-                    <span className="absolute inset-y-1 -left-1 w-1 rounded-full" style={{ background: it.color }} />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className={cn("line-clamp-2 text-[13px] font-semibold leading-snug", it.status === "rejected" && "line-through opacity-60")} title={it.title}>{t.name_ru}</span>
-                    <span className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-muted-foreground"><code className="font-mono text-[10px]" style={{ color: it.color }} data-type-id={it.tid}>{it.tid}</code> · {meta(it)}{!t.count_in_verdict && <span className="ml-1 rounded bg-warning-bg px-1 text-[9.5px] text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT}</span>}{(t.strength === "weak" || t.strength === "none") && <span className={cn("ml-1 rounded px-1 text-[9.5px]", STRENGTH[t.strength].cls)}>{STRENGTH[t.strength].label}</span>}</span>
-                  </span>
-                  <Badge className={cn("shrink-0 rounded-full text-[10.5px]", STATUS[it.status].cls)}>{STATUS[it.status].label}</Badge>
-                </button>
-              )
-            })}
-            {cat === "all" && gaps.map((g, i) => (
-              <button key={"gap" + i} data-id={"gap" + i} onClick={() => onSelect("gap" + i)}
-                className={cn("flex items-center gap-2.5 rounded-lg border border-transparent bg-muted/70 p-1.5 pr-2.5 text-left hover:bg-muted", sel === "gap" + i && "border-primary bg-card shadow-sm")}>
-                <span className="hatch h-[52px] w-[30px] shrink-0 rounded" />
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[13.5px] font-semibold">Не проанализировано</span>
-                  <span className="block text-[11.5px] text-muted-foreground">{fmt(g.a)}–{fmt(g.b)} · {(g.b - g.a).toFixed(1)} с</span>
+        <div className="flex max-h-[420px] flex-col gap-1.5 overflow-y-auto px-3" data-testid="findings">
+          {shown.map((it) => {
+            const t = typeOf(it.tid), tn = tone(it)
+            return (
+              <button key={it.id} data-id={it.id} data-cat={t.cat} data-tone={tn} onClick={() => onSelect(it.id)}
+                className={cn("group flex items-center gap-3 rounded-xl border p-2 pr-3 text-left transition ease-forte",
+                  sel === it.id ? "border-sky bg-card shadow-sm ring-1 ring-sky" : "border-transparent hover:bg-muted")}>
+                <span className="relative shrink-0">
+                  <img src={IMG(it.frames[it.mi ?? 1].t)} alt="" className="h-[56px] w-[32px] rounded-md object-cover" />
+                  <span className="absolute -bottom-1 -right-1.5"><ToneMark it={it} size={16} /></span>
                 </span>
-                <Badge variant="outline" className="shrink-0 rounded-full text-[10.5px]">смотреть вручную</Badge>
+                <span className="min-w-0 flex-1">
+                  <span className={cn("line-clamp-2 text-[13.5px] font-semibold leading-snug", tn === "rejected" && "line-through opacity-60")} title={it.title}>{t.name_ru}</span>
+                  <span className="mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11.5px] text-muted-foreground">
+                    <code className="font-mono text-[10.5px]" data-type-id={it.tid}>{it.tid}</code>
+                    <span>·</span><span className="font-mono tabular">{meta(it)}</span>
+                  </span>
+                  <span className="mt-1 flex flex-wrap gap-1">
+                    <span className={cn("rounded-full px-1.5 py-px text-[10.5px] font-medium", TONE[tn].bg, TONE[tn].text)} data-testid="tone-badge">{TONE[tn].label}</span>
+                    {!t.count_in_verdict && <span className="rounded-full bg-warning-bg px-1.5 py-px text-[10.5px] text-warning ring-1 ring-warning-border" data-testid="outside-verdict">{OUTSIDE_VERDICT}</span>}
+                    {(t.strength === "weak" || t.strength === "none") && <span className={cn("rounded-full px-1.5 py-px text-[10.5px]", STRENGTH[t.strength].cls)}>{STRENGTH[t.strength].label}</span>}
+                    {it.status !== "pending" && <span className={cn("rounded-full px-1.5 py-px text-[10.5px]", STATUS[it.status].cls)}>{STATUS[it.status].label}</span>}
+                  </span>
+                </span>
               </button>
-            ))}
-          </div>
-        </ScrollArea>
+            )
+          })}
+          {cat === "all" && gaps.map((g, i) => (
+            <button key={"gap" + i} data-id={"gap" + i} onClick={() => onSelect("gap" + i)}
+              className={cn("flex items-center gap-3 rounded-xl border p-2 pr-3 text-left transition", sel === "gap" + i ? "border-sky bg-card ring-1 ring-sky" : "border-transparent hover:bg-muted")}>
+              <span className="hatch h-[56px] w-[32px] shrink-0 rounded-md" />
+              <span className="min-w-0 flex-1">
+                <span className="block text-[13.5px] font-semibold">Не проанализировано</span>
+                <span className="block font-mono text-[11.5px] text-muted-foreground">{fmt(g.a)}–{fmt(g.b)} · {(g.b - g.a).toFixed(1)} с</span>
+                <span className={cn("mt-1 inline-block rounded-full px-1.5 py-px text-[10.5px] font-medium", TONE.manual.bg, TONE.manual.text)}>смотреть вручную</span>
+              </span>
+            </button>
+          ))}
+        </div>
       )}
-    </div>
+    </Card>
   )
 }

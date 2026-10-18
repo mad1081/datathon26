@@ -1,13 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/open-sans";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    --font-sans: 'Open Sans Variable', 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -43,90 +43,122 @@
     --color-success: var(--success);
     --color-success-bg: var(--success-bg);
     --color-warning: var(--warning);
+    --color-amber: var(--amber);
     --color-warning-bg: var(--warning-bg);
     --color-warning-border: var(--warning-border);
     --color-danger-bg: var(--danger-bg);
     --color-track: var(--track);
     --color-chip: var(--chip);
     --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-2xl: 24px;
+    --radius-3xl: 30px;
+    --radius-4xl: 40px;
+    --color-brand: var(--brand);
+    --color-brand-pink: var(--brand-pink);
+    --color-sky: var(--sky);
+    --color-coral: var(--coral);
+    --color-wine-deep: var(--wine-deep);
+    --color-slate: var(--slate);
+    --color-surface-gray: var(--surface-gray);
+    --color-hairline: var(--hairline);
 }
 
 :root {
-    /* LIGHT (по умолчанию): спокойная композиция для проверяющего банка, акцент Forte */
-    --background: #F5F4F6;
-    --foreground: #1D1A22;
-    --card: #FFFFFF;
-    --card-foreground: #1D1A22;
+    /* LIGHT — Forte design system (review/forte_design.md): wine-on-white, Open Sans, hairlines, sky-blue focus */
+    --background: #F7F6F6;          /* surface-soft */
+    --foreground: #1D1D1D;          /* ink */
+    --card: #FFFFFF;                /* canvas */
+    --card-foreground: #1D1D1D;
     --popover: #FFFFFF;
-    --popover-foreground: #1D1A22;
-    --primary: #9B1B4A;
+    --popover-foreground: #1D1D1D;
+    --primary: #4A0221;             /* Dark Magenta — CTA, display type */
     --primary-foreground: #FFFFFF;
-    --secondary: #F1EEF2;
-    --secondary-foreground: #2A0A1A;
-    --muted: #F1EFF3;
-    --muted-foreground: #6E6A78;
-    --accent: #F6E8EE;
-    --accent-foreground: #4A0E26;
-    --destructive: #B3123E;
-    --border: #E6E2E8;
-    --input: #E6E2E8;
-    --ring: #C78AA2;
+    --wine-deep: #270111;           /* primary-deep */
+    --brand: #A31551;               /* Forte Magenta — logo, active nav */
+    --brand-pink: #F03785;
+    --sky: #61CFFF;                 /* focus / progress */
+    --coral: #FC9385;
+    --slate: #69758B;
+    --surface-gray: #EDEDED;
+    --hairline: #D5D5D5;
+    --secondary: #F1F2F3;           /* surface-panel */
+    --secondary-foreground: #270111;
+    --muted: #F1F2F3;
+    --muted-foreground: #6C6C6C;    /* body-muted */
+    --accent: #FBEAF1;              /* магента 8% на белом */
+    --accent-foreground: #4A0221;
+    --destructive: #C8104F;         /* засчитанное нарушение — магента/малиновый, читаемый на белом */
+    --border: #EAEBEF;              /* hairline-soft */
+    --input: #D5D5D5;               /* hairline */
+    --ring: #61CFFF;
     --radius: 0.75rem;
-    --plum: #2A0A1A;
-    --success: #1F8A5B;
-    --success-bg: #E7F4ED;
-    --warning: #8A5A00;
-    --warning-bg: #FFF4D6;
-    --warning-border: #EBC86A;
-    --danger-bg: #FBE8EE;
-    --track: #EEEBF0;
-    --chip: #6E2A4B;
+    --plum: #4A0221;
+    --success: #1C7C55;             /* чисто */
+    --success-bg: #E6F4EE;
+    --warning: #7A5200;             /* ручная проверка — текст */
+    --amber: #E3A81C;               /* ручная проверка — маркер (mustard #F0C54F, темнее для контраста) */
+    --warning-bg: #FFF6DC;
+    --warning-border: #F0C54F;      /* market-mustard */
+    --danger-bg: #FCE8EF;
+    --track: #F1F2F3;
+    --chip: #4A0221;
     --glass: #FFFFFF;
-    --chart-1: #9B1B4A; --chart-2: #3BA3D9; --chart-3: #E0A100; --chart-4: #1F8A5B; --chart-5: #5B6478;
-    --sidebar: #FFFFFF; --sidebar-foreground: #1D1A22; --sidebar-primary: #9B1B4A; --sidebar-primary-foreground: #fff;
-    --sidebar-accent: #F6E8EE; --sidebar-accent-foreground: #4A0E26; --sidebar-border: #E6E2E8; --sidebar-ring: #C78AA2;
+    --chart-1: #A31551; --chart-2: #61CFFF; --chart-3: #F0C54F; --chart-4: #1C7C55; --chart-5: #69758B;
+    --sidebar: #FFFFFF; --sidebar-foreground: #1D1D1D; --sidebar-primary: #4A0221; --sidebar-primary-foreground: #fff;
+    --sidebar-accent: #FBEAF1; --sidebar-accent-foreground: #4A0221; --sidebar-border: #EAEBEF; --sidebar-ring: #61CFFF;
+    --grad-hero: linear-gradient(115deg, #4A0221 0%, #B8335F 55%, #FC9385 100%);
+    --grad-primary: linear-gradient(90deg, #4A0221, #FC9385);
+    --grad-secondary: linear-gradient(90deg, #A31551, #F03785);
 }
 
 .dark {
-    /* DARK: по мотивам тёмной панели видеонаблюдения — графит, стеклянные панели, плотный таймлайн */
-    --background: #0C1016;
-    --foreground: #E7E9EE;
-    --card: rgba(22, 27, 36, 0.78);
-    --card-foreground: #E7E9EE;
-    --popover: #161B24;
-    --popover-foreground: #E7E9EE;
-    --primary: #E0457B;
+    /* DARK — производная от палитры: винные чернила (#270111) вместо чёрного, акценты pink/sky */
+    --background: #12070C;
+    --foreground: #F2ECEF;
+    --card: #1C0F15;
+    --card-foreground: #F2ECEF;
+    --popover: #22131A;
+    --popover-foreground: #F2ECEF;
+    --primary: #F03785;             /* на тёмном фоне действие — brand-pink */
     --primary-foreground: #FFFFFF;
-    --secondary: #1E2430;
-    --secondary-foreground: #E7E9EE;
-    --muted: #1A202B;
-    --muted-foreground: #8C94A6;
-    --accent: #2A1A24;
-    --accent-foreground: #F4B6CB;
-    --destructive: #F0557F;
-    --border: rgba(255, 255, 255, 0.08);
-    --input: rgba(255, 255, 255, 0.12);
-    --ring: #E0457B;
-    --plum: #0C1016;
-    --success: #3DD68C;
-    --success-bg: rgba(61, 214, 140, 0.10);
-    --warning: #F5C451;
-    --warning-bg: rgba(245, 196, 81, 0.10);
-    --warning-border: rgba(245, 196, 81, 0.35);
-    --danger-bg: rgba(240, 85, 127, 0.12);
+    --wine-deep: #F7C5D8;
+    --brand: #F03785;
+    --brand-pink: #F03785;
+    --sky: #61CFFF;
+    --coral: #FC9385;
+    --slate: #9AA3B5;
+    --surface-gray: #2A1820;
+    --hairline: rgba(255,255,255,.16);
+    --secondary: #26161D;
+    --secondary-foreground: #F2ECEF;
+    --muted: #24151C;
+    --muted-foreground: #A99BA2;
+    --accent: #3A1526;
+    --accent-foreground: #FFD0E2;
+    --destructive: #FF5A8E;
+    --border: rgba(255, 255, 255, 0.09);
+    --input: rgba(255, 255, 255, 0.16);
+    --ring: #61CFFF;
+    --plum: #12070C;
+    --success: #4CD69A;
+    --success-bg: rgba(76, 214, 154, 0.12);
+    --warning: #F7CF63;
+    --amber: #F0C54F;
+    --warning-bg: rgba(240, 197, 79, 0.12);
+    --warning-border: rgba(240, 197, 79, 0.42);
+    --danger-bg: rgba(255, 90, 142, 0.13);
     --track: rgba(255, 255, 255, 0.05);
-    --chip: #3A4255;
-    --glass: rgba(22, 27, 36, 0.78);
-    --chart-1: #E0457B; --chart-2: #4FB7EA; --chart-3: #F5C451; --chart-4: #3DD68C; --chart-5: #8C94A6;
-    --sidebar: #11161E; --sidebar-foreground: #E7E9EE; --sidebar-primary: #E0457B; --sidebar-primary-foreground: #fff;
-    --sidebar-accent: #1E2430; --sidebar-accent-foreground: #E7E9EE; --sidebar-border: rgba(255,255,255,.08); --sidebar-ring: #E0457B;
+    --chip: #3A2430;
+    --glass: #1C0F15;
+    --chart-1: #F03785; --chart-2: #61CFFF; --chart-3: #F0C54F; --chart-4: #4CD69A; --chart-5: #9AA3B5;
+    --sidebar: #1C0F15; --sidebar-foreground: #F2ECEF; --sidebar-primary: #F03785; --sidebar-primary-foreground: #fff;
+    --sidebar-accent: #26161D; --sidebar-accent-foreground: #F2ECEF; --sidebar-border: rgba(255,255,255,.09); --sidebar-ring: #61CFFF;
+    --grad-hero: linear-gradient(115deg, #4A0221 0%, #A31551 55%, #FC9385 120%);
 }
 
 @layer base {
@@ -141,20 +173,23 @@
     }
 }
 
-/* фон тёмной темы: сетка и свечение, как на референсе диспетчерской */
-.dark body {
-  background-color: var(--background);
-  background-image:
-    radial-gradient(1200px 600px at 70% -10%, rgba(224, 69, 123, 0.10), transparent 60%),
-    radial-gradient(900px 500px at 0% 100%, rgba(79, 183, 234, 0.08), transparent 60%),
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: auto, auto, 32px 32px, 32px 32px;
-  background-attachment: fixed;
-}
-.dark [data-slot="card"] { backdrop-filter: blur(14px); box-shadow: 0 10px 30px -12px rgba(0,0,0,.6); }
+.dark body { background-color: var(--background); background-image: radial-gradient(1100px 520px at 80% -10%, rgba(163,21,81,.22), transparent 60%), radial-gradient(900px 500px at 0% 110%, rgba(97,207,255,.07), transparent 60%); background-attachment: fixed; }
+.dark [data-slot="card"] { box-shadow: 0 12px 32px -16px rgba(0,0,0,.7); }
 .hatch {
   background: repeating-linear-gradient(45deg, rgba(120,120,135,.30) 0 4px, rgba(120,120,135,.06) 4px 8px);
   border-left: 1px dashed rgba(130,130,145,.8); border-right: 1px dashed rgba(130,130,145,.8);
 }
 .tabular { font-variant-numeric: tabular-nums; }
+
+/* v8 polish */
+:root [data-slot="card"] { box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+/* типографика бренда: заголовки — вино, 600/700; движение — MUI 0.25s */
+h1, h2, .h-wine { color: var(--primary); }
+.dark h1, .dark h2, .dark .h-wine { color: var(--foreground); }
+.ease-forte { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.fade-in { animation: fadeIn .35s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+.shimmer { background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+@keyframes shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
+.brand-grad { background: radial-gradient(900px 260px at 0% 0%, rgba(155,27,74,.10), transparent 60%), radial-gradient(700px 240px at 100% 0%, rgba(224,69,123,.08), transparent 60%); }
+.dark .brand-grad { background: radial-gradient(900px 260px at 0% 0%, rgba(224,69,123,.14), transparent 60%); }

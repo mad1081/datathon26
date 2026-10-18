@@ -71,7 +71,7 @@ export type Scenario = {
 }
 
 export const TRACKS: { key: TrackKey; label: string }[] = [
-  { key: "client_at_window", label: "Клиент в помещении" },
+  { key: "client_at_window", label: "Клиент у окна" },
   { key: "cashier_at_desk", label: "Кассир за столом" },
   { key: "cash_location", label: "Где деньги" },
   { key: "counting", label: "Пересчёт" },
@@ -95,11 +95,11 @@ export const DUR = 17.07
 /* Зоны размечены вручную по кадру sample.mov (464×848), координаты нормированы 0..1.
    Только объекты и области — без лиц. */
 export const ZONES: Zone[] = [
-  { key: "safe", label: "сейф", short: "сейф", color: "#64748B",
+  { key: "safe", label: "сейф", short: "сейф", color: "#69758B",
     polygon: [[0.665, 0.44], [0.785, 0.424], [0.89, 0.452], [0.887, 0.556], [0.79, 0.585], [0.665, 0.552]] },
-  { key: "desk", label: "стол / рабочее место", short: "стол", color: "#D08A1E",
+  { key: "desk", label: "стол / рабочее место", short: "стол", color: "#E8705F",
     polygon: [[0.23, 0.487], [0.463, 0.462], [0.645, 0.505], [0.4, 0.565], [0.165, 0.632], [0.245, 0.575]] },
-  { key: "counter", label: "счётная машинка", short: "машинка", color: "#2F6FD6",
+  { key: "counter", label: "счётная машинка", short: "машинка", color: "#1E9BD7",
     polygon: [[0.075, 0.505], [0.215, 0.49], [0.245, 0.562], [0.105, 0.585]] },
   { key: "client", label: "сторона клиента", short: "клиент", color: "#1F8A5B",
     polygon: [[0.0, 0.33], [0.36, 0.355], [0.5, 0.395], [0.465, 0.46], [0.07, 0.5], [0.0, 0.5]] },
@@ -107,10 +107,10 @@ export const ZONES: Zone[] = [
 export const ZONE_BY_KEY = Object.fromEntries(ZONES.map((z) => [z.key, z])) as Record<ZoneKey, Zone>
 /* состояния дорожки «Где деньги»: цвета = цвета зон; «в руках» — акцент Forte */
 export const CASH_STATES: Record<CashState, { label: string; color: string; zone: ZoneKey | null }> = {
-  hands: { label: "в руках", color: "#9B1B4A", zone: null },
-  desk: { label: "на столе", color: "#D08A1E", zone: "desk" },
-  counter: { label: "в машинке", color: "#2F6FD6", zone: "counter" },
-  safe: { label: "в сейфе", color: "#64748B", zone: "safe" },
+  hands: { label: "в руках", color: "#A31551", zone: null },
+  desk: { label: "на столе", color: "#E8705F", zone: "desk" },
+  counter: { label: "в машинке", color: "#1E9BD7", zone: "counter" },
+  safe: { label: "в сейфе", color: "#69758B", zone: "safe" },
 }
 const f = (t: number, region: Region | null = null): Frame => ({ t, region })
 const empty = (): Record<TrackKey, Seg[]> => ({ client_at_window: [], cashier_at_desk: [], cash_location: [], counting: [], second_employee: [], phone: [], document_card: [] })
@@ -272,6 +272,15 @@ export function plural(n: number, a: string, b: string, c: string) {
 /* в вердикт — только типы с count_in_verdict: true (rules.json); подтверждение оператора не переводит «вне вердикта» в нарушение */
 export const isViolation = (it: Item) => it.status !== "rejected" && typeOf(it.tid).count_in_verdict && (it.kind === "violation" || it.status === "confirmed")
 export const needsReview = (it: Item) => !isViolation(it) && it.status === "pending"
+/* тон находки — один и тот же везде (таймлайн, список, карточка, эталон):
+   verdict — идёт в вердикт (красный/малиновый); manual — ручная проверка, в т.ч. count_in_verdict:false (янтарный); rejected — отклонено (серый) */
+export type Tone = "verdict" | "manual" | "rejected"
+export const tone = (it: Item): Tone => it.status === "rejected" ? "rejected" : isViolation(it) ? "verdict" : "manual"
+export const TONE: Record<Tone, { label: string; short: string; color: string; text: string; bg: string; ring: string }> = {
+  verdict: { label: "в вердикте", short: "нарушение", color: "var(--destructive)", text: "text-destructive", bg: "bg-danger-bg", ring: "ring-destructive/35" },
+  manual: { label: "проверить вручную", short: "вручную", color: "var(--amber)", text: "text-warning", bg: "bg-warning-bg", ring: "ring-warning-border" },
+  rejected: { label: "отклонено оператором", short: "отклонено", color: "var(--muted-foreground)", text: "text-muted-foreground", bg: "bg-muted", ring: "ring-border" },
+}
 export const OPS: Record<Status, string> = { pending: "pending", confirmed: "confirmed_by_operator", rejected: "rejected_by_operator" }
 
 const refObj = (c: RuleCite) => ({ doc: `${RULE_ACTS[c.act]?.short ?? c.act} — ${RULE_ACTS[c.act]?.number ?? ""}`.trim(), clause: c.clause, quote: c.quote, url: c.url })

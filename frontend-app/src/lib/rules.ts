@@ -501,3 +501,32 @@ export const RULES: Rule[] = [
  }
 ]
 export const RULE_BY_ID = Object.fromEntries(RULES.map((r) => [r.id, r])) as Record<string, Rule>
+
+/* Сверка цитат rules.json с локальными копиями adilet.zan.kz (datathon/src/*.html): якорь <p id="z…"> найден и текст цитаты совпадает.
+   Сгенерировано скриптом в iteration 8; false → в UI бейдж «не сверено». */
+export const CITE_VERIFIED: Record<string, boolean> = {
+ "https://adilet.zan.kz/rus/docs/V1900019680#z112": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z114": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z226": true,
+ "https://adilet.zan.kz/rus/docs/V2000020075#z49": true,
+ "https://adilet.zan.kz/rus/docs/V2000020075#z121": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z221": true,
+ "https://adilet.zan.kz/rus/docs/V2400034348#z80": true,
+ "https://adilet.zan.kz/rus/docs/V2000020075#z127": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z111": true,
+ "https://adilet.zan.kz/rus/docs/V1900018545#z1885": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z122": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z121": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z119": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z454": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z81": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z490": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z444": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z113": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z445": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z198": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z204": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z163": true,
+ "https://adilet.zan.kz/rus/docs/V1900019680#z531": true
+}
+export const isCiteVerified = (url: string) => CITE_VERIFIED[url] === true
