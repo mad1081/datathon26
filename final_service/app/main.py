@@ -6,6 +6,7 @@ import secrets
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, File, Header, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 
 from .config import settings
@@ -24,6 +25,9 @@ settings.ensure_dirs()
 store = JobStore(settings.data_dir)
 worker = Worker(store, lambda: Analyzer(settings), settings.workers)
 app = FastAPI(title="Cash discipline video analyzer", version="1.0.0")
+# the web UI may be hosted separately (static hosting); auth is the X-API-Key header, not cookies
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "OPTIONS"],
+                   allow_headers=["*"], allow_credentials=False)
 
 
 @app.on_event("startup")
