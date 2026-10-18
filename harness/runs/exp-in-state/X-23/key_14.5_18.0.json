@@ -1,0 +1,50 @@
+{
+ "check": "key",
+ "times": [
+  14.5,
+  18.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 14.5,
+     "key_in_lock": "not_visible"
+    },
+    {
+     "t": 18.0,
+     "key_in_lock": "not_visible"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 14.5,
+     "key_in_lock": "not_visible"
+    },
+    {
+     "t": 18.0,
+     "key_in_lock": "not_visible"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 14.5,
+     "key_in_lock": "no"
+    },
+    {
+     "t": 18.0,
+     "key_in_lock": "no"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.463,
+  2.807,
+  0.921
+ ]
+}

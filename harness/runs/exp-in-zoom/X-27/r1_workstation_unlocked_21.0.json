@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 18.0,
+ "evidence": "На кадрах видно, что кассир находится вне рабочего места (стоит у двери/сейфа), при этом ноутбук на столе оставлен открытым и разблокированным (экран включен, крышка не закрыта), что соответствует признакам нарушения.",
+ "latency_sec": 4.949,
+ "error": null,
+ "usage": {
+  "completion_tokens": 87,
+  "prompt_tokens": 17544,
+  "total_tokens": 17631,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 18.0,\n  \"evidence\": \"На кадрах видно, что кассир находится вне рабочего места (стоит у двери/сейфа), при этом ноутбук на столе оставлен открытым и разблокированным (экран включен, крышка не закрыта), что соответствует признакам нарушения.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 21.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

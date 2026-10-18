@@ -1,0 +1,167 @@
+{
+ "check": "where",
+ "times": [
+  28.5,
+  29.5,
+  30.5,
+  31.5,
+  32.5,
+  33.5,
+  34.5,
+  35.5,
+  36.5,
+  37.5,
+  38.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 28.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 29.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 30.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 31.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 32.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 33.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 34.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 35.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 36.5,
+     "cashier": "leaving"
+    },
+    {
+     "t": 37.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 38.5,
+     "cashier": "safe"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 28.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 29.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 30.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 31.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 32.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 33.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 34.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 35.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 36.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 37.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 38.5,
+     "cashier": "safe"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 28.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 29.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 30.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 31.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 32.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 33.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 34.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 35.5,
+     "cashier": "desk"
+    },
+    {
+     "t": 36.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 37.5,
+     "cashier": "safe"
+    },
+    {
+     "t": 38.5,
+     "cashier": "safe"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  5.472,
+  5.656,
+  5.12
+ ]
+}

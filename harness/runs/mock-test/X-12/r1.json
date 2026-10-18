@@ -1,0 +1,41 @@
+{
+ "video": "Х-12.mov",
+ "key": "X-12",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 43,
+ "frames_sec": 1.871,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 42.1, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"foreign_cash_on_desk\", \"timecode_sec\": 38.4, \"confidence\": 0.67, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 42.1,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "foreign_cash_on_desk",
+    "timecode_sec": 38.4,
+    "confidence": 0.67,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

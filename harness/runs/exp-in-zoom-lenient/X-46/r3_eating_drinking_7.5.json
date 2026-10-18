@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 10.5,
+ "evidence": "На кадрах видно, что кассир берет со стола стакан и подносит его ко рту, совершая глоток. На столе также присутствует еда (печенье).",
+ "latency_sec": 4.947,
+ "error": null,
+ "usage": {
+  "completion_tokens": 61,
+  "prompt_tokens": 19273,
+  "total_tokens": 19334,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 10.5, \"evidence\": \"На кадрах видно, что кассир берет со стола стакан и подносит его ко рту, совершая глоток. На столе также присутствует еда (печенье).\"}",
+ "cand": {
+  "type_id": "eating_drinking",
+  "timecode_sec": 7.5,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

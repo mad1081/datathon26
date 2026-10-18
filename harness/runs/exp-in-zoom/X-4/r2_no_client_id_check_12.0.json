@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах фрагмента (9.0–14.9 с) клиент подходит к столу, садится и передаёт кассиру документ (виден как белая карточка/бланк), который кассир принимает и начинает с ним работу. Клиент предъявляет документ, кассир его получает — признаков нарушения no_client_id_check нет.",
+ "latency_sec": 8.551,
+ "error": null,
+ "usage": {
+  "completion_tokens": 101,
+  "prompt_tokens": 17554,
+  "total_tokens": 17655,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах фрагмента (9.0–14.9 с) клиент подходит к столу, садится и передаёт кассиру документ (виден как белая карточка/бланк), который кассир принимает и начинает с ним работу. Клиент предъявляет документ, кассир его получает — признаков нарушения no_client_id_check нет.\"}",
+ "cand": {
+  "type_id": "no_client_id_check",
+  "timecode_sec": 12.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,63 @@
+{
+ "check": "idcard",
+ "times": [
+  0.0,
+  1.0,
+  3.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "no"
+    },
+    {
+     "t": 3.0,
+     "id_card": "yes"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "no"
+    },
+    {
+     "t": 3.0,
+     "id_card": "yes"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "no"
+    },
+    {
+     "t": 3.0,
+     "id_card": "yes"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  5.165,
+  1.158,
+  2.388
+ ]
+}

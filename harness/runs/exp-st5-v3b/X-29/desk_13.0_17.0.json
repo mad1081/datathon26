@@ -1,0 +1,96 @@
+{
+ "check": "desk",
+ "times": [
+  13.0,
+  17.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 13.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 17.0,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 13.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 17.0,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 13.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 17.0,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 13.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 17.0,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 13.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 17.0,
+     "items": [
+      "nothing"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.765,
+  0.948,
+  6.109,
+  9.759,
+  2.359
+ ]
+}

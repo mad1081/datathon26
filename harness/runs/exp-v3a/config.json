@@ -1,0 +1,11 @@
+{
+ "name": "exp-v3a",
+ "base_url": "https://h5kvpru25aaii3-8000.proxy.runpod.net/v1",
+ "model": "qwen36-35b-a3b",
+ "temperature": 0.6,
+ "fps": 1.0,
+ "max_frames": 250,
+ "max_side": 640,
+ "disable_thinking": true,
+ "max_tokens": 2500
+}

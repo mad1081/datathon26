@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах фрагмента (7.5–13.4 с) клиент кладёт на стол документ (паспорт), кассир его забирает и проверяет. Наличные деньги в этот момент не передаются, не принимаются и не убираются. Нарушение cash_accepted_without_count отсутствует, так как операция с наличными не производится.",
+ "latency_sec": 6.584,
+ "error": null,
+ "usage": {
+  "completion_tokens": 95,
+  "prompt_tokens": 17477,
+  "total_tokens": 17572,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах фрагмента (7.5–13.4 с) клиент кладёт на стол документ (паспорт), кассир его забирает и проверяет. Наличные деньги в этот момент не передаются, не принимаются и не убираются. Нарушение cash_accepted_without_count отсутствует, так как операция с наличными не производится.\"}",
+ "cand": {
+  "type_id": "cash_accepted_without_count",
+  "timecode_sec": 10.5,
+  "confidence": 0.4,
+  "observed": "",
+  "source": "sub"
+ }
+}

@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/mad1081/datathon26.git",
+  "ref": "origin/backend",
+  "commit": "fc1af4d3660b942c9aa27502cbcd2bec71fb116b",
+  "subdirectory": "service",
+  "exported_without_modifications": true
+}

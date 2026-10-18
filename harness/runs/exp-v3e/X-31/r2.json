@@ -1,0 +1,81 @@
+{
+ "video": "Х-31.mov",
+ "key": "X-31",
+ "repeat": 2,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 48,
+ "frames_sec": 0.283,
+ "latency_sec": 9.864,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 432,
+  "prompt_tokens": 16389,
+  "total_tokens": 16821,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"вход кассира на рабочее место и начало работы\",\n\"timeline\": [\n{\n\"t\": 0.0,\n\"event\": \"Рабочее место кассира пустое, дверь закрыта.\"\n},\n{\n\"t\": 2.5,\n\"event\": \"Кассир подходит к стеклянной двери кассового узла.\"\n},\n{\n\"t\": 7.0,\n\"event\": \"Кассир открывает дверь и входит в помещение.\"\n},\n{\n\"t\": 8.5,\n\"event\": \"Кассир закрывает за собой дверь кассы.\"\n},\n{\n\"t\": 11.6,\n\"event\": \"Кассир подходит к рабочему столу.\"\n},\n{\n\"t\": 13.1,\n\"event\": \"Кассир садится на рабочее место.\"\n},\n{\n\"t\": 17.1,\n\"event\": \"Кассир стоит и осматривает оборудование на столе (счётную машину).\"\n}\n],\n\"object_states\": [\n{\n\"object\": \"дверь\",\n\"t\": 8.5,\n\"state\": \"закрыта\"\n},\n{\n\"object\": \"ноутбук\",\n\"t\": 13.1,\n\"state\": \"крышка закрыта\"\n}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"не применимо\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"не применимо\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"не применимо\"\n},\n\"violations\": []\n}",
+ "parsed": {
+  "scenario": "вход кассира на рабочее место и начало работы",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Рабочее место кассира пустое, дверь закрыта."
+   },
+   {
+    "t": 2.5,
+    "event": "Кассир подходит к стеклянной двери кассового узла."
+   },
+   {
+    "t": 7.0,
+    "event": "Кассир открывает дверь и входит в помещение."
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир закрывает за собой дверь кассы."
+   },
+   {
+    "t": 11.6,
+    "event": "Кассир подходит к рабочему столу."
+   },
+   {
+    "t": 13.1,
+    "event": "Кассир садится на рабочее место."
+   },
+   {
+    "t": 17.1,
+    "event": "Кассир стоит и осматривает оборудование на столе (счётную машину)."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 8.5,
+    "state": "закрыта"
+   },
+   {
+    "object": "ноутбук",
+    "t": 13.1,
+    "state": "крышка закрыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "не применимо",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": []
+ }
+}

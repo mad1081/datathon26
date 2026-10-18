@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 10.5,
+ "evidence": "На кадрах видно, что кассир открывает дверь и выходит из помещения (начиная с t=10.5 с). На рабочем столе остаётся открытая зелёная инкассаторская сумка, которая не была убрана в закрытый ящик или сейф до ухода сотрудника.",
+ "latency_sec": 6.087,
+ "error": null,
+ "usage": {
+  "completion_tokens": 96,
+  "prompt_tokens": 17522,
+  "total_tokens": 17618,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 10.5,\n  \"evidence\": \"На кадрах видно, что кассир открывает дверь и выходит из помещения (начиная с t=10.5 с). На рабочем столе остаётся открытая зелёная инкассаторская сумка, которая не была убрана в закрытый ящик или сейф до ухода сотрудника.\"\n}",
+ "cand": {
+  "type_id": "cash_unattended",
+  "timecode_sec": 13.0,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

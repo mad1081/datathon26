@@ -1,0 +1,41 @@
+{
+ "video": "Х-17.mov",
+ "key": "X-17",
+ "repeat": 0,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 15,
+ "frames_sec": 1.162,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 14.0, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"other\", \"timecode_sec\": 3.5, \"confidence\": 0.85, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 14.0,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "other",
+    "timecode_sec": 3.5,
+    "confidence": 0.85,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

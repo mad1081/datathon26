@@ -1,0 +1,193 @@
+{
+  "scope": "CPU integration with local HTTP stub; no vLLM, model weights, GPU, or AWS",
+  "fixture": {
+    "colors": [
+      "red",
+      "green",
+      "blue"
+    ],
+    "frame_count": 72,
+    "dimensions": [
+      464,
+      848
+    ]
+  },
+  "smoke_transport": {
+    "model": "Qwen/Qwen3.5-9B",
+    "dry_run": false,
+    "checks": [
+      {
+        "mode": "images",
+        "status": "passed",
+        "seconds": 0.031,
+        "error": null
+      },
+      {
+        "mode": "video",
+        "status": "passed",
+        "seconds": 0.333,
+        "error": null
+      },
+      {
+        "mode": "mixed",
+        "status": "passed",
+        "seconds": 0.31,
+        "error": null
+      }
+    ],
+    "gpu_inference_verified": false,
+    "all_passed": true
+  },
+  "backend_health_auth_upload_job": "passed",
+  "backend_native_frame_dimensions": "preserved",
+  "wrong_color_and_truncation_rejected": true,
+  "requests": [
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "image_count": 2,
+      "video": null,
+      "image_dimensions": [
+        [
+          224,
+          224
+        ],
+        [
+          224,
+          224
+        ]
+      ],
+      "smoke": true,
+      "authorization_header_present": false
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "image_count": 0,
+      "video": {
+        "colors": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "frame_count": 72,
+        "dimensions": [
+          464,
+          848
+        ]
+      },
+      "image_dimensions": [],
+      "smoke": true,
+      "authorization_header_present": false
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "image_count": 2,
+      "video": {
+        "colors": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "frame_count": 72,
+        "dimensions": [
+          464,
+          848
+        ]
+      },
+      "image_dimensions": [
+        [
+          224,
+          224
+        ],
+        [
+          224,
+          224
+        ]
+      ],
+      "smoke": true,
+      "authorization_header_present": false
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "image_count": 8,
+      "video": null,
+      "image_dimensions": [
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ]
+      ],
+      "smoke": false,
+      "authorization_header_present": false
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "image_count": 8,
+      "video": null,
+      "image_dimensions": [
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ],
+        [
+          464,
+          848
+        ]
+      ],
+      "smoke": false,
+      "authorization_header_present": false
+    }
+  ],
+  "gpu_inference_verified": false
+}

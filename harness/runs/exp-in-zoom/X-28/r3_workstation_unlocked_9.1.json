@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 7.1,
+ "evidence": "Кассир встаёт из-за рабочего стола и покидает рабочее место. Ноутбук остаётся открытым, экран включён, блокировка экрана не активирована, крышка не закрыта.",
+ "latency_sec": 5.032,
+ "error": null,
+ "usage": {
+  "completion_tokens": 73,
+  "prompt_tokens": 17437,
+  "total_tokens": 17510,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 7.1,\n  \"evidence\": \"Кассир встаёт из-за рабочего стола и покидает рабочее место. Ноутбук остаётся открытым, экран включён, блокировка экрана не активирована, крышка не закрыта.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 9.1,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 15.5,
+ "evidence": "На кадрах видно, что кассир закрывает дверцу сейфа, поворачивается и уходит от сейфа. Ключ в замке не виден, кассир не отходит от сейфа с ключом внутри, нарушение отсутствует.",
+ "latency_sec": 4.539,
+ "error": null,
+ "usage": {
+  "completion_tokens": 85,
+  "prompt_tokens": 19414,
+  "total_tokens": 19499,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 15.5,\n  \"evidence\": \"На кадрах видно, что кассир закрывает дверцу сейфа, поворачивается и уходит от сейфа. Ключ в замке не виден, кассир не отходит от сейфа с ключом внутри, нарушение отсутствует.\"\n}",
+ "cand": {
+  "type_id": "safe_key_left",
+  "timecode_sec": 15.5,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "video": "Х-27.mov",
+ "key": "X-27",
+ "repeat": 4,
+ "model": "qwen3vl-30b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 53,
+ "frames_sec": 1.55,
+ "latency_sec": 19.597,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 1500,
+  "prompt_tokens": 16479,
+  "total_tokens": 17979,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Обслуживание клиента и уход из кассы\", \"timeline\": [{\"t\": 0.0, \"event\": \"Кассир сидит за столом, перед ней на столе лежат наличные деньги и счётная машина\"}, {\"t\": 0.5, \"event\": \"Кассир пересчитывает наличные на счётной машине\"}, {\"t\": 5.0, \"event\": \"Кассир заканчивает пересчёт, деньги лежат на столе\"}, {\"t\": 8.0, \"event\": \"Кассир встает из-за стола\"}, {\"t\": 9.0, \"event\": \"Кассир поворачивается к двери кассы\"}, {\"t\": 10.0, \"event\": \"Кассир подходит к двери, открывает её и выходит из кассы\"}, {\"t\": 11.0, \"event\": \"Кассир закрывает дверь кассы за собой\"}, {\"t\": 12.0, \"event\": \"Кассир уходит из кадра, дверь кассы закрыта\"}, {\"t\": 15.0, \"event\": \"На столе остаются наличные деньги, счётная машина, ноутбук и телефон\"}, {\"t\": 18.0, \"event\": \"Кассир выходит из кадра, оставив рабочее место без присмотра\"}, {\"t\": 20.0, \"event\": \"Кассир уходит из помещения, дверь кассы закрыта\"}, {\"t\": 25.0, \"event\": \"Рабочее место остаётся без присмотра, наличные и оборудование на столе\"}, {\"t\": 26.0, \"event\": \"Кассир не вернулся, рабочее место пусто, дверь кассы закрыта\"}, {\"t\": 26.1, \"event\": \"Наличные и оборудование остаются на столе без присмотра\"}], \"violations\": [{\"type_id\": \"cash_unattended\", \"timecode_sec\": 8.0, \"confidence\": 0.9, \"observed\": \"Кассир встает из-за стола, оставляя наличные деньги на рабочем месте без присмотра\"}, {\"type_id\": \"workstation_unlocked\", \"timecode_sec\": 8.0, \"confidence\": 0.9, \"observed\": \"Кассир уходит от рабочего места, ноутбук остаётся включённым и разблокированным, экран виден\"}, {\"type_id\": \"safe_left_open\", \"timecode_sec\": 8.0, \"confidence\": 0.1, \"observed\": \"Сейф не виден на кадрах, поэтому невозможно определить, открыт ли он\"}, {\"type_id\": \"door_left_open\", \"timecode_sec\": 11.0, \"confidence\": 0.1, \"observed\": \"Дверь кассы закрывается, не остаётся открытой\"}, {\"type_id\": \"foreigner_in_cash_room\", \"timecode_sec\": 8.0, \"confidence\": 0.1, \"observed\": \"В кассовом помещении нет посторонних лиц\"}, {\"type_id\": \"cash_out_of_view\", \"timecode_sec\": 8.0, \"confidence\": 0.1, \"observed\": \"Наличные не убираются под стол, операции с деньгами видны в кадре\"}, {\"type_id\": \"phone_or_personal_items\", \"timecode_sec\": 8.0, \"confidence\": 0.1, \"observed\": \"На рабочем месте нет личных вещей или смартфонов\"}, {\"type_id\": \"eating_drinking\", \"timecode_sec\": 8.0, \"confidence\": 0.1, \"observed\": \"Кассир не ест и не пьёт на рабочем месте\"}, {\"type_id\": \"no_client_id_check\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Клиент не виден на кадрах, невозможно определить, был ли проверен документ\"}, {\"type_id\": \"counting_without_client\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Клиент не виден, невозможно определить, был ли пересчёт в присутствии клиента\"}, {\"type_id\": \"issue_without_count\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет выдачи наличных, невозможно определить, был ли пересчёт\"}, {\"type_id\": \"collector_bag_no_check\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет инкассаторской сумки, невозможно определить, была ли проверка\"}, {\"type_id\": \"cash_within_client_reach\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Клиент не виден, невозможно определить, находятся ли деньги в зоне досягаемости\"}, {\"type_id\": \"suspicious_note_returned\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет сомнительных банкнот, невозможно определить, возвращались ли они\"}, {\"type_id\": \"safe_key_left\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Ключ не виден, невозможно определить, оставлен ли он в замке\"}, {\"type_id\": \"counting_without_controller\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет второго работника, невозможно определить, был ли контролёр\"}, {\"type_id\": \"foreign_cash_on_desk\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет следующего клиента, невозможно определить, были ли деньги предыдущего клиента на столе\"}, {\"type_id\": \"cash_accepted_without_count\", \"timecode_sec\": 0.0, \"confidence\": 0.1, \"observed\": \"Нет приёма наличных от клиента, невозможно определить, был ли пересчёт\"}, {\"type_id\": \"safe_opened_with_client\", \"timecode_sec\": 0.0, \"confidence\": ",
+ "parsed": null
+}

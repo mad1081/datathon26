@@ -1,0 +1,13 @@
+{
+ "name": "video-qwen3vl-8b-v3b",
+ "base_url": "https://d0mx4snoqxqofo-8000.proxy.runpod.net/v1",
+ "model": "qwen3vl-8b",
+ "input": "video_url",
+ "temperature": 0.6,
+ "max_tokens": 2500,
+ "fps_short": 2.0,
+ "fps_long": 1.0,
+ "max_side": 640,
+ "prompt_module": "video_mode(prompt_v3b)",
+ "mov": false
+}

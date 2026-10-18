@@ -1,0 +1,41 @@
+{
+ "video": "Х-44.mov",
+ "key": "X-44",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 21,
+ "frames_sec": 1.105,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 20.0, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"suspicious_note_returned\", \"timecode_sec\": 4.2, \"confidence\": 0.94, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 20.0,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "suspicious_note_returned",
+    "timecode_sec": 4.2,
+    "confidence": 0.94,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

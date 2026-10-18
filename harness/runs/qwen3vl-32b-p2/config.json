@@ -1,0 +1,11 @@
+{
+ "name": "qwen3vl-32b-p2",
+ "base_url": "https://p5xws73os7jdsd-8000.proxy.runpod.net/v1",
+ "model": "qwen3vl-32b",
+ "temperature": 0.6,
+ "fps": 1.0,
+ "max_frames": 250,
+ "max_side": 640,
+ "disable_thinking": false,
+ "max_tokens": 2500
+}

@@ -1,0 +1,86 @@
+{
+ "video": "Х-33.mov",
+ "key": "X-33",
+ "repeat": 4,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 29,
+ "frames_sec": 0.168,
+ "latency_sec": 5.88,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 418,
+  "prompt_tokens": 12019,
+  "total_tokens": 12437,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"Вход кассира на рабочее место\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассовое помещение пустое, дверь закрыта, на столе ноутбук.\"},\n{\"t\": 1.0, \"event\": \"За стеклянной дверью появляется женщина (кассир).\"},\n{\"t\": 4.5, \"event\": \"Кассир открывает дверь и входит в помещение.\"},\n{\"t\": 7.0, \"event\": \"Кассир закрывает за собой дверь и подходит к столу.\"},\n{\"t\": 9.0, \"event\": \"Кассир садится на рабочее место.\"},\n{\"t\": 10.5, \"event\": \"Кассир начинает работу за столом (руки на клавиатуре/мыши).\"},\n{\"t\": 11.0, \"event\": \"За дверью проходит мужчина (второй работник), не входя в помещение.\"}\n],\n\"object_states\": [\n{\"object\": \"дверь\", \"t\": 0.0, \"state\": \"закрыта\"},\n{\"object\": \"дверь\", \"t\": 4.5, \"state\": \"открыта\"},\n{\"object\": \"дверь\", \"t\": 7.5, \"state\": \"закрыта\"}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"не применимо\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"не применимо\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"не применимо\"\n},\n\"violations\": []\n}",
+ "parsed": {
+  "scenario": "Вход кассира на рабочее место",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассовое помещение пустое, дверь закрыта, на столе ноутбук."
+   },
+   {
+    "t": 1.0,
+    "event": "За стеклянной дверью появляется женщина (кассир)."
+   },
+   {
+    "t": 4.5,
+    "event": "Кассир открывает дверь и входит в помещение."
+   },
+   {
+    "t": 7.0,
+    "event": "Кассир закрывает за собой дверь и подходит к столу."
+   },
+   {
+    "t": 9.0,
+    "event": "Кассир садится на рабочее место."
+   },
+   {
+    "t": 10.5,
+    "event": "Кассир начинает работу за столом (руки на клавиатуре/мыши)."
+   },
+   {
+    "t": 11.0,
+    "event": "За дверью проходит мужчина (второй работник), не входя в помещение."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 0.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "дверь",
+    "t": 4.5,
+    "state": "открыта"
+   },
+   {
+    "object": "дверь",
+    "t": 7.5,
+    "state": "закрыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "не применимо",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": []
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 7.5,
+ "evidence": "Кассир стоит спиной к рабочему месту и выходит из помещения через стеклянную дверь. На столе остается открытый ноутбук с включенным экраном, крышка не закрыта, экран блокировки отсутствует.",
+ "latency_sec": 7.197,
+ "error": null,
+ "usage": {
+  "completion_tokens": 67,
+  "prompt_tokens": 17854,
+  "total_tokens": 17921,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 7.5, \"evidence\": \"Кассир стоит спиной к рабочему месту и выходит из помещения через стеклянную дверь. На столе остается открытый ноутбук с включенным экраном, крышка не закрыта, экран блокировки отсутствует.\"}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 10.5,
+  "confidence": 0.8,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 3.0,
+ "evidence": "На кадрах видно, как мужчина в белой рубашке открывает стеклянную дверь и входит в кассовое помещение, проходя за рабочую зону кассира, что является нарушением (постороннее лицо в кассовом помещении).",
+ "latency_sec": 3.935,
+ "error": null,
+ "usage": {
+  "completion_tokens": 75,
+  "prompt_tokens": 15722,
+  "total_tokens": 15797,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 40,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 3.0, \"evidence\": \"На кадрах видно, как мужчина в белой рубашке открывает стеклянную дверь и входит в кассовое помещение, проходя за рабочую зону кассира, что является нарушением (постороннее лицо в кассовом помещении).\"}",
+ "cand": {
+  "type_id": "outsider_in_cash_room",
+  "timecode_sec": 3.0,
+  "confidence": 0.85,
+  "observed": "",
+  "source": "kept"
+ }
+}

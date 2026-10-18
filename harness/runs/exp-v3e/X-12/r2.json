@@ -1,0 +1,116 @@
+{
+ "video": "Х-12.mov",
+ "key": "X-12",
+ "repeat": 2,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 85,
+ "frames_sec": 0.484,
+ "latency_sec": 23.773,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 764,
+  "prompt_tokens": 24899,
+  "total_tokens": 25663,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Уход кассира с рабочего места\",\n  \"timeline\": [\n    {\n      \"t\": 0.0,\n      \"event\": \"Кассир сидит за рабочим столом и работает в ноутбуке.\"\n    },\n    {\n      \"t\": 11.0,\n      \"event\": \"Кассир закрывает крышку ноутбука.\"\n    },\n    {\n      \"t\": 18.0,\n      \"event\": \"Кассир встаёт со стула.\"\n    },\n    {\n      \"t\": 23.0,\n      \"event\": \"Кассир открывает стеклянную дверь кассы.\"\n    },\n    {\n      \"t\": 26.0,\n      \"event\": \"Кассир подходит к сейфу и открывает его дверцу.\"\n    },\n    {\n      \"t\": 32.0,\n      \"event\": \"Кассир закрывает дверцу сейфа.\"\n    },\n    {\n      \"t\": 33.0,\n      \"event\": \"Кассир поворачивается к выходу.\"\n    },\n    {\n      \"t\": 37.0,\n      \"event\": \"Кассир выходит из помещения кассы.\"\n    },\n    {\n      \"t\": 42.0,\n      \"event\": \"Помещение кассы пустое, дверь закрыта.\"\n    }\n  ],\n  \"object_states\": [\n    {\n      \"object\": \"дверь\",\n      \"t\": 23.0,\n      \"state\": \"открыта\"\n    },\n    {\n      \"object\": \"дверь\",\n      \"t\": 42.0,\n      \"state\": \"закрыта\"\n    },\n    {\n      \"object\": \"сейф\",\n      \"t\": 32.0,\n      \"state\": \"закрыта плотно\"\n    },\n    {\n      \"object\": \"ключ в замке сейфа\",\n      \"t\": 37.0,\n      \"state\": \"да\"\n    },\n    {\n      \"object\": \"наличные на столе\",\n      \"t\": 37.0,\n      \"state\": \"нет\"\n    },\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 11.0,\n      \"state\": \"крышка закрыта\"\n    }\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"не применимо\",\n    \"part_of_notes_returned_to_client\": \"не применимо\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"отсутствуют\",\n    \"at_departure_key_in_safe_lock\": \"да\",\n    \"at_departure_safe_door\": \"закрыта плотно\",\n    \"at_departure_laptop_screen\": \"крышка закрыта\"\n  },\n  \"violations\": [\n    {\n      \"type_id\": \"safe_key_left\",\n      \"timecode_sec\": 37.0,\n      \"confidence\": 1.0,\n      \"obs\": \"Кассир покидает помещение кассы, оставляя ключ в замке сейфа.\"\n    }\n  ]\n}",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за рабочим столом и работает в ноутбуке."
+   },
+   {
+    "t": 11.0,
+    "event": "Кассир закрывает крышку ноутбука."
+   },
+   {
+    "t": 18.0,
+    "event": "Кассир встаёт со стула."
+   },
+   {
+    "t": 23.0,
+    "event": "Кассир открывает стеклянную дверь кассы."
+   },
+   {
+    "t": 26.0,
+    "event": "Кассир подходит к сейфу и открывает его дверцу."
+   },
+   {
+    "t": 32.0,
+    "event": "Кассир закрывает дверцу сейфа."
+   },
+   {
+    "t": 33.0,
+    "event": "Кассир поворачивается к выходу."
+   },
+   {
+    "t": 37.0,
+    "event": "Кассир выходит из помещения кассы."
+   },
+   {
+    "t": 42.0,
+    "event": "Помещение кассы пустое, дверь закрыта."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 23.0,
+    "state": "открыта"
+   },
+   {
+    "object": "дверь",
+    "t": 42.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "сейф",
+    "t": 32.0,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "ключ в замке сейфа",
+    "t": 37.0,
+    "state": "да"
+   },
+   {
+    "object": "наличные на столе",
+    "t": 37.0,
+    "state": "нет"
+   },
+   {
+    "object": "ноутбук",
+    "t": 11.0,
+    "state": "крышка закрыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "отсутствуют",
+   "at_departure_key_in_safe_lock": "да",
+   "at_departure_safe_door": "закрыта плотно",
+   "at_departure_laptop_screen": "крышка закрыта"
+  },
+  "violations": [
+   {
+    "type_id": "safe_key_left",
+    "timecode_sec": 37.0,
+    "confidence": 1.0,
+    "obs": "Кассир покидает помещение кассы, оставляя ключ в замке сейфа."
+   }
+  ]
+ }
+}

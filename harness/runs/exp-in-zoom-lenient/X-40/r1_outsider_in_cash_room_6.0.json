@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно, что постороннее лицо (клиентка) находится за стеклянной дверью и не входит в кассовое помещение. Она открывает дверь, но остается в коридоре, не пересекая границу кассовой зоны. Нарушения нет.",
+ "latency_sec": 4.886,
+ "error": null,
+ "usage": {
+  "completion_tokens": 86,
+  "prompt_tokens": 19327,
+  "total_tokens": 19413,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 0.0,\n  \"evidence\": \"На кадрах видно, что постороннее лицо (клиентка) находится за стеклянной дверью и не входит в кассовое помещение. Она открывает дверь, но остается в коридоре, не пересекая границу кассовой зоны. Нарушения нет.\"\n}",
+ "cand": {
+  "type_id": "outsider_in_cash_room",
+  "timecode_sec": 6.0,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

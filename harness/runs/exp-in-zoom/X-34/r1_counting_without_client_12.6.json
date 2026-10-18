@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 12.6,
+ "evidence": "На кадрах видно, что кассир начинает пересчёт наличных с помощью счётной машины (кладёт деньги в аппарат) в момент, когда клиент уже встал и покидает рабочее место (уходит за дверь). Пересчёт происходит после ухода клиента.",
+ "latency_sec": 5.274,
+ "error": null,
+ "usage": {
+  "completion_tokens": 86,
+  "prompt_tokens": 17502,
+  "total_tokens": 17588,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 12.6,\n  \"evidence\": \"На кадрах видно, что кассир начинает пересчёт наличных с помощью счётной машины (кладёт деньги в аппарат) в момент, когда клиент уже встал и покидает рабочее место (уходит за дверь). Пересчёт происходит после ухода клиента.\"\n}",
+ "cand": {
+  "type_id": "counting_without_client",
+  "timecode_sec": 12.6,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

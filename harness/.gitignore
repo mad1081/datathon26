@@ -1,4 +1,5 @@
-runs/
+runs/judge/
+runs/_video_cache/
 __pycache__/
 .vlm_key
 .env.cloud

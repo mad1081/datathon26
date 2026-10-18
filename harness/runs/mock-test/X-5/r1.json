@@ -1,0 +1,41 @@
+{
+ "video": "Х-5.mov",
+ "key": "X-5",
+ "repeat": 1,
+ "model": "default",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 150,
+  "max_side": 768,
+  "temperature": 0.0,
+  "disable_thinking": false
+ },
+ "n_frames": 72,
+ "frames_sec": 2.954,
+ "latency_sec": 0.0,
+ "attempts": 1,
+ "error": null,
+ "usage": null,
+ "raw_text": "```json\n{\"scenario\": \"тестовый сценарий\", \"timeline\": [{\"t\": 0.0, \"event\": \"начало\"}, {\"t\": 71.1, \"event\": \"конец\"}], \"violations\": [{\"type_id\": \"cash_unattended\", \"timecode_sec\": 31.4, \"confidence\": 0.87, \"observed\": \"тестовое наблюдение\"}]}\n```",
+ "parsed": {
+  "scenario": "тестовый сценарий",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "начало"
+   },
+   {
+    "t": 71.1,
+    "event": "конец"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "cash_unattended",
+    "timecode_sec": 31.4,
+    "confidence": 0.87,
+    "observed": "тестовое наблюдение"
+   }
+  ]
+ }
+}

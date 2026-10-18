@@ -1,0 +1,152 @@
+110 state requests x 3 votes
+  X-3 door (8.5, 19.5) -> ['closed', 'closed'] DROP/none 4.4s (8s)
+  X-4 door (56.0, 72.5) -> ['closed', 'closed'] DROP/none 4.0s (8s)
+  X-1 key (17.0, 25.5) -> ['no', 'no'] DROP/none 4.8s (8s)
+  X-1 laptop (3.0, 7.0, 25.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 4.9s (8s)
+  X-10 key (15.5, 15.5) -> ['not_visible', 'not_visible'] DROP/none 1.2s (12s)
+  X-8 laptop (34.5, 37.5, 37.5) -> ['dark', 'dark', 'not_visible'] DROP/none 2.1s (12s)
+  X-11 key (18.0, 25.5) -> ['no', 'no'] DROP/none 1.4s (13s)
+  X-11 key (19.5, 25.5) -> ['no', 'no'] DROP/none 1.4s (13s)
+  X-11 key (19.0, 25.5) -> ['no', 'no'] DROP/none 1.8s (17s)
+  X-11 laptop (14.0, 18.0, 25.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.6s (18s)
+  X-11 laptop (15.5, 19.5, 25.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 3.1s (18s)
+  X-11 laptop (12.0, 16.0, 25.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.5s (18s)
+  X-12 key (35.0, 42.0) -> ['no', 'no'] DROP/none 1.7s (21s)
+  X-13 key (38.5, 65.0) -> ['no', 'no'] DROP/none 2.0s (24s)
+  X-12 key (35.5, 42.0) -> ['not_visible', 'not_visible'] DROP/none 1.9s (24s)
+  X-12 key (34.5, 42.0) -> ['not_visible', 'not_visible'] DROP/none 2.0s (24s)
+  X-13 key (58.0, 65.0) -> ['no', 'no'] DROP/none 2.1s (26s)
+  X-13 key (62.0, 65.0) -> ['no', 'no'] DROP/none 1.9s (30s)
+  X-13 key (60.0, 65.0) -> ['not_visible', 'not_visible'] DROP/none 1.5s (31s)
+  X-13 laptop (59.0, 63.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 2.4s (31s)
+  X-13 laptop (57.0, 61.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 2.4s (31s)
+  X-15 key (11.5, 20.5) -> ['no', 'no'] DROP/none 1.5s (36s)
+  X-15 key (17.0, 20.5) -> ['no', 'no'] DROP/none 1.6s (36s)
+  X-15 laptop (15.0, 19.0, 20.5) -> ['dark', 'dark', 'dark'] DROP/none 1.6s (36s)
+  X-15 laptop (14.0, 18.0, 20.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.6s (37s)
+  X-17 door (14.5, 14.5) -> ['closed', 'not_visible'] DROP/none 1.1s (39s)
+  X-15 key (19.0, 20.5) -> ['not_visible', 'not_visible'] DROP/none 1.4s (39s)
+  X-18 door (9.0, 22.5) -> ['closed', 'closed'] DROP/none 1.0s (40s)
+  X-15 laptop (15.5, 19.5, 20.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 1.8s (41s)
+  X-18 door (22.5, 22.5) -> ['closed', 'not_visible'] DROP/none 1.0s (42s)
+  X-22 key (19.5, 20.5) -> ['no', 'no'] DROP/none 1.3s (44s)
+  X-22 key (18.0, 20.5) -> ['not_visible', 'not_visible'] DROP/none 1.9s (46s)
+  X-22 key (13.5, 20.5) -> ['no', 'no'] DROP/none 2.7s (46s)
+  X-20 laptop (0.0, 1.0, 11.5) -> ['dark', 'dark', 'dark'] DROP/none 2.7s (46s)
+  X-22 key (19.0, 20.5) -> ['no', 'no'] DROP/none 2.1s (49s)
+  X-22 key (18.5, 20.5) -> ['not_visible', 'not_visible'] DROP/none 2.2s (51s)
+  X-23 key (14.5, 18.0) -> ['not_visible', 'not_visible'] DROP/none 2.8s (52s)
+  X-23 key (16.0, 18.0) -> ['no', 'no'] DROP/none 2.0s (53s)
+  X-23 laptop (10.5, 14.5, 18.0) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.6s (54s)
+  X-23 key (16.5, 18.0) -> ['no', 'no'] DROP/none 1.8s (56s)
+  X-23 key (17.0, 18.0) -> ['no', 'no'] DROP/none 1.4s (56s)
+  X-24 key (10.0, 14.5) -> ['no', 'no'] DROP/none 1.7s (58s)
+  X-24 key (8.0, 14.5) -> ['no', 'no'] DROP/none 1.8s (60s)
+  X-24 laptop (5.0, 9.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 2.8s (60s)
+  X-24 laptop (4.0, 8.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 1.9s (60s)
+  X-24 laptop (6.0, 10.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 2.0s (62s)
+  X-24 key (7.5, 14.5) -> ['no', 'no'] DROP/none 1.7s (64s)
+  X-24 key (11.5, 14.5) -> ['no', 'no'] DROP/none 2.0s (65s)
+  X-24 laptop (9.0, 13.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 1.7s (65s)
+  X-25 laptop (23.5, 27.5, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 2.1s (67s)
+  X-25 key (28.5, 31.5) -> ['not_visible', 'not_visible'] DROP/none 1.7s (68s)
+  X-25 key (29.0, 31.5) -> ['no', 'no'] DROP/none 2.2s (69s)
+  X-25 laptop (24.0, 28.0, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 2.0s (70s)
+  X-25 key (27.0, 31.5) -> ['not_visible', 'not_visible'] DROP/none 1.9s (71s)
+  X-26 laptop (13.0, 17.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 1.6s (72s)
+  X-26 key (18.0, 19.5) -> ['no', 'no'] DROP/none 1.8s (73s)
+  X-26 key (13.0, 19.5) -> ['no', 'no'] DROP/none 1.8s (75s)
+  X-26 key (12.5, 19.5) -> ['no', 'no'] DROP/none 1.7s (76s)
+  X-26 laptop (7.0, 11.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 1.9s (76s)
+  X-26 laptop (12.0, 16.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 1.7s (77s)
+  X-26 key (15.0, 19.5) -> ['not_visible', 'not_visible'] DROP/none 1.3s (78s)
+  X-26 key (14.0, 19.5) -> ['not_visible', 'not_visible'] DROP/none 1.9s (80s)
+  X-27 key (22.0, 26.0) -> ['not_visible', 'not_visible'] DROP/none 1.0s (80s)
+  X-27 laptop (18.0, 22.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.9s (81s)
+  X-27 laptop (18.5, 22.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.8s (83s)
+  X-27 key (23.5, 26.0) -> ['not_visible', 'not_visible'] DROP/none 1.6s (84s)
+  X-27 key (24.0, 26.0) -> ['no', 'no'] DROP/none 1.7s (85s)
+  X-27 laptop (19.0, 23.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.5s (85s)
+  X-27 key (23.0, 26.0) -> ['no', 'no'] DROP/none 1.1s (86s)
+  X-27 laptop (15.5, 19.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 1.8s (89s)
+  X-28 laptop (12.0, 16.0, 16.0) -> ['table_or_program', 'table_or_program', 'not_visible'] KEEP/ADD 1.6s (89s)
+  X-28 key (11.5, 16.0) -> ['no', 'no'] DROP/none 1.7s (89s)
+  X-28 laptop (7.0, 11.0, 16.0) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 1.6s (90s)
+  X-28 key (12.0, 16.0) -> ['no', 'no'] DROP/none 1.3s (92s)
+  X-28 key (14.5, 16.0) -> ['not_visible', 'not_visible'] DROP/none 1.8s (94s)
+  X-28 laptop (12.5, 16.0, 16.0) -> ['table_or_program', 'table_or_program', 'not_visible'] KEEP/ADD 1.9s (94s)
+  X-28 laptop (4.5, 8.5, 16.0) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 1.9s (95s)
+  X-28 key (10.5, 16.0) -> ['no', 'no'] DROP/none 1.5s (96s)
+  X-29 key (14.0, 17.0) -> ['not_visible', 'not_visible'] DROP/none 1.0s (98s)
+  X-28 key (13.0, 16.0) -> ['no', 'no'] DROP/none 1.8s (98s)
+  X-28 laptop (8.0, 12.0, 16.0) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.1s (100s)
+  X-29 key (13.5, 17.0) -> ['not_visible', 'not_visible'] DROP/none 2.0s (101s)
+  X-29 key (9.0, 17.0) -> ['not_visible', 'not_visible'] DROP/none 1.8s (101s)
+  X-29 key (11.0, 17.0) -> ['not_visible', 'not_visible'] DROP/none 1.0s (103s)
+  X-29 laptop (5.0, 9.0, 17.0) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 2.1s (103s)
+  X-29 key (13.0, 17.0) -> ['not_visible', 'not_visible'] DROP/none 1.8s (105s)
+  X-30 door (9.0, 18.5) -> ['closed', 'open'] DROP/none 1.9s (106s)
+  X-31 door (16.5, 23.5) -> ['closed', 'closed'] DROP/none 1.6s (106s)
+  X-30 door (9.5, 18.5) -> ['closed', 'open'] DROP/none 6.4s (112s)
+  X-32 door (8.0, 21.0) -> ['closed', 'closed'] DROP/none 9.3s (118s)
+  X-31 key (2.0, 23.5) -> ['not_visible', 'not_visible'] DROP/none 7.5s (118s)
+  X-31 door (13.0, 23.5) -> ['closed', 'closed'] DROP/none 9.7s (118s)
+  X-32 key (2.0, 21.0) -> ['not_visible', 'not_visible'] DROP/none 3.7s (120s)
+  X-32 key (21.0, 21.0) -> ['not_visible', 'not_visible'] DROP/none 1.5s (121s)
+  X-32 door (8.5, 21.0) -> ['closed', 'closed'] DROP/none 1.6s (122s)
+  X-32 door (10.0, 21.0) -> ['closed', 'closed'] DROP/none 1.7s (122s)
+  X-33 door (7.5, 14.0) -> ['closed', 'open'] DROP/none 1.7s (123s)
+  X-33 door (12.5, 14.0) -> ['open', 'open'] KEEP/ADD 9.8s (135s)
+  X-33 key (2.0, 14.0) -> ['not_visible', 'not_visible'] DROP/none 10.2s (135s)
+  X-34 door (17.5, 17.5) -> ['closed', 'not_visible'] DROP/none 8.9s (135s)
+  X-33 door (10.0, 14.0) -> ['closed', 'closed'] DROP/none 10.5s (135s)
+  X-35 door (56.5, 56.5) -> ['closed', 'not_visible'] DROP/none 1.1s (138s)
+  X-37 door (11.0, 15.5) -> ['closed', 'closed'] DROP/none 1.3s (138s)
+  X-37 laptop (12.5, 15.5, 15.5) -> ['dark', 'dark', 'not_visible'] DROP/none 1.8s (139s)
+  X-38 laptop (54.0, 58.0, 58.5) -> ['table_or_program', 'table_or_program', 'table_or_program'] KEEP/ADD 3.9s (144s)
+  X-40 door (13.5, 25.0) -> ['closed', 'closed'] DROP/none 5.7s (150s)
+  X-39 key (76.5, 78.5) -> ['no', 'no'] DROP/none 6.4s (150s)
+  X-40 laptop (16.0, 20.0, 25.0) -> ['dark', 'dark', 'dark'] DROP/none 8.2s (152s)
+  X-40 key (2.0, 25.0) -> ['not_visible', 'not_visible'] DROP/none 3.1s (157s)
+  X-40 door (9.5, 25.0) -> ['closed', 'closed'] DROP/none 8.3s (157s)
+base    acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.0s calls/video=0.00
+door    acc=0.75 TP/FP/FN/TN=13/2/8/17 rec=0.619 prec=0.8667 tc2=0.5385 tc3=0.6154 type=0.6154 rep_acc=0.68 | extra lat/video=0.6s calls/video=0.14
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 2/5 workstation_unlocked@15.6 OK
+laptop  acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.705 | extra lat/video=0.5s calls/video=0.20
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+key     acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.8s calls/video=0.35
+all     acc=0.75 TP/FP/FN/TN=11/0/10/19 rec=0.5238 prec=1.0 tc2=0.6364 tc3=0.6364 type=0.7273 rep_acc=0.675 | extra lat/video=1.9s calls/video=0.69
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 1/5 outsider_in_cash_room@5.5 OK

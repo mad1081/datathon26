@@ -1,0 +1,27 @@
+{
+ "video": "Х-11.mov",
+ "key": "X-11",
+ "repeat": 0,
+ "model": "molmo2-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 51,
+ "frames_sec": 1.405,
+ "latency_sec": 63.801,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 34,
+  "prompt_tokens": 32734,
+  "total_tokens": 32768,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Приём наличных от клиента\", \"timeline\": [{\"t\": 0.0, \"event\": \"Кассир сидит",
+ "parsed": null
+}

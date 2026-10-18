@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 19.6,
+ "evidence": "Кассир покидает рабочее место и выходит через дверь, оставляя ноутбук на столе открытым и включенным без экрана блокировки.",
+ "latency_sec": 3.412,
+ "error": null,
+ "usage": {
+  "completion_tokens": 62,
+  "prompt_tokens": 17503,
+  "total_tokens": 17565,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 19.6,\n  \"evidence\": \"Кассир покидает рабочее место и выходит через дверь, оставляя ноутбук на столе открытым и включенным без экрана блокировки.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 22.6,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

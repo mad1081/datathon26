@@ -1,0 +1,41 @@
+﻿video,gt,gt_seconds,gt_types,votes_violation,majority,correct,winning_type,median_tc,types_seen,timecodes,parse_failures,latency_mean,latency_max
+X-1,violation,22,suspicious_note_returned,1/5,no_violation,0,door_left_open,3.5,door_left_open:1,door_left_open@4,0,23.3,50.9
+X-2,violation,10,no_client_id_check,2/5,no_violation,0,no_client_id_check,10.5,no_client_id_check:2,no_client_id_check@10 no_client_id_check@10,0,23.7,55.3
+X-3,no_violation,,,2/5,no_violation,1,no_client_id_check,7.5,no_client_id_check:1 door_left_open:1,no_client_id_check@8 door_left_open@4,0,22.4,48.5
+X-4,violation,57/68,"foreign_cash_on_desk,cash_unattended",3/5,violation,1,foreign_cash_on_desk,58.0,foreign_cash_on_desk:2 cash_accepted_without_count:1,foreign_cash_on_desk@60 foreign_cash_on_desk@56 cash_accepted_without_count@62,0,25.9,49.4
+X-5,no_violation,,,1/5,no_violation,1,foreign_cash_on_desk,69.0,foreign_cash_on_desk:1,foreign_cash_on_desk@69,0,31.4,72.0
+X-8,no_violation,,,0/5,no_violation,1,,,,,0,26.0,48.8
+X-10,no_violation,,,1/5,no_violation,1,phone_or_personal_items,0.0,phone_or_personal_items:1,phone_or_personal_items@0,0,18.1,39.8
+X-11,violation,18,workstation_unlocked,4/5,violation,1,workstation_unlocked,17.2,workstation_unlocked:4,workstation_unlocked@18 workstation_unlocked@18 workstation_unlocked@17 workstation_unlocked@16,0,22.2,48.4
+X-12,no_violation,,,0/5,no_violation,1,,,,,0,19.5,42.0
+X-13,violation,47,cash_accepted_without_count,4/5,violation,1,workstation_unlocked,57.0,workstation_unlocked:3 safe_left_open:1 seals_docs_unattended:1 cash_accepted_without_count:1 safe_key_left:1,safe_left_open@60 seals_docs_unattended@60 workstation_unlocked@60 workstation_unlocked@57 cash_accepted_without_count@46 workstation_unlocked@57 safe_key_left@46,0,27.2,57.4
+X-14,no_violation,,,1/5,no_violation,1,cash_accepted_without_count,35.0,cash_accepted_without_count:1,cash_accepted_without_count@35,0,25.1,41.6
+X-15,violation,15,cash_unattended,5/5,violation,1,cash_unattended,14.5,cash_unattended:4 workstation_unlocked:3 safe_left_open:1,workstation_unlocked@15 cash_unattended@14 cash_unattended@14 safe_left_open@14 workstation_unlocked@14 cash_unattended@16 cash_unattended@15 workstation_unlocked@15,0,23.1,41.3
+X-16,no_violation,,,1/5,no_violation,1,collector_bag_no_check,16.5,collector_bag_no_check:1,collector_bag_no_check@16,0,18.5,39.5
+X-17,violation,7,"collector_bag_no_check,no_client_id_check",0/5,no_violation,0,,,,,0,19.6,38.9
+X-18,violation,20,outsider_in_cash_room,4/5,violation,1,outsider_in_cash_room,18.0,outsider_in_cash_room:4,outsider_in_cash_room@19 outsider_in_cash_room@18 outsider_in_cash_room@18 outsider_in_cash_room@18,0,21.2,45.1
+X-19,no_violation,,,1/5,no_violation,1,foreign_cash_on_desk,54.0,foreign_cash_on_desk:1,foreign_cash_on_desk@54,0,23.5,39.6
+X-20,violation,5,safe_left_open,3/5,violation,1,safe_left_open,4.5,safe_left_open:3,safe_left_open@4 safe_left_open@5 safe_left_open@3,0,17.1,24.7
+X-21,no_violation,,,3/5,violation,0,eating_drinking,12.8,eating_drinking:2 safe_key_left:1 workstation_unlocked:1,eating_drinking@13 safe_key_left@8 workstation_unlocked@8 eating_drinking@12,0,18.1,27.3
+X-22,violation,14,safe_key_left,2/5,no_violation,0,seals_docs_unattended,16.0,seals_docs_unattended:1 workstation_unlocked:1,seals_docs_unattended@16 workstation_unlocked@6,0,16.9,31.0
+X-23,no_violation,,,5/5,violation,0,workstation_unlocked,13.5,workstation_unlocked:5,workstation_unlocked@14 workstation_unlocked@14 workstation_unlocked@12 workstation_unlocked@15 workstation_unlocked@13,0,20.1,31.4
+X-24,violation,8,seals_docs_unattended,3/5,violation,1,workstation_unlocked,6.0,workstation_unlocked:3 phone_or_personal_items:2,phone_or_personal_items@0 workstation_unlocked@10 phone_or_personal_items@5 workstation_unlocked@5 workstation_unlocked@6,0,18.1,37.5
+X-25,no_violation,,,5/5,violation,0,workstation_unlocked,26.0,workstation_unlocked:5,workstation_unlocked@27 workstation_unlocked@25 workstation_unlocked@25 workstation_unlocked@26 workstation_unlocked@26,0,20.2,37.8
+X-26,violation,9,cash_unattended,4/5,violation,1,cash_unattended,10.0,cash_unattended:3 workstation_unlocked:3,cash_unattended@15 cash_unattended@10 workstation_unlocked@10 cash_unattended@10 workstation_unlocked@10 workstation_unlocked@10,0,19.4,31.6
+X-27,no_violation,,,4/5,violation,0,workstation_unlocked,20.5,workstation_unlocked:4,workstation_unlocked@19 workstation_unlocked@21 workstation_unlocked@20 workstation_unlocked@22,0,19.1,24.4
+X-28,violation,7,workstation_unlocked,4/5,violation,1,workstation_unlocked,7.0,workstation_unlocked:3 cash_unattended:1,cash_unattended@12 workstation_unlocked@12 workstation_unlocked@7 workstation_unlocked@7,0,16.5,25.1
+X-29,no_violation,,,4/5,violation,0,workstation_unlocked,12.2,workstation_unlocked:4,workstation_unlocked@12 workstation_unlocked@10 workstation_unlocked@12 workstation_unlocked@13,0,14.6,19.7
+X-30,violation,13,"outsider_in_cash_room,door_left_open",3/5,violation,1,door_left_open,3.5,door_left_open:3,door_left_open@4 door_left_open@4 door_left_open@2,0,19.8,43.1
+X-31,no_violation,,,1/5,no_violation,1,phone_or_personal_items,0.0,phone_or_personal_items:1,phone_or_personal_items@0,0,14.3,21.1
+X-32,violation,5,door_left_open,3/5,violation,1,door_left_open,3.0,door_left_open:3 phone_or_personal_items:1,door_left_open@2 phone_or_personal_items@0 door_left_open@4 door_left_open@3,0,20.0,46.3
+X-33,violation,6,"outsider_in_cash_room,door_left_open",4/5,violation,1,door_left_open,5.0,door_left_open:4,door_left_open@6 door_left_open@4 door_left_open@4 door_left_open@7,0,20.0,38.2
+X-34,violation,13,counting_without_client,2/5,no_violation,0,outsider_in_cash_room,3.0,outsider_in_cash_room:1 door_left_open:1,outsider_in_cash_room@3 door_left_open@3,0,19.6,40.1
+X-35,no_violation,,,0/5,no_violation,1,,,,,0,23.0,45.7
+X-37,no_violation,,,2/5,no_violation,1,door_left_open,5.5,door_left_open:1 no_client_id_check:1,door_left_open@6 no_client_id_check@8,0,20.7,44.8
+X-38,violation,33,"foreign_cash_on_desk,cash_unattended",4/5,violation,1,foreign_cash_on_desk,35.5,foreign_cash_on_desk:4,foreign_cash_on_desk@33 foreign_cash_on_desk@36 foreign_cash_on_desk@36 foreign_cash_on_desk@35,0,27.6,50.2
+X-39,no_violation,,,0/5,no_violation,1,,,,,0,31.0,56.3
+X-40,violation,17,phone_or_personal_items,5/5,violation,1,phone_or_personal_items,9.5,phone_or_personal_items:5,phone_or_personal_items@10 phone_or_personal_items@10 phone_or_personal_items@10 phone_or_personal_items@14 phone_or_personal_items@10 phone_or_personal_items@10,0,18.0,27.9
+X-43,no_violation,,,1/5,no_violation,1,phone_or_personal_items,3.5,phone_or_personal_items:1,phone_or_personal_items@4,0,18.5,23.7
+X-44,violation,16,"other,counting_without_controller,suspicious_note_returned",2/5,no_violation,0,collector_bag_no_check,3.5,collector_bag_no_check:1 eating_drinking:1,collector_bag_no_check@4 eating_drinking@10,0,15.3,20.1
+X-45,no_violation,,,0/5,no_violation,1,,,,,0,15.4,21.3
+X-46,violation,11,eating_drinking,5/5,violation,1,eating_drinking,12.0,eating_drinking:5,eating_drinking@12 eating_drinking@12 eating_drinking@12 eating_drinking@12 eating_drinking@12,0,19.6,21.9

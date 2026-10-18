@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 14.0,
+ "evidence": "Кассир закрывает дверцу сейфа и сразу же поворачивается к столу, чтобы взять предметы. Она не отходит от сейфа и не покидает помещение в момент закрытия дверцы, поэтому нарушение отсутствует.",
+ "latency_sec": 4.964,
+ "error": null,
+ "usage": {
+  "completion_tokens": 71,
+  "prompt_tokens": 19341,
+  "total_tokens": 19412,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 14.0, \"evidence\": \"Кассир закрывает дверцу сейфа и сразу же поворачивается к столу, чтобы взять предметы. Она не отходит от сейфа и не покидает помещение в момент закрытия дверцы, поэтому нарушение отсутствует.\"}",
+ "cand": {
+  "type_id": "safe_key_left",
+  "timecode_sec": 14.0,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

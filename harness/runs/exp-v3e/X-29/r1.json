@@ -1,0 +1,105 @@
+{
+ "video": "Х-29.mov",
+ "key": "X-29",
+ "repeat": 1,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 35,
+ "frames_sec": 0.243,
+ "latency_sec": 15.176,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 676,
+  "prompt_tokens": 13399,
+  "total_tokens": 14075,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "```json\n{\n  \"scenario\": \"Уход кассира с рабочего места\",\n  \"timeline\": [\n    {\n      \"t\": 0.0,\n      \"event\": \"Кассир сидит за столом и работает за ноутбуком.\"\n    },\n    {\n      \"t\": 6.5,\n      \"event\": \"Кассир закрывает крышку ноутбука.\"\n    },\n    {\n      \"t\": 7.0,\n      \"event\": \"Кассир встает из-за стола и поворачивается к выходу.\"\n    },\n    {\n      \"t\": 8.5,\n      \"event\": \"Кассир подходит к стеклянной двери кассы.\"\n    },\n    {\n      \"t\": 11.5,\n      \"event\": \"Кассир открывает дверь и выходит в коридор.\"\n    },\n    {\n      \"t\": 13.5,\n      \"event\": \"Кассир закрывает дверь за собой.\"\n    },\n    {\n      \"t\": 14.5,\n      \"event\": \"Кассир уходит из поля зрения камеры.\"\n    },\n    {\n      \"t\": 17.1,\n      \"event\": \"Рабочее место кассира пустует, дверь закрыта.\"\n    }\n  ],\n  \"object_states\": [\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 6.5,\n      \"state\": \"крышка закрыта\"\n    },\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 17.1,\n      \"state\": \"крышка закрыта\"\n    },\n    {\n      \"object\": \"наличные на столе\",\n      \"t\": 7.0,\n      \"state\": \"отсутствуют\"\n    },\n    {\n      \"object\": \"сейф\",\n      \"t\": 7.0,\n      \"state\": \"закрыт\"\n    },\n    {\n      \"object\": \"дверь кассы\",\n      \"t\": 11.5,\n      \"state\": \"открыта\"\n    },\n    {\n      \"object\": \"дверь кассы\",\n      \"t\": 13.5,\n      \"state\": \"закрыта\"\n    }\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"не применимо\",\n    \"part_of_notes_returned_to_client\": \"не применимо\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"пусто\",\n    \"at_departure_key_in_safe_lock\": \"не применимо\",\n    \"at_departure_safe_door\": \"закрыта плотно\",\n    \"at_departure_laptop_screen\": \"крышка закрыта\"\n  },\n  \"violations\": []\n}\n```",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом и работает за ноутбуком."
+   },
+   {
+    "t": 6.5,
+    "event": "Кассир закрывает крышку ноутбука."
+   },
+   {
+    "t": 7.0,
+    "event": "Кассир встает из-за стола и поворачивается к выходу."
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир подходит к стеклянной двери кассы."
+   },
+   {
+    "t": 11.5,
+    "event": "Кассир открывает дверь и выходит в коридор."
+   },
+   {
+    "t": 13.5,
+    "event": "Кассир закрывает дверь за собой."
+   },
+   {
+    "t": 14.5,
+    "event": "Кассир уходит из поля зрения камеры."
+   },
+   {
+    "t": 17.1,
+    "event": "Рабочее место кассира пустует, дверь закрыта."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "ноутбук",
+    "t": 6.5,
+    "state": "крышка закрыта"
+   },
+   {
+    "object": "ноутбук",
+    "t": 17.1,
+    "state": "крышка закрыта"
+   },
+   {
+    "object": "наличные на столе",
+    "t": 7.0,
+    "state": "отсутствуют"
+   },
+   {
+    "object": "сейф",
+    "t": 7.0,
+    "state": "закрыт"
+   },
+   {
+    "object": "дверь кассы",
+    "t": 11.5,
+    "state": "открыта"
+   },
+   {
+    "object": "дверь кассы",
+    "t": 13.5,
+    "state": "закрыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "пусто",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "закрыта плотно",
+   "at_departure_laptop_screen": "крышка закрыта"
+  },
+  "violations": []
+ }
+}

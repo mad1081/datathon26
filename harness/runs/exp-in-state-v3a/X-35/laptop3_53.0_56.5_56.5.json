@@ -1,0 +1,51 @@
+{
+ "check": "laptop3",
+ "times": [
+  53.0,
+  56.5,
+  56.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 53.0,
+     "screen": "white"
+    },
+    {
+     "t": 56.5,
+     "screen": "white"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 53.0,
+     "screen": "dark"
+    },
+    {
+     "t": 56.5,
+     "screen": "dark"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 53.0,
+     "screen": "dark"
+    },
+    {
+     "t": 56.5,
+     "screen": "dark"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.259,
+  0.782,
+  0.94
+ ]
+}

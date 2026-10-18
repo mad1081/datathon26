@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 8.0,
+ "evidence": "Кассир покинула рабочее место и находится за стеклянной дверью. Ноутбук на столе оставлен открытым, экран включен, крышка не закрыта, экран блокировки отсутствует.",
+ "latency_sec": 8.042,
+ "error": null,
+ "usage": {
+  "completion_tokens": 71,
+  "prompt_tokens": 17845,
+  "total_tokens": 17916,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 8.0,\n  \"evidence\": \"Кассир покинула рабочее место и находится за стеклянной дверью. Ноутбук на столе оставлен открытым, экран включен, крышка не закрыта, экран блокировки отсутствует.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 11.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

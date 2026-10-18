@@ -1,0 +1,84 @@
+34 state requests x 3 votes
+  X-8 laptop2 (34.5, 37.5, 37.5) -> ['bright', 'bright', 'not_visible'] KEEP/ADD 8.0s (11s)
+  X-1 laptop2 (3.0, 7.0, 25.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 9.0s (13s)
+  X-11 laptop2 (14.0, 18.0, 25.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 9.0s (13s)
+  X-11 laptop2 (15.5, 19.5, 25.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 9.0s (13s)
+  X-11 laptop2 (12.0, 16.0, 25.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 1.8s (16s)
+  X-15 laptop2 (14.0, 18.0, 20.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 1.9s (18s)
+  X-13 laptop2 (57.0, 61.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 2.4s (18s)
+  X-13 laptop2 (59.0, 63.0, 65.0) -> ['dark', 'dark', 'dark'] DROP/none 2.4s (18s)
+  X-15 laptop2 (15.0, 19.0, 20.5) -> ['dark', 'dark', 'dark'] DROP/none 4.8s (24s)
+  X-20 laptop2 (0.0, 1.0, 11.5) -> ['dark', 'dark', 'dark'] DROP/none 4.6s (25s)
+  X-23 laptop2 (10.5, 14.5, 18.0) -> ['bright', 'bright', 'bright'] KEEP/ADD 4.6s (28s)
+  X-15 laptop2 (15.5, 19.5, 20.5) -> ['dark', 'dark', 'dark'] DROP/none 4.7s (28s)
+  X-24 laptop2 (5.0, 9.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 3.3s (30s)
+  X-24 laptop2 (4.0, 8.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 2.3s (30s)
+  X-24 laptop2 (9.0, 13.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 3.1s (34s)
+  X-24 laptop2 (6.0, 10.0, 14.5) -> ['dark', 'dark', 'dark'] DROP/none 3.9s (35s)
+  X-25 laptop2 (23.5, 27.5, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 3.7s (37s)
+  X-25 laptop2 (24.0, 28.0, 31.5) -> ['dark', 'dark', 'dark'] DROP/none 6.9s (43s)
+  X-26 laptop2 (13.0, 17.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 6.7s (45s)
+  X-26 laptop2 (7.0, 11.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 5.9s (45s)
+  X-26 laptop2 (12.0, 16.0, 19.5) -> ['dark', 'dark', 'dark'] DROP/none 7.9s (53s)
+  X-27 laptop2 (18.0, 22.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 8.1s (57s)
+  X-27 laptop2 (19.0, 23.0, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 11.1s (59s)
+  X-27 laptop2 (15.5, 19.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 3.4s (59s)
+  X-27 laptop2 (18.5, 22.5, 26.0) -> ['dark', 'dark', 'dark'] DROP/none 11.1s (60s)
+  X-28 laptop2 (12.0, 16.0, 16.0) -> ['bright', 'bright', 'not_visible'] KEEP/ADD 1.3s (60s)
+  X-28 laptop2 (12.5, 16.0, 16.0) -> ['bright', 'bright', 'not_visible'] KEEP/ADD 6.1s (68s)
+  X-28 laptop2 (7.0, 11.0, 16.0) -> ['bright', 'bright', 'bright'] KEEP/ADD 6.9s (70s)
+  X-28 laptop2 (4.5, 8.5, 16.0) -> ['bright', 'bright', 'bright'] KEEP/ADD 6.2s (70s)
+  X-28 laptop2 (8.0, 12.0, 16.0) -> ['bright', 'bright', 'bright'] KEEP/ADD 6.1s (70s)
+  X-29 laptop2 (5.0, 9.0, 17.0) -> ['bright', 'dark', 'dark'] DROP/none 1.9s (73s)
+  X-37 laptop2 (12.5, 15.5, 15.5) -> ['dark', 'dark', 'not_visible'] DROP/none 1.4s (74s)
+  X-38 laptop2 (54.0, 58.0, 58.5) -> ['bright', 'bright', 'bright'] KEEP/ADD 2.0s (75s)
+  X-40 laptop2 (16.0, 20.0, 25.0) -> ['dark', 'dark', 'dark'] DROP/none 2.3s (76s)
+base    acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.0s calls/video=0.00
+door    acc=0.75 TP/FP/FN/TN=13/2/8/17 rec=0.619 prec=0.8667 tc2=0.5385 tc3=0.6154 type=0.6154 rep_acc=0.68 | extra lat/video=0.6s calls/video=0.14
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 2/5 workstation_unlocked@15.6 OK
+laptop  acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.705 | extra lat/video=0.5s calls/video=0.20
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+laptop2 acc=0.825 TP/FP/FN/TN=14/0/7/19 rec=0.6667 prec=1.0 tc2=0.5 tc3=0.5714 type=0.7143 rep_acc=0.705 | extra lat/video=1.0s calls/video=0.20
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-29  gt=- []  base 1/5 workstation_unlocked@8.0 -> 0/5 None@None OK
+key     acc=0.825 TP/FP/FN/TN=16/2/5/17 rec=0.7619 prec=0.8889 tc2=0.4375 tc3=0.5625 type=0.625 rep_acc=0.715 | extra lat/video=0.8s calls/video=0.35
+all     acc=0.75 TP/FP/FN/TN=11/0/10/19 rec=0.5238 prec=1.0 tc2=0.6364 tc3=0.6364 type=0.7273 rep_acc=0.675 | extra lat/video=1.9s calls/video=0.69
+    X-3   gt=- []  base 2/5 no_client_id_check@12.0 -> 1/5 no_client_id_check@12.0 OK
+    X-4   gt=V ['foreign_cash_on_desk', 'cash_unattended']  base 3/5 door_left_open@51.0 -> 1/5 cash_within_client_reach@61.0 BAD
+    X-8   gt=- []  base 1/5 workstation_unlocked@37.5 -> 0/5 None@None OK
+    X-13  gt=V ['cash_accepted_without_count']  base 3/5 workstation_unlocked@61.0 -> 1/5 cash_unattended@36.6 BAD
+    X-15  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@17.5 -> 4/5 workstation_unlocked@17.0 OK
+    X-17  gt=V ['collector_bag_no_check', 'no_client_id_check']  base 4/5 collector_bag_no_check@8.0 -> 3/5 collector_bag_no_check@8.0 OK
+    X-18  gt=V ['outsider_in_cash_room']  base 5/5 outsider_in_cash_room@18.8 -> 4/5 outsider_in_cash_room@18.8 OK
+    X-24  gt=V ['seals_docs_unattended']  base 5/5 workstation_unlocked@8.0 -> 1/5 seals_docs_unattended@7.0 BAD
+    X-25  gt=- []  base 3/5 workstation_unlocked@27.0 -> 0/5 None@None OK
+    X-26  gt=V ['cash_unattended']  base 5/5 workstation_unlocked@16.0 -> 3/5 phone_or_personal_items@16.0 OK
+    X-27  gt=- []  base 5/5 workstation_unlocked@21.0 -> 2/5 safe_key_left@19.0 OK
+    X-30  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@4.2 -> 4/5 outsider_in_cash_room@13.2 OK
+    X-31  gt=- []  base 2/5 door_left_open@9.8 -> 0/5 None@None OK
+    X-32  gt=V ['door_left_open']  base 3/5 door_left_open@3.5 -> 0/5 None@None BAD
+    X-33  gt=V ['outsider_in_cash_room', 'door_left_open']  base 4/5 door_left_open@3.8 -> 1/5 door_left_open@7.5 BAD
+    X-34  gt=V ['counting_without_client']  base 5/5 outsider_in_cash_room@3.0 -> 3/5 outsider_in_cash_room@3.0 OK
+    X-35  gt=- []  base 2/5 door_left_open@53.0 -> 0/5 None@None OK
+    X-37  gt=- []  base 2/5 door_left_open@6.0 -> 1/5 outsider_in_cash_room@5.5 OK

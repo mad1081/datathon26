@@ -1,0 +1,92 @@
+{
+ "video": "Х-20.mov",
+ "key": "X-20",
+ "repeat": 0,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 24,
+ "frames_sec": 0.827,
+ "latency_sec": 25.86,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 507,
+  "prompt_tokens": 10869,
+  "total_tokens": 11376,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"начало смены\",\n\"timeline\": [\n{\n\"t\": 0.0,\n\"event\": \"Кассир входит в кассовую зону, дверь за ней закрыта.\"\n},\n{\n\"t\": 1.5,\n\"event\": \"Кассир открывает дверцу серого сейфа/тумбы.\"\n},\n{\n\"t\": 3.5,\n\"event\": \"Кассир закрывает дверцу сейфа.\"\n},\n{\n\"t\": 5.0,\n\"event\": \"Кассир садится за рабочий стол.\"\n},\n{\n\"t\": 6.0,\n\"event\": \"Кассир настраивает рабочее место, берёт в руки пачку денег.\"\n},\n{\n\"t\": 10.5,\n\"event\": \"Кассир начинает пересчитывать пачку банкнот вручную.\"\n}\n],\n\"object_states\": [\n{\n\"object\": \"дверь\",\n\"t\": 0.0,\n\"state\": \"закрыта\"\n},\n{\n\"object\": \"сейф\",\n\"t\": 3.5,\n\"state\": \"закрыта плотно\"\n},\n{\n\"object\": \"наличные на столе\",\n\"t\": 11.5,\n\"state\": \"пересчитываются кассиром\"\n},\n{\n\"object\": \"ключ в замке сейфа\",\n\"t\": 11.5,\n\"state\": \"не применимо\"\n},\n{\n\"object\": \"ноутбук\",\n\"t\": 11.5,\n\"state\": \"открыт, экран не виден\"\n}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"не применимо\",\n\"money_counted_before_safe\": \"да\",\n\"at_departure_on_desk\": \"не применимо\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"не применимо\"\n},\n\"violations\": []\n}",
+ "parsed": {
+  "scenario": "начало смены",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир входит в кассовую зону, дверь за ней закрыта."
+   },
+   {
+    "t": 1.5,
+    "event": "Кассир открывает дверцу серого сейфа/тумбы."
+   },
+   {
+    "t": 3.5,
+    "event": "Кассир закрывает дверцу сейфа."
+   },
+   {
+    "t": 5.0,
+    "event": "Кассир садится за рабочий стол."
+   },
+   {
+    "t": 6.0,
+    "event": "Кассир настраивает рабочее место, берёт в руки пачку денег."
+   },
+   {
+    "t": 10.5,
+    "event": "Кассир начинает пересчитывать пачку банкнот вручную."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 0.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "сейф",
+    "t": 3.5,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "наличные на столе",
+    "t": 11.5,
+    "state": "пересчитываются кассиром"
+   },
+   {
+    "object": "ключ в замке сейфа",
+    "t": 11.5,
+    "state": "не применимо"
+   },
+   {
+    "object": "ноутбук",
+    "t": 11.5,
+    "state": "открыт, экран не виден"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "да",
+   "at_departure_on_desk": "не применимо",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": []
+ }
+}

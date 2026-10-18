@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 12.5,
+ "evidence": "На кадрах с 12.5 с видно, как мужчина (постороннее лицо) входит через открытую дверь в кассовое помещение и подходит к рабочему месту кассира. Кассир находится за столом, дверь открыта, посторонний находится в помещении.",
+ "latency_sec": 5.51,
+ "error": null,
+ "usage": {
+  "completion_tokens": 93,
+  "prompt_tokens": 19060,
+  "total_tokens": 19153,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 49,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 12.5,\n  \"evidence\": \"На кадрах с 12.5 с видно, как мужчина (постороннее лицо) входит через открытую дверь в кассовое помещение и подходит к рабочему месту кассира. Кассир находится за столом, дверь открыта, посторонний находится в помещении.\"\n}",
+ "cand": {
+  "type_id": "outsider_in_cash_room",
+  "timecode_sec": 14.0,
+  "confidence": 0.85,
+  "observed": "",
+  "source": "kept"
+ }
+}

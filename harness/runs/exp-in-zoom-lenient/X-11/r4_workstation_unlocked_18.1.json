@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 13.1,
+ "evidence": "На кадрах видно, что кассир покидает рабочее место, выключает свет и выходит из помещения. Ноутбук на столе остается открытым, включенным и разблокированным, крышка не закрыта, экран блокировки не активирован.",
+ "latency_sec": 5.488,
+ "error": null,
+ "usage": {
+  "completion_tokens": 87,
+  "prompt_tokens": 19384,
+  "total_tokens": 19471,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 13.1,\n  \"evidence\": \"На кадрах видно, что кассир покидает рабочее место, выключает свет и выходит из помещения. Ноутбук на столе остается открытым, включенным и разблокированным, крышка не закрыта, экран блокировки не активирован.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 18.1,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

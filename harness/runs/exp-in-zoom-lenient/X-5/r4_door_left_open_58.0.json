@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 57.0,
+ "evidence": "На кадрах видно, что клиент в белой рубашке выходит из кассового узла через дверь, но не закрывает её за собой. Дверь остаётся распахнутой, а кассир продолжает сидеть за столом, не предпринимая действий для её закрытия.",
+ "latency_sec": 2.476,
+ "error": null,
+ "usage": {
+  "completion_tokens": 93,
+  "prompt_tokens": 19494,
+  "total_tokens": 19587,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n\"confirmed\": true,\n\"timecode_sec\": 57.0,\n\"evidence\": \"На кадрах видно, что клиент в белой рубашке выходит из кассового узла через дверь, но не закрывает её за собой. Дверь остаётся распахнутой, а кассир продолжает сидеть за столом, не предпринимая действий для её закрытия.\"\n}",
+ "cand": {
+  "type_id": "door_left_open",
+  "timecode_sec": 58.0,
+  "confidence": 0.8,
+  "observed": "",
+  "source": "kept"
+ }
+}

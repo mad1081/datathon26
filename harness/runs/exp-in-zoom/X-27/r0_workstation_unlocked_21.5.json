@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно, что кассир покидает рабочее место и выходит за дверь кассового узла. Однако ноутбук на столе закрыт (крышка опущена), что соответствует ограничениям и не является нарушением.",
+ "latency_sec": 5.141,
+ "error": null,
+ "usage": {
+  "completion_tokens": 80,
+  "prompt_tokens": 17569,
+  "total_tokens": 17649,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 0.0,\n  \"evidence\": \"На кадрах видно, что кассир покидает рабочее место и выходит за дверь кассового узла. Однако ноутбук на столе закрыт (крышка опущена), что соответствует ограничениям и не является нарушением.\"\n}",
+ "cand": {
+  "type_id": "workstation_unlocked",
+  "timecode_sec": 21.5,
+  "confidence": 0.8,
+  "observed": "",
+  "source": "kept"
+ }
+}

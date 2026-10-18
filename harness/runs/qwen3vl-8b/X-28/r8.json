@@ -1,0 +1,48 @@
+{
+ "video": "Х-28.mov",
+ "key": "X-28",
+ "repeat": 8,
+ "model": "qwen3vl-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 33,
+ "frames_sec": 0.212,
+ "latency_sec": 16.954,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 140,
+  "prompt_tokens": 11879,
+  "total_tokens": 12019,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Кассир покидает кассовое помещение\", \"timeline\": [{\"t\": 0.0, \"event\": \"Кассир сидит за рабочим столом и работает на ноутбуке.\"}, {\"t\": 6.0, \"event\": \"Кассир отходит от рабочего места и идёт к двери.\"}, {\"t\": 7.1, \"event\": \"Кассир открывает дверь.\"}, {\"t\": 12.6, \"event\": \"Кассир выходит из кассового помещения.\"}], \"violations\": []}",
+ "parsed": {
+  "scenario": "Кассир покидает кассовое помещение",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за рабочим столом и работает на ноутбуке."
+   },
+   {
+    "t": 6.0,
+    "event": "Кассир отходит от рабочего места и идёт к двери."
+   },
+   {
+    "t": 7.1,
+    "event": "Кассир открывает дверь."
+   },
+   {
+    "t": 12.6,
+    "event": "Кассир выходит из кассового помещения."
+   }
+  ],
+  "violations": []
+ }
+}

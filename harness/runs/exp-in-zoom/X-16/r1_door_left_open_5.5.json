@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах фрагмента видно, что дверь кассы остается закрытой (расположена в закрытом положении) на протяжении всего времени. Инкассатор находится за стеклянной перегородкой, дверь не распахнута и не оставлена открытой.",
+ "latency_sec": 6.126,
+ "error": null,
+ "usage": {
+  "completion_tokens": 77,
+  "prompt_tokens": 17486,
+  "total_tokens": 17563,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах фрагмента видно, что дверь кассы остается закрытой (расположена в закрытом положении) на протяжении всего времени. Инкассатор находится за стеклянной перегородкой, дверь не распахнута и не оставлена открытой.\"}",
+ "cand": {
+  "type_id": "door_left_open",
+  "timecode_sec": 5.5,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

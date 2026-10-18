@@ -1,0 +1,50 @@
+{
+ "check": "safe2",
+ "times": [
+  11.0,
+  13.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 11.0,
+     "safe_door": "closed"
+    },
+    {
+     "t": 13.0,
+     "safe_door": "closed"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 11.0,
+     "safe_door": "closed"
+    },
+    {
+     "t": 13.0,
+     "safe_door": "closed"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 11.0,
+     "safe_door": "closed"
+    },
+    {
+     "t": 13.0,
+     "safe_door": "closed"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  1.393,
+  3.15,
+  1.655
+ ]
+}

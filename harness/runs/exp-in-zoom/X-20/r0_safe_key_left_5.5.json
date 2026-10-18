@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 4.0,
+ "evidence": "На кадрах с 3.6 по 4.2 с видно, что кассир закрывает дверцу сейфа и одновременно вынимает ключ из замка, после чего отходит от сейфа. Ключ не остается в замке.",
+ "latency_sec": 9.022,
+ "error": null,
+ "usage": {
+  "completion_tokens": 84,
+  "prompt_tokens": 17809,
+  "total_tokens": 17893,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 4.0,\n  \"evidence\": \"На кадрах с 3.6 по 4.2 с видно, что кассир закрывает дверцу сейфа и одновременно вынимает ключ из замка, после чего отходит от сейфа. Ключ не остается в замке.\"\n}",
+ "cand": {
+  "type_id": "safe_key_left",
+  "timecode_sec": 5.5,
+  "confidence": 0.9,
+  "observed": "Кассир закрыл дверцу сейфа и отошёл от него, садясь за стол, однако ключ остался вставленным в замок сейфа.",
+  "source": "kept"
+ }
+}

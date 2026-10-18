@@ -1,0 +1,27 @@
+{
+ "video": "Х-20.mov",
+ "key": "X-20",
+ "repeat": 0,
+ "model": "molmo2-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 24,
+ "frames_sec": 0.204,
+ "latency_sec": 42.177,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 176,
+  "prompt_tokens": 17668,
+  "total_tokens": 17844,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Приём наличных от клиента\", \"timeline\": [{\"t=0.0, \"event\": \"Кассир подходит к клиенту, клиент предъявляет документ, удостоверяющий личность\"}, {\"t=0.5, \"event\": \"Кассир смотрит документ или сверяет его с экраном терминала\"}, {\"t=1.0, \"event\": \"Клиент кладёт наличные на стол кассира\"}, {\"t=1.5, \"event\": \"Кассир начинает пересчитывать банкноты вручную\"}, {\"t=2.0, \"event\": \"Клиент наблюдает за пересчётом, но не вмешивается\"}], \"violations\": []}",
+ "parsed": null
+}

@@ -1,0 +1,97 @@
+{
+ "check": "desk",
+ "times": [
+  2.0,
+  25.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 2.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 25.0,
+     "items": [
+      "bag"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 2.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 25.0,
+     "items": [
+      "bag"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 2.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 25.0,
+     "items": [
+      "bag"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 2.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 25.0,
+     "items": [
+      "bag",
+      "documents"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 2.0,
+     "items": [
+      "nothing"
+     ]
+    },
+    {
+     "t": 25.0,
+     "items": [
+      "bag"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  2.989,
+  1.473,
+  2.536,
+  1.793,
+  3.948
+ ]
+}

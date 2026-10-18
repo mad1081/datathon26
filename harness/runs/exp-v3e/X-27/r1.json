@@ -1,0 +1,103 @@
+{
+ "video": "Х-27.mov",
+ "key": "X-27",
+ "repeat": 1,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 53,
+ "frames_sec": 0.702,
+ "latency_sec": 13.472,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 536,
+  "prompt_tokens": 17539,
+  "total_tokens": 18075,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Уход кассира с рабочего места\",\n  \"timeline\": [\n    {\"t\": 0.0, \"event\": \"Кассир сидит за столом, держит в руках купюры.\"},\n    {\"t\": 5.5, \"event\": \"Кассир перекладывает купюры на стол.\"},\n    {\"t\": 8.5, \"event\": \"Кассир встаёт и подходит к сейфу.\"},\n    {\"t\": 12.0, \"event\": \"Кассир открывает дверцу сейфа.\"},\n    {\"t\": 13.0, \"event\": \"Кассир убирает купюры в сейф.\"},\n    {\"t\": 14.0, \"event\": \"Кассир закрывает дверцу сейфа.\"},\n    {\"t\": 18.0, \"event\": \"Кассир поворачивается к выходу.\"},\n    {\"t\": 20.0, \"event\": \"Кассир открывает дверь кассы.\"},\n    {\"t\": 22.0, \"event\": \"Кассир выходит в коридор.\"},\n    {\"t\": 25.0, \"event\": \"Кассир уходит за пределы видимости.\"}\n  ],\n  \"object_states\": [\n    {\"object\": \"сейф\", \"t\": 14.0, \"state\": \"закрыта плотно\"},\n    {\"object\": \"ноутбук\", \"t\": 20.0, \"state\": \"крышка закрыта\"},\n    {\"object\": \"ключ в замке сейфа\", \"t\": 20.0, \"state\": \"нет\"},\n    {\"object\": \"наличные на столе\", \"t\": 20.0, \"state\": \"нет\"}\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"не применимо\",\n    \"part_of_notes_returned_to_client\": \"нет\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"пусто\",\n    \"at_departure_key_in_safe_lock\": \"нет\",\n    \"at_departure_safe_door\": \"закрыта плотно\",\n    \"at_departure_laptop_screen\": \"крышка закрыта\"\n  },\n  \"violations\": []\n}",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом, держит в руках купюры."
+   },
+   {
+    "t": 5.5,
+    "event": "Кассир перекладывает купюры на стол."
+   },
+   {
+    "t": 8.5,
+    "event": "Кассир встаёт и подходит к сейфу."
+   },
+   {
+    "t": 12.0,
+    "event": "Кассир открывает дверцу сейфа."
+   },
+   {
+    "t": 13.0,
+    "event": "Кассир убирает купюры в сейф."
+   },
+   {
+    "t": 14.0,
+    "event": "Кассир закрывает дверцу сейфа."
+   },
+   {
+    "t": 18.0,
+    "event": "Кассир поворачивается к выходу."
+   },
+   {
+    "t": 20.0,
+    "event": "Кассир открывает дверь кассы."
+   },
+   {
+    "t": 22.0,
+    "event": "Кассир выходит в коридор."
+   },
+   {
+    "t": 25.0,
+    "event": "Кассир уходит за пределы видимости."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "сейф",
+    "t": 14.0,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "ноутбук",
+    "t": 20.0,
+    "state": "крышка закрыта"
+   },
+   {
+    "object": "ключ в замке сейфа",
+    "t": 20.0,
+    "state": "нет"
+   },
+   {
+    "object": "наличные на столе",
+    "t": 20.0,
+    "state": "нет"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "нет",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "пусто",
+   "at_departure_key_in_safe_lock": "нет",
+   "at_departure_safe_door": "закрыта плотно",
+   "at_departure_laptop_screen": "крышка закрыта"
+  },
+  "violations": []
+ }
+}

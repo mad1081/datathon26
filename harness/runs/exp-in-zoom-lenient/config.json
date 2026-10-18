@@ -1,0 +1,9 @@
+{
+ "pass1": "qwen36-35b-a3b",
+ "zoom_fps": 5.0,
+ "zoom_half": 5.0,
+ "zoom_max_side": 848,
+ "zoom_temperature": 0.0,
+ "sub_min": null,
+ "model": "default"
+}

@@ -1,0 +1,100 @@
+{
+ "check": "notes",
+ "times": [
+  67.0,
+  69.0,
+  71.0,
+  72.5
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 67.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 69.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 71.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 72.5,
+     "notes": [
+      "client"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 67.0,
+     "notes": [
+      "cashier"
+     ]
+    },
+    {
+     "t": 69.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 71.0,
+     "notes": [
+      "none"
+     ]
+    },
+    {
+     "t": 72.5,
+     "notes": [
+      "none"
+     ]
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 67.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 69.0,
+     "notes": [
+      "client"
+     ]
+    },
+    {
+     "t": 71.0,
+     "notes": [
+      "none"
+     ]
+    },
+    {
+     "t": 72.5,
+     "notes": [
+      "none"
+     ]
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  10.251,
+  3.788,
+  2.541
+ ]
+}

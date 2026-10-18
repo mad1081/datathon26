@@ -1,0 +1,90 @@
+{
+ "video": "Х-32.mov",
+ "key": "X-32",
+ "repeat": 2,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 43,
+ "frames_sec": 0.334,
+ "latency_sec": 9.689,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 447,
+  "prompt_tokens": 15239,
+  "total_tokens": 15686,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "```json\n{\n\"scenario\": \"Вход кассира на рабочее место и начало работы\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассовое помещение пустое, дверь закрыта.\"},\n{\"t\": 2.0, \"event\": \"Кассир подходит к стеклянной двери из коридора.\"},\n{\"t\": 4.5, \"event\": \"Кассир открывает дверь и входит в помещение.\"},\n{\"t\": 6.0, \"event\": \"Кассир закрывает дверь за собой.\"},\n{\"t\": 9.5, \"event\": \"Кассир садится на рабочее место.\"},\n{\"t\": 13.0, \"event\": \"Кассир встаёт и начинает работу со счётно-счётной машиной.\"},\n{\"t\": 15.0, \"event\": \"Кассир открывает крышку счётной машины.\"},\n{\"t\": 18.0, \"event\": \"Кассир загружает купюры в счётную машину для пересчёта.\"}\n],\n\"object_states\": [\n{\"object\": \"дверь\", \"t\": 6.0, \"state\": \"закрыта плотно\"},\n{\"object\": \"сейф\", \"t\": 18.0, \"state\": \"закрыт плотно\"},\n{\"object\": \"наличные\", \"t\": 18.0, \"state\": \"на столе, в счётной машине\"}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"нет\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"на столе нет\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"не применимо\"\n},\n\"violations\": []\n}\n```",
+ "parsed": {
+  "scenario": "Вход кассира на рабочее место и начало работы",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассовое помещение пустое, дверь закрыта."
+   },
+   {
+    "t": 2.0,
+    "event": "Кассир подходит к стеклянной двери из коридора."
+   },
+   {
+    "t": 4.5,
+    "event": "Кассир открывает дверь и входит в помещение."
+   },
+   {
+    "t": 6.0,
+    "event": "Кассир закрывает дверь за собой."
+   },
+   {
+    "t": 9.5,
+    "event": "Кассир садится на рабочее место."
+   },
+   {
+    "t": 13.0,
+    "event": "Кассир встаёт и начинает работу со счётно-счётной машиной."
+   },
+   {
+    "t": 15.0,
+    "event": "Кассир открывает крышку счётной машины."
+   },
+   {
+    "t": 18.0,
+    "event": "Кассир загружает купюры в счётную машину для пересчёта."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 6.0,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "сейф",
+    "t": 18.0,
+    "state": "закрыт плотно"
+   },
+   {
+    "object": "наличные",
+    "t": 18.0,
+    "state": "на столе, в счётной машине"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "нет",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "на столе нет",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": []
+ }
+}

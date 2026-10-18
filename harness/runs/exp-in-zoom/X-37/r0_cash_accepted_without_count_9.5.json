@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах видно, что клиент (мужчина) протягивает кассиру пачку банкнот. Кассир принимает деньги и сразу помещает их в счётно-проверочную машину для пересчёта. Действие выполнено корректно, нарушение отсутствует.",
+ "latency_sec": 5.411,
+ "error": null,
+ "usage": {
+  "completion_tokens": 94,
+  "prompt_tokens": 17437,
+  "total_tokens": 17531,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": false,\n  \"timecode_sec\": 0.0,\n  \"evidence\": \"На кадрах видно, что клиент (мужчина) протягивает кассиру пачку банкнот. Кассир принимает деньги и сразу помещает их в счётно-проверочную машину для пересчёта. Действие выполнено корректно, нарушение отсутствует.\"\n}",
+ "cand": {
+  "type_id": "cash_accepted_without_count",
+  "timecode_sec": 9.5,
+  "confidence": 0.7,
+  "observed": "",
+  "source": "kept"
+ }
+}

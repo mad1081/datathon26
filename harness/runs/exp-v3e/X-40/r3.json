@@ -1,0 +1,98 @@
+{
+ "video": "Х-40.mov",
+ "key": "X-40",
+ "repeat": 3,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 51,
+ "frames_sec": 0.352,
+ "latency_sec": 17.508,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 647,
+  "prompt_tokens": 17079,
+  "total_tokens": 17726,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n  \"scenario\": \"Вход кассира на рабочее место, начало работы\",\n  \"timeline\": [\n    {\n      \"t\": 0.0,\n      \"event\": \"Помещение кассы пустое, рабочее место не занято, дверь закрыта.\"\n    },\n    {\n      \"t\": 2.5,\n      \"event\": \"Кассир открывает дверь кассы и входит внутрь.\"\n    },\n    {\n      \"t\": 5.0,\n      \"event\": \"Кассир закрывает дверь после входа.\"\n    },\n    {\n      \"t\": 9.5,\n      \"event\": \"Кассир ставит свою сумку на стол.\"\n    },\n    {\n      \"t\": 14.5,\n      \"event\": \"Кассир снимает верхнюю одежду и кладёт её на стол.\"\n    },\n    {\n      \"t\": 18.0,\n      \"event\": \"Кассир садится на рабочее место.\"\n    },\n    {\n      \"t\": 20.0,\n      \"event\": \"Кассир начинает работать за ноутбуком.\"\n    }\n  ],\n  \"object_states\": [\n    {\n      \"object\": \"дверь\",\n      \"t\": 5.0,\n      \"state\": \"закрыта\"\n    },\n    {\n      \"object\": \"ноутбук\",\n      \"t\": 20.0,\n      \"state\": \"открыт, экран активен (белая таблица)\"\n    },\n    {\n      \"object\": \"личная сумка\",\n      \"t\": 9.5,\n      \"state\": \"на столе\"\n    },\n    {\n      \"object\": \"верхняя одежда\",\n      \"t\": 14.5,\n      \"state\": \"на столе\"\n    }\n  ],\n  \"checks\": {\n    \"id_card_examined_before_cash\": \"не применимо\",\n    \"part_of_notes_returned_to_client\": \"не применимо\",\n    \"money_counted_before_safe\": \"не применимо\",\n    \"at_departure_on_desk\": \"нет (кассир только зашёл)\",\n    \"at_departure_key_in_safe_lock\": \"не применимо\",\n    \"at_departure_safe_door\": \"не применимо\",\n    \"at_departure_laptop_screen\": \"не применимо\"\n  },\n  \"violations\": [\n    {\n      \"type_id\": \"phone_or_personal_items\",\n      \"timecode_sec\": 9.5,\n      \"confidence\": 0.95,\n      \"obs\": \"Кассир положила личную сумку и верхнюю одежду на рабочий стол в кассовом узле, что запрещено правилами хранения личных вещей.\"\n    }\n  ]\n}",
+ "parsed": {
+  "scenario": "Вход кассира на рабочее место, начало работы",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Помещение кассы пустое, рабочее место не занято, дверь закрыта."
+   },
+   {
+    "t": 2.5,
+    "event": "Кассир открывает дверь кассы и входит внутрь."
+   },
+   {
+    "t": 5.0,
+    "event": "Кассир закрывает дверь после входа."
+   },
+   {
+    "t": 9.5,
+    "event": "Кассир ставит свою сумку на стол."
+   },
+   {
+    "t": 14.5,
+    "event": "Кассир снимает верхнюю одежду и кладёт её на стол."
+   },
+   {
+    "t": 18.0,
+    "event": "Кассир садится на рабочее место."
+   },
+   {
+    "t": 20.0,
+    "event": "Кассир начинает работать за ноутбуком."
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 5.0,
+    "state": "закрыта"
+   },
+   {
+    "object": "ноутбук",
+    "t": 20.0,
+    "state": "открыт, экран активен (белая таблица)"
+   },
+   {
+    "object": "личная сумка",
+    "t": 9.5,
+    "state": "на столе"
+   },
+   {
+    "object": "верхняя одежда",
+    "t": 14.5,
+    "state": "на столе"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "нет (кассир только зашёл)",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "не применимо"
+  },
+  "violations": [
+   {
+    "type_id": "phone_or_personal_items",
+    "timecode_sec": 9.5,
+    "confidence": 0.95,
+    "obs": "Кассир положила личную сумку и верхнюю одежду на рабочий стол в кассовом узле, что запрещено правилами хранения личных вещей."
+   }
+  ]
+ }
+}

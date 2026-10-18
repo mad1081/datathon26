@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 58.0,
+ "evidence": "На кадрах с 58.0 с по 62.8 с видно, что дверь кассового узла остается открытой после того, как клиент вышел из помещения. Кассир продолжает работу за столом, не закрывая дверь, что является нарушением кассовой дисциплины.",
+ "latency_sec": 10.57,
+ "error": null,
+ "usage": {
+  "completion_tokens": 95,
+  "prompt_tokens": 19505,
+  "total_tokens": 19600,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 58.0,\n  \"evidence\": \"На кадрах с 58.0 с по 62.8 с видно, что дверь кассового узла остается открытой после того, как клиент вышел из помещения. Кассир продолжает работу за столом, не закрывая дверь, что является нарушением кассовой дисциплины.\"\n}",
+ "cand": {
+  "type_id": "door_left_open",
+  "timecode_sec": 58.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

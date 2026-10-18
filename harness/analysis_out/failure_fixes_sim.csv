@@ -1,0 +1,36 @@
+﻿run,fix,result
+exp-v3a,base,acc=0.775 16/4/5/15 FP=X-25 X-27 X-3 X-31 FN=X-1 X-2 X-22 X-4 X-44
+exp-v3a,F1 type-consistent vote,acc=0.750 14/3/7/16 FP=X-25 X-27 X-31 FN=X-1 X-2 X-22 X-34 X-38 X-4 X-44
+exp-v3a,F2 cash->safe check,acc=0.775 16/4/5/15 FP=X-25 X-27 X-3 X-31 FN=X-1 X-2 X-22 X-4 X-44
+exp-v3a,F3 cross-repeat laptop,acc=0.750 14/3/7/16 FP=X-27 X-3 X-31 FN=X-1 X-11 X-2 X-22 X-28 X-4 X-44
+exp-v3a,F4 cross-repeat door,acc=0.750 13/2/8/17 FP=X-25 X-27 FN=X-1 X-17 X-2 X-22 X-32 X-33 X-4 X-44
+exp-v3a,F1+F2+F3,acc=0.725 12/2/9/17 FP=X-27 X-31 FN=X-1 X-11 X-2 X-22 X-28 X-34 X-38 X-4 X-44
+exp-v3a,F1+F2+F3+F4,acc=0.675 9/1/12/18 FP=X-27 FN=X-1 X-11 X-17 X-2 X-22 X-28 X-32 X-33 X-34 X-38 X-4 X-44
+exp-v3b,base,acc=0.825 16/2/5/17 FP=X-25 X-27 FN=X-1 X-2 X-20 X-22 X-44
+exp-v3b,F1 type-consistent vote,acc=0.750 13/2/8/17 FP=X-25 X-27 FN=X-1 X-13 X-2 X-20 X-22 X-38 X-4 X-44
+exp-v3b,F2 cash->safe check,acc=0.825 16/2/5/17 FP=X-25 X-27 FN=X-1 X-2 X-20 X-22 X-44
+exp-v3b,F3 cross-repeat laptop,acc=0.825 15/1/6/18 FP=X-27 FN=X-1 X-13 X-2 X-20 X-22 X-44
+exp-v3b,F4 cross-repeat door,acc=0.750 13/2/8/17 FP=X-25 X-27 FN=X-1 X-2 X-20 X-22 X-32 X-33 X-4 X-44
+exp-v3b,F1+F2+F3,acc=0.750 12/1/9/18 FP=X-27 FN=X-1 X-11 X-13 X-2 X-20 X-22 X-38 X-4 X-44
+exp-v3b,F1+F2+F3+F4,acc=0.700 10/1/11/18 FP=X-27 FN=X-1 X-11 X-13 X-2 X-20 X-22 X-32 X-33 X-38 X-4 X-44
+qwen36-35b-a3b-p2,base,acc=0.650 14/7/7/12 FP=X-10 X-14 X-16 X-21 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-32 X-4 X-44
+qwen36-35b-a3b-p2,F1 type-consistent vote,acc=0.600 10/5/11/14 FP=X-10 X-16 X-21 X-27 X-29 FN=X-1 X-13 X-2 X-20 X-22 X-32 X-33 X-34 X-38 X-4 X-44
+qwen36-35b-a3b-p2,F2 cash->safe check,acc=0.650 14/7/7/12 FP=X-10 X-14 X-16 X-21 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-32 X-4 X-44
+qwen36-35b-a3b-p2,F3 cross-repeat laptop,acc=0.625 11/5/10/14 FP=X-10 X-14 X-16 X-21 X-27 FN=X-1 X-11 X-2 X-20 X-22 X-28 X-32 X-33 X-4 X-44
+qwen36-35b-a3b-p2,F4 cross-repeat door,acc=0.600 12/7/9/12 FP=X-10 X-14 X-16 X-21 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-32 X-33 X-34 X-4 X-44
+qwen36-35b-a3b-p2,F1+F2+F3,acc=0.550 7/4/14/15 FP=X-10 X-16 X-21 X-27 FN=X-1 X-11 X-13 X-2 X-20 X-22 X-24 X-28 X-32 X-33 X-34 X-38 X-4 X-44
+qwen36-35b-a3b-p2,F1+F2+F3+F4,acc=0.550 7/4/14/15 FP=X-10 X-16 X-21 X-27 FN=X-1 X-11 X-13 X-2 X-20 X-22 X-24 X-28 X-32 X-33 X-34 X-38 X-4 X-44
+qwen36-35b-a3b,base,acc=0.725 13/3/8/16 FP=X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-32 X-33 X-4 X-44
+qwen36-35b-a3b,F1 type-consistent vote,acc=0.650 10/3/11/16 FP=X-25 X-27 X-29 FN=X-1 X-18 X-2 X-20 X-22 X-30 X-32 X-33 X-34 X-4 X-44
+qwen36-35b-a3b,F2 cash->safe check,acc=0.725 13/3/8/16 FP=X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-32 X-33 X-4 X-44
+qwen36-35b-a3b,F3 cross-repeat laptop,acc=0.725 11/1/10/18 FP=X-27 FN=X-1 X-11 X-2 X-20 X-22 X-24 X-32 X-33 X-4 X-44
+qwen36-35b-a3b,F4 cross-repeat door,acc=0.700 12/3/9/16 FP=X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-30 X-32 X-33 X-4 X-44
+qwen36-35b-a3b,F1+F2+F3,acc=0.650 8/1/13/18 FP=X-27 FN=X-1 X-11 X-18 X-2 X-20 X-22 X-24 X-30 X-32 X-33 X-34 X-4 X-44
+qwen36-35b-a3b,F1+F2+F3+F4,acc=0.650 8/1/13/18 FP=X-27 FN=X-1 X-11 X-18 X-2 X-20 X-22 X-24 X-30 X-32 X-33 X-34 X-4 X-44
+qwen36-27b,base,acc=0.700 13/4/8/15 FP=X-23 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-30 X-32 X-33 X-44
+qwen36-27b,F1 type-consistent vote,acc=0.700 13/4/8/15 FP=X-23 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-30 X-32 X-33 X-44
+qwen36-27b,F2 cash->safe check,acc=0.700 13/4/8/15 FP=X-23 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-30 X-32 X-33 X-44
+qwen36-27b,F3 cross-repeat laptop,acc=0.675 10/2/11/17 FP=X-25 X-27 FN=X-1 X-11 X-2 X-20 X-22 X-24 X-28 X-30 X-32 X-33 X-44
+qwen36-27b,F4 cross-repeat door,acc=0.675 12/4/9/15 FP=X-23 X-25 X-27 X-29 FN=X-1 X-2 X-20 X-22 X-30 X-32 X-33 X-34 X-44
+qwen36-27b,F1+F2+F3,acc=0.675 10/2/11/17 FP=X-25 X-27 FN=X-1 X-11 X-2 X-20 X-22 X-24 X-28 X-30 X-32 X-33 X-44
+qwen36-27b,F1+F2+F3+F4,acc=0.650 9/2/12/17 FP=X-25 X-27 FN=X-1 X-11 X-2 X-20 X-22 X-24 X-28 X-30 X-32 X-33 X-34 X-44

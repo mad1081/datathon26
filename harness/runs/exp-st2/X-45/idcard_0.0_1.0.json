@@ -1,0 +1,50 @@
+{
+ "check": "idcard",
+ "times": [
+  0.0,
+  1.0
+ ],
+ "answers": [
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "yes"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "no"
+    }
+   ]
+  },
+  {
+   "frames": [
+    {
+     "t": 0.0,
+     "id_card": "no"
+    },
+    {
+     "t": 1.0,
+     "id_card": "yes"
+    }
+   ]
+  }
+ ],
+ "latencies": [
+  4.942,
+  3.621,
+  3.48
+ ]
+}

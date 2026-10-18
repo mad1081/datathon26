@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 14.0,
+ "evidence": "На кадрах видно, как кассир снимает верхнюю одежду (куртку) и кладёт её на рабочий стол рядом с рабочим местом.",
+ "latency_sec": 4.43,
+ "error": null,
+ "usage": {
+  "completion_tokens": 55,
+  "prompt_tokens": 19334,
+  "total_tokens": 19389,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 14.0, \"evidence\": \"На кадрах видно, как кассир снимает верхнюю одежду (куртку) и кладёт её на рабочий стол рядом с рабочим местом.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 14.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

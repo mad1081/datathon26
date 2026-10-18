@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 0.0,
+ "evidence": "На кадрах фрагмента видно, что клиент уже положил документ на стол (согласно контексту, это произошло до t=7.0 с), кассир его взял и проверяет. Клиент не передаёт наличные без предъявления документа в этот момент. Нарушение no_client_id_check отсутствует.",
+ "latency_sec": 4.608,
+ "error": null,
+ "usage": {
+  "completion_tokens": 89,
+  "prompt_tokens": 17963,
+  "total_tokens": 18052,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 0.0, \"evidence\": \"На кадрах фрагмента видно, что клиент уже положил документ на стол (согласно контексту, это произошло до t=7.0 с), кассир его взял и проверяет. Клиент не передаёт наличные без предъявления документа в этот момент. Нарушение no_client_id_check отсутствует.\"}",
+ "cand": {
+  "type_id": "no_client_id_check",
+  "timecode_sec": 10.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "confirmed": false,
+ "timecode_sec": 33.0,
+ "evidence": "На кадрах фрагмента (30.0–36.0 с) кассир не принимает наличные и не убирает их в сейф. Клиент только передает пачку денег в конце фрагмента (около 32.5 с), а пересчет начинается после него. В данном отрезке нарушение отсутствует.",
+ "latency_sec": 5.303,
+ "error": null,
+ "usage": {
+  "completion_tokens": 97,
+  "prompt_tokens": 17953,
+  "total_tokens": 18050,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 46,
+ "raw_text": "{\"confirmed\": false, \"timecode_sec\": 33.0, \"evidence\": \"На кадрах фрагмента (30.0–36.0 с) кассир не принимает наличные и не убирает их в сейф. Клиент только передает пачку денег в конце фрагмента (около 32.5 с), а пересчет начинается после него. В данном отрезке нарушение отсутствует.\"}",
+ "cand": {
+  "type_id": "cash_accepted_without_count",
+  "timecode_sec": 33.0,
+  "confidence": 0.8,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,91 @@
+{
+ "video": "Х-29.mov",
+ "key": "X-29",
+ "repeat": 3,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 35,
+ "frames_sec": 0.215,
+ "latency_sec": 8.676,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 423,
+  "prompt_tokens": 13399,
+  "total_tokens": 13822,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"Уход кассира с рабочего места\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассир сидит за столом и работает в ноутбуке\"},\n{\"t\": 6.5, \"event\": \"Кассир закрывает крышку ноутбука\"},\n{\"t\": 7.0, \"event\": \"Кассир встает из-за стола\"},\n{\"t\": 7.5, \"event\": \"Кассир подходит к стеклянной двери кассы\"},\n{\"t\": 8.0, \"event\": \"Кассир открывает дверь и выходит из помещения\"},\n{\"t\": 12.0, \"event\": \"Кассир закрывает дверь за собой\"},\n{\"t\": 16.0, \"event\": \"Кассир полностью покидает помещение, помещение пустое\"}\n],\n\"object_states\": [\n{\"object\": \"ноутбук\", \"t\": 7.0, \"state\": \"крышка закрыта\"},\n{\"object\": \"наличные на столе\", \"t\": 7.0, \"state\": \"отсутствуют\"},\n{\"object\": \"сейф\", \"t\": 16.0, \"state\": \"закрыт\"},\n{\"object\": \"дверь кассы\", \"t\": 12.0, \"state\": \"закрыта\"}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"нет\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"отсутствуют\",\n\"at_departure_key_in_safe_lock\": \"не применимо\",\n\"at_departure_safe_door\": \"не применимо\",\n\"at_departure_laptop_screen\": \"крышка закрыта\"\n},\n\"violations\": []\n}",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом и работает в ноутбуке"
+   },
+   {
+    "t": 6.5,
+    "event": "Кассир закрывает крышку ноутбука"
+   },
+   {
+    "t": 7.0,
+    "event": "Кассир встает из-за стола"
+   },
+   {
+    "t": 7.5,
+    "event": "Кассир подходит к стеклянной двери кассы"
+   },
+   {
+    "t": 8.0,
+    "event": "Кассир открывает дверь и выходит из помещения"
+   },
+   {
+    "t": 12.0,
+    "event": "Кассир закрывает дверь за собой"
+   },
+   {
+    "t": 16.0,
+    "event": "Кассир полностью покидает помещение, помещение пустое"
+   }
+  ],
+  "object_states": [
+   {
+    "object": "ноутбук",
+    "t": 7.0,
+    "state": "крышка закрыта"
+   },
+   {
+    "object": "наличные на столе",
+    "t": 7.0,
+    "state": "отсутствуют"
+   },
+   {
+    "object": "сейф",
+    "t": 16.0,
+    "state": "закрыт"
+   },
+   {
+    "object": "дверь кассы",
+    "t": 12.0,
+    "state": "закрыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "нет",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "отсутствуют",
+   "at_departure_key_in_safe_lock": "не применимо",
+   "at_departure_safe_door": "не применимо",
+   "at_departure_laptop_screen": "крышка закрыта"
+  },
+  "violations": []
+ }
+}

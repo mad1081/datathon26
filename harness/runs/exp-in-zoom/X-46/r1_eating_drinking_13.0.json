@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 13.0,
+ "evidence": "На кадрах с 13.0 с видно, что кассир подносит белую кружку ко рту и делает глоток напитка. На столе также присутствует еда (печенье). Это является нарушением внутреннего порядка хранения личных вещей и приёма пищи в кассовом узле.",
+ "latency_sec": 9.384,
+ "error": null,
+ "usage": {
+  "completion_tokens": 95,
+  "prompt_tokens": 17589,
+  "total_tokens": 17684,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 13.0,\n  \"evidence\": \"На кадрах с 13.0 с видно, что кассир подносит белую кружку ко рту и делает глоток напитка. На столе также присутствует еда (печенье). Это является нарушением внутреннего порядка хранения личных вещей и приёма пищи в кассовом узле.\"\n}",
+ "cand": {
+  "type_id": "eating_drinking",
+  "timecode_sec": 13.0,
+  "confidence": 0.95,
+  "observed": "",
+  "source": "kept"
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "video": "Х-12.mov",
+ "key": "X-12",
+ "repeat": 1,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 85,
+ "frames_sec": 0.621,
+ "latency_sec": 15.022,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 554,
+  "prompt_tokens": 24899,
+  "total_tokens": 25453,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"Уход кассира с рабочего места\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассир сидит за столом и работает с ноутбуком\"},\n{\"t\": 11.0, \"event\": \"Кассир закрывает крышку ноутбука\"},\n{\"t\": 22.0, \"event\": \"Кассир встаёт из-за стола и отходит к сейфу\"},\n{\"t\": 26.5, \"event\": \"Кассир открывает дверцу сейфа\"},\n{\"t\": 31.0, \"event\": \"Кассир закрывает дверцу сейфа и поворачивает ключ/ручку\"},\n{\"t\": 32.5, \"event\": \"Кассир отходит от сейфа к двери\"},\n{\"t\": 34.0, \"event\": \"Кассир открывает дверь кассы и выходит в коридор\"},\n{\"t\": 41.5, \"event\": \"Кассир уходит из зоны видимости, дверь остаётся открытой\"}\n],\n\"object_states\": [\n{\"object\": \"ноутбук\", \"t\": 11.0, \"state\": \"крышка закрыта\"},\n{\"object\": \"сейф\", \"t\": 26.5, \"state\": \"открыта\"},\n{\"object\": \"сейф\", \"t\": 31.0, \"state\": \"закрыта плотно\"},\n{\"object\": \"дверь\", \"t\": 34.0, \"state\": \"открыта\"},\n{\"object\": \"дверь\", \"t\": 41.5, \"state\": \"открыта\"}\n],\n\"checks\": {\n\"id_card_examined_before_cash\": \"не применимо\",\n\"part_of_notes_returned_to_client\": \"не применимо\",\n\"money_counted_before_safe\": \"не применимо\",\n\"at_departure_on_desk\": \"отсутствуют\",\n\"at_departure_key_in_safe_lock\": \"нет\",\n\"at_departure_safe_door\": \"закрыта плотно\",\n\"at_departure_laptop_screen\": \"крышка закрыта\"\n},\n\"violations\": [\n{\"type_id\": \"door_left_open\", \"timecode_sec\": 34.0, \"confidence\": 0.95, \"obs\": \"Кассир вышла из кассового помещения и оставила дверь кассы открытой\"}\n]\n}",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом и работает с ноутбуком"
+   },
+   {
+    "t": 11.0,
+    "event": "Кассир закрывает крышку ноутбука"
+   },
+   {
+    "t": 22.0,
+    "event": "Кассир встаёт из-за стола и отходит к сейфу"
+   },
+   {
+    "t": 26.5,
+    "event": "Кассир открывает дверцу сейфа"
+   },
+   {
+    "t": 31.0,
+    "event": "Кассир закрывает дверцу сейфа и поворачивает ключ/ручку"
+   },
+   {
+    "t": 32.5,
+    "event": "Кассир отходит от сейфа к двери"
+   },
+   {
+    "t": 34.0,
+    "event": "Кассир открывает дверь кассы и выходит в коридор"
+   },
+   {
+    "t": 41.5,
+    "event": "Кассир уходит из зоны видимости, дверь остаётся открытой"
+   }
+  ],
+  "object_states": [
+   {
+    "object": "ноутбук",
+    "t": 11.0,
+    "state": "крышка закрыта"
+   },
+   {
+    "object": "сейф",
+    "t": 26.5,
+    "state": "открыта"
+   },
+   {
+    "object": "сейф",
+    "t": 31.0,
+    "state": "закрыта плотно"
+   },
+   {
+    "object": "дверь",
+    "t": 34.0,
+    "state": "открыта"
+   },
+   {
+    "object": "дверь",
+    "t": 41.5,
+    "state": "открыта"
+   }
+  ],
+  "checks": {
+   "id_card_examined_before_cash": "не применимо",
+   "part_of_notes_returned_to_client": "не применимо",
+   "money_counted_before_safe": "не применимо",
+   "at_departure_on_desk": "отсутствуют",
+   "at_departure_key_in_safe_lock": "нет",
+   "at_departure_safe_door": "закрыта плотно",
+   "at_departure_laptop_screen": "крышка закрыта"
+  },
+  "violations": [
+   {
+    "type_id": "door_left_open",
+    "timecode_sec": 34.0,
+    "confidence": 0.95,
+    "obs": "Кассир вышла из кассового помещения и оставила дверь кассы открытой"
+   }
+  ]
+ }
+}

@@ -1,0 +1,73 @@
+{
+ "video": "Х-28.mov",
+ "key": "X-28",
+ "repeat": 0,
+ "model": "qwen36-35b-a3b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": true
+ },
+ "n_frames": 33,
+ "frames_sec": 0.338,
+ "latency_sec": 8.741,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 307,
+  "prompt_tokens": 12082,
+  "total_tokens": 12389,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\n\"scenario\": \"Уход кассира с рабочего места\",\n\"timeline\": [\n{\"t\": 0.0, \"event\": \"Кассир сидит за столом и работает в ноутбуке\"},\n{\"t\": 7.0, \"event\": \"Кассир встает и подходит к двери кассы\"},\n{\"t\": 12.5, \"event\": \"Кассир открывает дверь и выходит из помещения\"},\n{\"t\": 15.0, \"event\": \"Кассир выходит, дверь остается открытой, ноутбук разблокирован\"}\n],\n\"object_states\": [\n{\"object\": \"дверь\", \"t\": 15.0, \"state\": \"открыта\"},\n{\"object\": \"ноутбук\", \"t\": 15.0, \"state\": \"разблокирован\"}\n],\n\"violations\": [\n{\"type_id\": \"door_left_open\", \"timecode_sec\": 12.5, \"confidence\": 0.9, \"obs\": \"Кассир вышел из помещения и оставил дверь кассы открытой\"},\n{\"type_id\": \"workstation_unlocked\", \"timecode_sec\": 12.5, \"confidence\": 0.9, \"obs\": \"Кассир ушел с рабочего места, оставив ноутбук разблокированным\"}\n]\n}",
+ "parsed": {
+  "scenario": "Уход кассира с рабочего места",
+  "timeline": [
+   {
+    "t": 0.0,
+    "event": "Кассир сидит за столом и работает в ноутбуке"
+   },
+   {
+    "t": 7.0,
+    "event": "Кассир встает и подходит к двери кассы"
+   },
+   {
+    "t": 12.5,
+    "event": "Кассир открывает дверь и выходит из помещения"
+   },
+   {
+    "t": 15.0,
+    "event": "Кассир выходит, дверь остается открытой, ноутбук разблокирован"
+   }
+  ],
+  "object_states": [
+   {
+    "object": "дверь",
+    "t": 15.0,
+    "state": "открыта"
+   },
+   {
+    "object": "ноутбук",
+    "t": 15.0,
+    "state": "разблокирован"
+   }
+  ],
+  "violations": [
+   {
+    "type_id": "door_left_open",
+    "timecode_sec": 12.5,
+    "confidence": 0.9,
+    "obs": "Кассир вышел из помещения и оставил дверь кассы открытой"
+   },
+   {
+    "type_id": "workstation_unlocked",
+    "timecode_sec": 12.5,
+    "confidence": 0.9,
+    "obs": "Кассир ушел с рабочего места, оставив ноутбук разблокированным"
+   }
+  ]
+ }
+}

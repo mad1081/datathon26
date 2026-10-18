@@ -1,0 +1,27 @@
+{
+ "video": "X-2.mov",
+ "key": "X-2",
+ "repeat": 0,
+ "model": "molmo2-8b",
+ "params": {
+  "fps": 1.0,
+  "max_frames": 250,
+  "max_side": 640,
+  "temperature": 0.6,
+  "disable_thinking": false
+ },
+ "n_frames": 34,
+ "frames_sec": 1.052,
+ "latency_sec": 97.701,
+ "attempts": 1,
+ "error": null,
+ "usage": {
+  "completion_tokens": 199,
+  "prompt_tokens": 23248,
+  "total_tokens": 23447,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "raw_text": "{\"scenario\": \"Обработка денег без клиента\", \"timeline\": [{\"t=0.0, \"event\": \"Кассир сидит за столом, ноутбук включен\"}, {\"t=0.5, \"event\": \"Кассир поднимает руку, как будто собирается что-то сделать\"}, {\"t=1.0, \"event\": \"Кассир начинает двигать руками, как будто пересчитывает деньги\"}, {\"t=1.5, \"event\": \"Кассир продолжает двигать руками, как будто пересчитывает деньги\"}], \"violations\": [{\"type_id\": \"counting_without_client\", \"timecode_sec\": 1.0, \"confidence\": 0.9, \"observed\": \"Кассир пересчитывает деньги, но клиент не виден и не упоминается в кадре\"}]}",
+ "parsed": null
+}

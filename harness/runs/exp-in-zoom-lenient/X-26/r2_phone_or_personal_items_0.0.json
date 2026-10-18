@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 0.0,
+ "evidence": "Кассир сидит за рабочим столом и держит в руках смартфон, смотрит в экран, что является нарушением правил использования личных устройств на рабочем месте.",
+ "latency_sec": 3.915,
+ "error": null,
+ "usage": {
+  "completion_tokens": 64,
+  "prompt_tokens": 10031,
+  "total_tokens": 10095,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 25,
+ "raw_text": "{\n  \"confirmed\": true,\n  \"timecode_sec\": 0.0,\n  \"evidence\": \"Кассир сидит за рабочим столом и держит в руках смартфон, смотрит в экран, что является нарушением правил использования личных устройств на рабочем месте.\"\n}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 0.0,
+  "confidence": 1.0,
+  "observed": "Кассир находится на рабочем месте и активно пользуется личным смартфоном, держа его в руках и глядя в экран.",
+  "source": "kept"
+ }
+}

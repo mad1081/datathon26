@@ -1,0 +1,20 @@
+﻿video,scenario,calls,calls_flagged,runs_majority_fp,top_hallucinated
+X-3,Приём наличных от клиента,105,40,4/14,no_client_id_check:30 door_left_open:13 cash_within_client_reach:5 workstation_unlocked:5
+X-5,Приём наличных от клиента,105,50,5/14,no_client_id_check:21 door_left_open:19 cash_within_client_reach:11 cash_accepted_without_count:9
+X-8,Обработка денег без клиента,105,23,2/14,workstation_unlocked:13 safe_left_open:10 cash_unattended:7 counting_without_client:2
+X-10,Обработка денег без клиента,105,52,6/14,phone_or_personal_items:46 workstation_unlocked:15 cash_unattended:12 cash_out_of_view:3
+X-12,Уход с рабочего места,105,28,2/14,safe_left_open:14 workstation_unlocked:7 cash_unattended:6 door_left_open:3
+X-14,Вскрытие сумки и закладка в сейф,105,51,7/14,workstation_unlocked:16 cash_unattended:15 collector_bag_no_check:12 safe_left_open:10
+X-16,Инкассация: приём сумки,105,58,9/14,collector_bag_no_check:32 no_client_id_check:20 cash_within_client_reach:16 counting_without_client:8
+X-19,Приём наличных от клиента,105,45,4/14,no_client_id_check:25 door_left_open:14 foreign_cash_on_desk:9 cash_unattended:8
+X-21,Обработка денег без клиента,105,42,5/14,eating_drinking:35 workstation_unlocked:4 cash_unattended:4 phone_or_personal_items:3
+X-23,Уход с рабочего места,105,51,6/14,workstation_unlocked:40 safe_left_open:11 safe_key_left:4 door_left_open:3
+X-25,Уход с рабочего места,105,67,10/14,workstation_unlocked:55 safe_left_open:13 cash_unattended:9 safe_key_left:9
+X-27,Уход с рабочего места,105,69,9/14,workstation_unlocked:51 cash_unattended:20 safe_key_left:9 safe_left_open:9
+X-29,Уход с рабочего места,105,54,9/14,workstation_unlocked:50 door_left_open:8 cash_unattended:3 safe_left_open:1
+X-31,Вход в кассу,105,24,1/14,door_left_open:18 phone_or_personal_items:6 outsider_in_cash_room:1 workstation_unlocked:1
+X-35,Приём наличных от клиента,105,37,4/14,no_client_id_check:25 door_left_open:8 cash_within_client_reach:7 cash_unattended:5
+X-37,Приём наличных от клиента,105,51,5/14,no_client_id_check:33 door_left_open:9 cash_within_client_reach:9 outsider_in_cash_room:6
+X-39,Смена клиентов,105,33,4/14,safe_left_open:12 no_client_id_check:11 cash_within_client_reach:5 door_left_open:5
+X-43,Обработка денег без клиента,105,27,3/14,counting_without_client:18 workstation_unlocked:4 cash_accepted_without_count:3 eating_drinking:3
+X-45,Обработка денег без клиента,105,34,3/14,counting_without_client:28 cash_unattended:7 workstation_unlocked:2 safe_left_open:2

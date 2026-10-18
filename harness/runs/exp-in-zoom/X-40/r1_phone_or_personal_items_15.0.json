@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 14.4,
+ "evidence": "Клиентка кладёт свою верхнюю одежду (пальто/куртку) на рабочий стол кассира, что является нарушением правил размещения личных вещей на рабочем месте.",
+ "latency_sec": 4.363,
+ "error": null,
+ "usage": {
+  "completion_tokens": 60,
+  "prompt_tokens": 17439,
+  "total_tokens": 17499,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 45,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 14.4, \"evidence\": \"Клиентка кладёт свою верхнюю одежду (пальто/куртку) на рабочий стол кассира, что является нарушением правил размещения личных вещей на рабочем месте.\"}",
+ "cand": {
+  "type_id": "phone_or_personal_items",
+  "timecode_sec": 15.0,
+  "confidence": 0.9,
+  "observed": "",
+  "source": "kept"
+ }
+}

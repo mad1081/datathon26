@@ -1,0 +1,16 @@
+﻿pred_type,n,videos,median_err,proposed_shift
+cash_accepted_without_count,12,X-13,-8.0,8.0
+cash_unattended,134,X-4 X-15 X-26 X-38,1.0,-1.0
+collector_bag_no_check,63,X-17,0.5,0.0
+counting_without_client,6,X-34,-0.4,0.0
+door_left_open,78,X-30 X-32 X-33,-2.25,2.25
+eating_drinking,73,X-46,1.5,-1.5
+foreign_cash_on_desk,45,X-4 X-38,0.0,0.0
+no_client_id_check,29,X-2 X-17,-1.5,1.5
+outsider_in_cash_room,74,X-18 X-30 X-33,-1.0,1.0
+phone_or_personal_items,98,X-40,-3.0,3.0
+safe_key_left,3,X-22,1.6,0.0
+safe_left_open,12,X-20,-3.75,3.75
+seals_docs_unattended,9,X-24,2.0,-2.0
+suspicious_note_returned,2,X-1,-5.0,0.0
+workstation_unlocked,111,X-11 X-28,2.0,-2.0

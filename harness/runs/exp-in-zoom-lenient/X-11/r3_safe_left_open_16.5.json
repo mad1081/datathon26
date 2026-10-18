@@ -1,0 +1,23 @@
+{
+ "confirmed": true,
+ "timecode_sec": 16.0,
+ "evidence": "Кассир гасит свет в помещении и выходит через дверь, оставляя дверцу металлического сейфа открытой без присмотра.",
+ "latency_sec": 4.268,
+ "error": null,
+ "usage": {
+  "completion_tokens": 51,
+  "prompt_tokens": 19372,
+  "total_tokens": 19423,
+  "completion_tokens_details": null,
+  "prompt_tokens_details": null
+ },
+ "n_frames": 50,
+ "raw_text": "{\"confirmed\": true, \"timecode_sec\": 16.0, \"evidence\": \"Кассир гасит свет в помещении и выходит через дверь, оставляя дверцу металлического сейфа открытой без присмотра.\"}",
+ "cand": {
+  "type_id": "safe_left_open",
+  "timecode_sec": 16.5,
+  "confidence": 1.0,
+  "observed": "",
+  "source": "kept"
+ }
+}
