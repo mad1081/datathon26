@@ -10,7 +10,7 @@ import { HttpJobClient, STAGES, SimulatedJobClient, type ApiResult, type JobClie
 type F = { name: string; size: number; url: string | null }
 const ACCEPT = /\.(mov|mp4)$/i
 // UI, раздаваемый самим сервисом, ходит в API того же адреса
-const DEFAULT_BASE = location.protocol.startsWith("http") ? location.origin : ""
+const DEFAULT_BASE = (import.meta.env.VITE_API_URL as string | undefined) || (location.protocol.startsWith("http") ? location.origin : "")
 
 export function UploadScreen({ onDone }: { onDone: (f: F | null, result?: ApiResult) => void }) {
   const [over, setOver] = useState(false)
