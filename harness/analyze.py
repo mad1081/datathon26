@@ -3,6 +3,7 @@ import sys
 import time
 from pathlib import Path
 
+import checks
 import config
 from client import chat
 from frames import b64, frames_at_times, sample_frames
@@ -92,6 +93,11 @@ def select_violations(parsed, offset=None, mode=None, extra=None, merge_window=N
         if rule is None or v["type_id"] not in allowed:
             obs.append(v)
             continue
+        if config.CONSISTENCY_CHECKS:
+            reason = checks.contradicted(v, parsed)
+            if reason:
+                obs.append(dict(v, dropped=reason))
+                continue
         if v["confidence"] >= float(rule.get("threshold", 0.6)) + offset:
             kept.append(v)
         else:

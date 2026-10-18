@@ -55,6 +55,7 @@ VERDICT_MODE = os.getenv("VERDICT_MODE", "rules")
 EXTRA_VERDICT_TYPES = [t.strip() for t in os.getenv(
     "EXTRA_VERDICT_TYPES", "workstation_unlocked,seals_docs_unattended,eating_drinking").split(",") if t.strip()]
 MERGE_WINDOW_SEC = env_float("MERGE_WINDOW_SEC", 3.0)
+CONSISTENCY_CHECKS = env_bool("CONSISTENCY_CHECKS", True)
 
 
 @lru_cache(maxsize=1)
